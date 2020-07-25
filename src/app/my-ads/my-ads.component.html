@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="container-fluid">
+       <!-- OVERVIEW -->
+       <div class="panel panel-headline">
+         <div  style="text-align: center;"><h2 >List of Ads</h2></div>
+          <div class="add"> <button (click) = "createAd()">Create Ad</button></div>
+         
+          <div class="prodct-section" >
+            <div class="products" style="cursor:pointer" (click) = "details(searchAds.id,$event.stopPropagation())" *ngFor = "let searchAds of ads|paginate: { itemsPerPage: 10, currentPage: p }">
+               <div class="pro-header" >
+                  <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
+                  <div class="actionbutton list-ads">
+                     <a href="JavaScript:void(0)" (click)="editAd(searchAds.id,$event.stopPropagation())"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                     <a href="JavaScript:void(0)" (click)="confirmation(confirm,searchAds.id,$event.stopPropagation())"><i class="fa fa-trash" aria-hidden="true" ></i></a>
+                    
+                  </div>
+               </div>
+               <div class="product-data">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="prp-image">
+                           <img src="{{searchAds.main_image}}" class="image-fit" alt="img">
+                        </div>
+                     </div>
+                     <div class="col-lg-8">
+                        <div class="vichle data">
+                           <div class="vichle-price">
+                              <h2>£ {{searchAds.price | number}}</h2>
+                           </div>
+                           <div class="vichle-info">
+                              <ul>
+                                 <li>{{searchAds.mileage}} miles </li>
+                                 <li>{{searchAds.created_at | date}}  </li>
+                                 <!-- <li>{{searchAds.power}} </li> -->
+                                 <li>{{searchAds.vehicleCond}}</li>
+                                 <li>{{searchAds.owners}} (Previous Owners)</li>
+                                 <li>{{searchAds.gear}} </li>
+                                 <li>{{searchAds.fuelType}} </li>
+                                 <li *ngIf="searchAds.accleration != 'null'">{{searchAds.accleration}} </li>
+                                 <li *ngIf="searchAds.co2 != 'null'">{{searchAds.co2}} </li>
+                                <!-- <li>114 g CO2/km (comb) 1</li> -->
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="prodcut-ftr">
+                  <span>{{searchAds.sellers}}, <img src="assets/images/flag.png" style="    width: 50px;" alt="img"> {{searchAds.city}}</span>
+               </div>
+            </div>
+         
+         </div>
+         <div class="txt-center" *ngIf="ads && ads.length == 0"> You do not have any ad.</div>
+         <div class="propagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              
+          </div>
+       </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+ </div>
+
+ <ng-template #confirm>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">Confirmation</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+     <p>Are You sure you want to delete this ad?</p>
+     <button _ngcontent-c4="" class="btn btn-success"  type="button" (click) = "deleteAd()">Yes</button>
+     <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px" type="button" (click)="modal.hide()">No</button>
+   </div>
+ </ng-template>

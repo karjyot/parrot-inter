@@ -1,0 +1,28 @@
+<div id="sidebar-nav" class="sidebar-nav">
+    <div class="sidebar-scroll">
+       <nav>
+         <ul class="nav">
+            <div class="referal-sidebar-div text-center">
+               <div class="referal-image">
+                  <img src="{{imageUrl}}" class="img-fluid">
+                  <h5> {{userDetails.name}}</h5>
+                  <span class="ref-balance">Balance: {{userDetails.countryObj.symbol}} {{remaining}}</span>
+               </div>
+            </div>
+             <li [class.active]="urlmatch('my-ads')"><a routerLink='/my-ads' *ngIf="userDetails.user_type=='seller'">My Ads</a></li>
+             <li [class.active]="urlmatch('profile')"><a routerLink='/profile'>My Profile</a></li>
+             <li [class.active]="urlmatch('messages/custom')"><a routerLink='/messages/custom'>Messages</a></li>
+             <!-- <li [class.active]="urlmatch('my-plan')"><a routerLink='/my-plan' *ngIf="userDetails.user_type=='seller'">My Plan</a></li> -->
+             <li [class.active]="urlmatch('bookmarks')"><a routerLink='/bookmarks'>My Favouites</a></li>
+             <li [class.active]="urlmatch('saved-searches')"><a routerLink='/saved-searches' *ngIf="userDetails.user_type=='buyer'">Saved Searches</a></li>
+             <li [class.active]="urlmatch('referal')"><a routerLink='/referal'>Refer and Earn</a></li>
+             <li [class.active]="urlmatch('wallet')"><a routerLink='/wallet'>My Wallet</a></li>
+             <li [class.active]="urlmatch('bank-info')"><a routerLink='/bank-info'>Bank Details</a></li>
+             <li [class.active]="urlmatch('payments-requests')"><a routerLink='/payments-requests'>Bank Transfers</a></li>
+             <li [class.active]="urlmatch('change-user-password')"><a routerLink='/change-user-password'>Change Password</a></li>
+
+             <li><a (click) = "logout()">Logout</a></li>
+          </ul>
+       </nav>
+    </div>
+ </div>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default navbar-fixed-top" style="box-shadow: 0 0 3px rgba(0,0,0,.2);">
+   <div class="left-side-logo">
+	<div class="site-logo" style="cursor:pointer">
+		<a routerLink="/">
+			<img src="assets/images/logo.png" alt="logo">
+		</a>
+	</div>
+	<div class="navbar-btn-carrot">
+		<button type="button" class="btn-toggle-fullwidth"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+		</button>
+   </div>
+   </div>
+
+   <div class="header-top-main">	
+      <div class=" head_icon showLogin">
+		<a class=" " style="cursor: pointer;" clickOutside (click)="toggleMessages()"> <i class="fa fa-envelope-o" style="font-size:24px;">
+        
+         </i>
+			<div class="badge badge-top" *ngIf="showMessages" style="display: none;" id="messageNumber" [ngClass]="{'noMessage':unreadMessage == 0}"><span class="ng-binding">{{unreadMessage}}</span>
+			</div>
+		</a>
+		<div class="dropdown-menu-mg dropdown-menu-right mailbox animated bounceInDown" id="messages" aria-labelledby="2">
+			<ul class="list-style-none">
+				<li *ngIf="getMessages">
+					<div *ngIf="getMessages.length != 0" class="drop-title border-bottom">You have {{getMessages.length}} messages</div>
+				</li>
+				<li *ngFor="let message of getMessages| slice:0:4;  let last = last;">
+					<div class="message-center message-body">
+						<a href="javascript:void(0)" class="message-item" (click)="viewMessage(message)" [ngStyle]="last?{'border-bottom': 'none'} :''"> <span class="user-img"> <img src="{{message.image}}" alt="user" class="rounded-circle">  </span>
+							<span class="mail-contnet">
+                             <h6 class="message-title">{{message.name}} {{message.lname}}</h6>
+                             <span class="mail-desc">{{message.title | truncate : 100 : "....."}}</span>  <span class="time" style="float:right"> {{message.creation_date |  timeago:live}}</span> </span>
+						</a>
+					</div>
+					<li *ngIf="getMessages">
+						<a *ngIf="getMessages.length == 0" class="nav-link text-center link text-dark" href="javascript:void(0);"> <b>No Message Recieved</b> 
+						</a>
+					</li>
+			</ul>
+		</div>
+	</div>
+	<div class="dropdown admin">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<img [src]="imageUrl" />{{details.name}}</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" routerLink="/my-ads" *ngIf="details.user_type=='seller'" href="#">My Ads</a>
+			<a class="dropdown-item" routerLink="/profile" href="#">My Profile</a>
+			<a class="dropdown-item" routerLink="/messages/custom" href="#">Messages</a>
+			<!-- <a class="dropdown-item" routerLink = "/my-plan" *ngIf="details.user_type=='seller'" href="#">My Plan</a> --> <a class="dropdown-item" routerLink="/bookmarks" href="#">My Favourites</a>
+			<a class="dropdown-item" routerLink='/referal'>Refer and Earn</a>
+			<a class="dropdown-item" routerLink='/wallet'>My Wallet</a>
+			<a class="dropdown-item" routerLink='/bank-info'>Bank Details</a>
+			<a class="dropdown-item" routerLink='/payments-requests'>Bank Transfers</a>
+			<a class="dropdown-item" routerLink='/change-user-password'>Change Password</a>
+			<a class="dropdown-item" href="#" (click)="logout()">logout</a>
+		</div>
+   </div>
+   </div>
+</nav>

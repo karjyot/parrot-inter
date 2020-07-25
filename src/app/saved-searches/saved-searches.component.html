@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="container-fluid">
+       <!-- OVERVIEW -->
+       <div class="panel panel-headline">
+         <div  style="text-align: center;"><h2 >List of Saved Searches</h2></div>
+          <div class="prodct-section" *ngFor="let searches of adsSearches |paginate: { itemsPerPage: 10, currentPage: p }">
+            <div class="products" style="cursor:pointer" (click) = "details(searches,$event.stopPropagation())" >
+               <div class="pro-header" >
+                  <h5>{{searches.created_at }} </h5>
+                  <div class="actionbutton list-ads">
+                     <a href="JavaScript:void(0)" (click)="confirmation(confirm,searches.id,$event.stopPropagation())"><i class="fa fa-trash" aria-hidden="true" ></i></a>
+                    
+                  </div>
+               </div>
+            </div>
+         
+         </div>
+         <div class="txt-center" *ngIf="adsSearches && adsSearches.length == 0"> You do not have saved any search.</div>
+         <div class="propagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              
+          </div>
+       </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+ </div>
+
+ <ng-template #confirm>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">Confirmation</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+     <p>Are You sure you want to delete this search?</p>
+     <button _ngcontent-c4="" class="btn btn-success"  type="button" (click) = "deleteAd()">Yes</button>
+     <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px" type="button" (click)="modal.hide()">No</button>
+   </div>
+ </ng-template>

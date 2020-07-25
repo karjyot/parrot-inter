@@ -1,0 +1,634 @@
+<section class="pagination">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="pagemain-content" *ngIf="adDetails">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 col-lg-12">
+            <div class="info-section">
+               <div class="sticky-vinfo">
+                  <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
+                  <h4 class="price">£ {{adDetails.price}}</h4>
+                  <button>contact a seller</button>    
+               </div>
+               <div class="product-detail vichleinfo-main">
+                  <div class="pro-header">
+                     <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
+                     <div class="actionbutton">
+                        <a href="JavaScript:void(0)" (click)= "openMessage(message,adDetails)"><i class="fa fa-inbox" aria-hidden="true"></i>Message</a>
+                        <a href="JavaScript:void(0)" (click)= "bookmark(adDetails,'test')"><i class="fa "  [ngClass] = "{'fa-star-o':!adDetails.isBookMark,'fa-star':adDetails.isBookMark}" aria-hidden="true"></i>Add to list</a>
+                        <a href="JavaScript:void(0)" (click)= "openShare(share,$event,adDetails,'test')"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 col-lg-7">
+                           <div class="product-slider">
+                              <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                           </div>
+                        </div>
+                        <div class="col-md-12 col-lg-5">
+                           <div class="vichle data">
+                              <div class="vichle-price">
+                                 <h2>£ {{adDetails.price | number}}</h2>
+                              </div>
+                              <div class="vichle-info">
+                                 <ul>
+                                    <li><img src="assets/images/vihcle-info-icon-1.png"> {{adDetails.mileage}} miles<span>used</span></li>
+                                    <li><img src="assets/images/vihcle-info-icon-2.png"> {{adDetails.created_at | date}}</li>
+                                    <li><img src="assets/images/vihcle-info-icon-3.png"><span>{{adDetails.gear}}, {{adDetails.fuelType}}</span></li>
+                                 </ul>
+                              </div>
+                              <div class="vichle-tags" style="border-bottom: 1px solid #ccc;
+                              padding-bottom: 20px;">
+                                 <ul >
+                                    <li *ngFor = "let eq of adDetails.eqpArr">{{eq.name}}</li>
+                                    <li *ngFor = "let eq of adDetails.eqpArrExtra">{{eq.name}}</li>
+                                    <li *ngFor = "let eq of adDetails.eqpArrSaftey">{{eq.name}}</li>
+                                    <li *ngFor = "let eq of adDetails.eqpArrEnter">{{eq.name}}</li>
+                                 </ul>
+                              </div>
+
+                             
+                                 <div class="vichle-info" style="margin-bottom: 0px;">
+                                    <span style="    text-transform: capitalize;
+                                    font-size: 14px;">{{adDetails.sellers}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{adDetails.city}}</span>
+                                 </div>
+                                 <div class="vichle-info" *ngIf="adDetails.website">
+                                    <span style="
+                                    font-size: 14px;">{{adDetails.website}}</span>
+                                 </div>
+                             
+
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <button class="btn-theme orange" (click)="sendEmail(adDetails.email)">Send E-mail</button>
+                                 </div>
+                                 <div class="col-md-6" *ngIf="adDetails.phone">
+                                    <button class="btn-theme white">{{adDetails.phone}}</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="product-detail vehicle-subdeail">
+                  <div class="pro-header">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="nav-text">
+                              <a href="javascript:void(true)" class="float-right color3" (click)= "openReport(report,adDetails)"> Report offer </a>
+                           </div>
+                           <nav>
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                    href="#nav-home" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">Details</a>
+                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                    href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">Equipment</a>
+                                 <a class="nav-item nav-link" id="nav-Desciption-tab" data-toggle="tab"
+                                    href="#nav-Desciption" role="tab" aria-controls="nav-Desciption"
+                                    aria-selected="false">Description</a>
+                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                    href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                    aria-selected="false">Contact</a>
+                              </div>
+                           </nav>
+                           <div class="tab-content" id="nav-tabContent">
+                              <!--Primera seccion, INTRODUCCION-->
+                              <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                 aria-labelledby="nav-home-tab">
+                                 <div class="accordion" id="accordion1">
+                                    <!--Accordian section 1-->
+                                    <div class="card">
+                                       <div class="card-header" id="headingOneOne">
+                                          <h5 class="mb-0">
+                                             <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseOneOne" aria-expanded="true"
+                                                aria-controls="collapseOneOne">
+                                                <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <h5>Details</h5>
+                                             </button>
+                                          </h5>
+                                       </div>
+                                       <div id="collapseOneOne" class="collapse show" aria-labelledby="headingOneOne"
+                                          data-parent="#accordion1">
+                                          <div class="card-body">
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                   <!---Table1-->
+                                                   <table class="table">
+                                                      <thead>
+                                                         <tr>
+                                                            <th scope="col">State</th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="color">Type</td>
+                                                            <td class="color2">{{adDetails.vehicleCond || '-'}}</td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                   <!---Table2-->
+                                                   <table class="table">
+                                                      <thead>
+                                                         <tr>
+                                                            <th scope="col">Drive </th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="color">Gearing Type</td>
+                                                            <td class="color2">{{adDetails.gear || '-'}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Gears</td>
+                                                            <td class="color2">{{adDetails.totalGears || '-'}}</td>
+                                                         </tr>
+                                                         <tr  *ngIf="adDetails.type == 'car'">
+                                                            <td class="color">CO2 Emission </td>
+                                                            <td class="color2">{{adDetails.co2 || '-'}}  </td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Cylinders</td>
+                                                            <td class="color2">{{adDetails.cylinder || '-'}}</td>
+                                                         </tr>
+                                                         <tr *ngIf="adDetails.type == 'car'">
+                                                            <td class="color" >Fuel Consumpation</td>
+                                                            <td class="color2">{{adDetails.fuelConsumpation || '-'}} </td>
+                                                         </tr>
+                                                         <tr  *ngIf="adDetails.type == 'car'">
+                                                            <td class="color">Acceleration</td>
+                                                            <td class="color2">{{adDetails.accleration || '-'}} </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                   <!---Table2-->
+                                                   <table class="table">
+                                                      <thead>
+                                                         <tr>
+                                                            <th scope="col">Environment</th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="color">Fuel</td>
+                                                            <td class="color2">{{adDetails.fuelType || '-'}} <span *ngIf="adDetails.filter">(Particulate Filter)</span></td>
+                                                         </tr>
+                                                         <!-- <tr>
+                                                            <td class="color">Consumption</td>
+                                                            <td class="color2">4.4 l/100 km (comb)<br>
+                                                               4.8 l/100 km (city)<br>
+                                                               4.2 l/100 km (country)</td>
+                                                            </tr> -->
+                                                         <tr  *ngIf="adDetails.type == 'car'">
+                                                            <td class="color">Emission Label</td>
+                                                            <td class="color2">{{adDetails.emison}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Emission Class</td>
+                                                            <td class="color2">{{adDetails.emmison}}</td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </div>
+                                                <div class="col-md-6">
+                                                   <!---Table1-->
+                                                   <table class="table">
+                                                      <thead>
+                                                         <tr>
+                                                            <th scope="col">Properties</th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="color">Make</td>
+                                                            <td class="color2">{{adDetails.make}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Model</td>
+                                                            <td class="color2">{{adDetails.model}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">First Registration</td>
+                                                            <td class="color2">{{adDetails.registration}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Body Color</td>
+                                                            <td class="color2">{{adDetails.interiorColor}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">Body</td>
+                                                            <td class="color2">{{adDetails.exteriorColor}}</td>
+                                                         </tr>
+                                                         <tr *ngIf="adDetails.type == 'car'">
+                                                            <td class="color" >No. of Doors</td>
+                                                            <td class="color2">{{adDetails.doors}}</td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td class="color">No. of Seats</td>
+                                                            <td class="color2">{{adDetails.seats}}</td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!--Accordian section 2-->
+                                    <!-- <div class="card">
+                                       <div class="card-header" id="headingOneTwo">
+                                          <h5 class="mb-0">
+                                             <button class="btn btn-link collapsed" type="button"
+                                                data-toggle="collapse" data-target="#collapseOneTwo"
+                                                aria-expanded="false" aria-controls="collapseOneTwo">
+                                                <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <h5>Equipment</h5>
+                                             </button>
+                                          </h5>
+                                       </div>
+                                       <div id="collapseOneTwo" class="collapse" aria-labelledby="headingOneTwo"
+                                          data-parent="#accordion1">
+                                          <div class="card-body">
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                            
+                                                </div>
+                                                <div class="col-md-6">
+                                           
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       </div> -->
+                                 </div>
+                              </div>
+                              <!--Segunda seccion, Sintomas-->
+                              <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                 aria-labelledby="nav-profile-tab">
+                                 <div class="accordion" id="accordion2">
+                                    <div class="card">
+                                       <div class="card-header" id="headingTwoOne">
+                                          <h5 class="mb-0">
+                                             <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseTwoOne" aria-expanded="true"
+                                                aria-controls="collapseTwoOne">
+                                                <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <h5>Equipments</h5>
+                                             </button>
+                                          </h5>
+                                       </div>
+                                       <div id="collapseTwoOne" class="collapse show" aria-labelledby="headingTwoOne"
+                                          data-parent="#accordion2">
+                                          <div class="card-body">
+                                             <div class="row">
+                                                <div class="col-md-3">
+                                                   <p class="mb-0">
+                                                      <b>Comfort & Convenience</b>
+                                                   </p>
+                                                   <ul>
+                                                      <li class= "features" *ngFor = "let eq of adDetails.eqpArr">{{eq.name}}</li>
+                                                   </ul>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="adDetails.type == 'car'">
+                                                   <p class="mb-0">
+                                                      <b>Entertainment & Media</b>
+                                                   </p>
+                                                   <ul>
+                                                      <li class= "features" *ngFor = "let eq of adDetails.eqpArrEnter">{{eq.name}}</li>
+                                                   </ul>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="adDetails.type == 'car'">
+                                                   <p class="mb-0">
+                                                      <b>Extras</b>
+                                                   </p>
+                                                   <ul>
+                                                      <li class= "features" *ngFor = "let eq of adDetails.eqpArrExtra">{{eq.name}}</li>
+                                                   </ul>
+                                                </div>
+                                                <div class="col-md-3" *ngIf="adDetails.type == 'car'">
+                                                   <p class="mb-0">
+                                                      <b>Safety & Security</b>
+                                                   </p>
+                                                   <ul>
+                                                      <li class= "features" *ngFor = "let eq of adDetails.eqpArrSaftey">{{eq.name}}</li>
+                                                   </ul>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!--Tercera seccion, Factores de riesgo-->
+                              <div class="tab-pane fade" id="nav-Desciption" role="tabpanel"
+                                 aria-labelledby="nav-Desciption-tab">
+                                 <div class="accordion" id="accordion3">
+                                    <div class="card">
+                                       <div class="card-header" id="headingThreeOne">
+                                          <h5 class="mb-0">
+                                             <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseThreeOne" aria-expanded="true"
+                                                aria-controls="collapseThreeOne">
+                                                <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <h5>Desciption</h5>
+                                             </button>
+                                          </h5>
+                                       </div>
+                                       <div id="collapseThreeOne" class="collapse show"
+                                          aria-labelledby="headingThreeOne" data-parent="#accordion3">
+                                          <div class="card-body">
+                                             <div class="row">
+                                                <div class="col-md-12">
+                                                   <p>
+                                                      {{adDetails.description}}
+                                                   </p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!--Contact Section-->
+                              <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                 aria-labelledby="nav-contact-tab">
+                                 <div class="accordion" id="accordion4">
+                                    <div class="card">
+                                       <div class="card-header" id="headingThreeOne">
+                                          <h5 class="mb-0">
+                                             <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseFourOne" aria-expanded="true"
+                                                aria-controls="collapseFourOne">
+                                                <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <h5>Contact</h5>
+                                             </button>
+                                          </h5>
+                                       </div>
+                                       <div id="collapseFourOne" class="collapse show"
+                                          aria-labelledby="headingFourOne" data-parent="#accordion4">
+                                          <div class="card-body">
+                                             <div class="row">
+                                                <div class="product-detail pad-top-bot">
+                                                   <div class="row">
+                                                      <div class="col-md-6">
+                                                         
+                                                        
+                                                            
+                                                         
+                                                            <agm-map [latitude]='adDetails.lat' [longitude]='adDetails.longi'
+                                                            [zoom]="10">
+                                                          </agm-map>
+                                                         
+                                                        
+                                                      </div>
+                                                      <div class="col-md-6">
+                                                         <div class="padding-inner">
+                                                            <h4 class="padt-b">Contact the seller</h4>
+                                                            <form [formGroup]="contactForm" autocomplete="off" novalidate (ngSubmit)="createContact()">
+                                                            <div class="form-group">
+                                                               <label for="exampleInputName">Your Name</label>
+                                                               <input type="text" class="form-control" id="exampleInputName"
+                                                                  aria-describedby="Name" placeholder="Enter Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" required>
+                                                               <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                                               anyone else.</small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label for="exampleInputEmail1">Your E-mail Address</label>
+                                                               <input type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" required class="form-control" id="exampleInputEmail1"
+                                                                  aria-describedby="emailHelp" placeholder="Enter email">
+                                                               <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                                               anyone else.</small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label for="exampleInputPhone">Your Phone No.</label>
+                                                               <input type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" required  id="exampleInputPhone"
+                                                                  placeholder="e.g. +49()01234 - 1234567">
+                                                            </div>
+                                                            <label>Your Message</label>
+                                                            <div class="form-group form-check">
+                                                               <input type="checkbox"  formControlName = "vehicle"  class="form-check-input" id="exampleCheck1">
+                                                               <label class="form-check-label" for="exampleCheck1">Is the vechicle still
+                                                               available?</label>
+                                                            </div>
+                                                            <div class="form-group form-check">
+                                                               <input type="checkbox" formControlName = "test" class="form-check-input" id="exampleCheck2">
+                                                               <label class="form-check-label" for="exampleCheck1">When can i take a test
+                                                               drive?</label>
+                                                            </div>
+                                                            <div class="form-group form-check">
+                                                               <input type="checkbox"   formControlName = "contactMe" class="form-check-input" id="exampleCheck3">
+                                                               <label class="form-check-label" for="exampleCheck1">Please contact me.</label>
+                                                            </div>
+                                                            <div class="form-group form-check">
+                                                               <input type="checkbox" formControlName = "tradePossible"  class="form-check-input" id="exampleCheck4">
+                                                               <label class="form-check-label" for="exampleCheck1">Is financing and/or a trade-in
+                                                               possible?</label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <!-- <label for="exampleFormControlTextarea1">textarea</label> -->
+                                                               <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"
+                                                                  placeholder="Dear Sir or Madam, I'm interested in your vehicle. Please conta" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" formControlName="message" required ></textarea>
+                                                               <small class="color">Your input will be checked for security reasons by AS24
+                                                               team.</small>
+                                                            </div>
+                                                            <div class="form-group form-check">
+                                                               <input type="checkbox" formControlName = "agree" class="form-check-input" id="exampleCheck3">
+                                                               <label class="form-check-label color" for="exampleCheck1">I agree to the processing
+                                                               of my data as described in pta declaration of consent.
+                                                               I can revoke this consent at any time with effect for the future.</label>
+                                                            </div>
+                                                            <!-- <div class="form-group form-check">
+                                                               <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                                                               <label class="form-check-label color" for="exampleCheck1">Send me a copy</label>
+                                                               </div> -->
+                                                            <button type="submit" class="btn btn-theme orange2">Submit</button>
+                                                            </form>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+
+
+
+               <p class="text-center referText">
+                {{cmsData.searchText}}
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<section id="related-products" class="related-padding no-gutters">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h4 id="title" class="related-heading" *ngIf=" userAdsListed && userAdsListed.length > 0">More new ads from this user</h4>
+            <a href="javascript:void()"><span class="vew-all"  *ngIf=" userAdsListed && userAdsListed.length > 4"  (click)= "viewAll(cars)">View all </span></a>
+         </div>         
+         <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let userAdd of userAdsListed | slice:0:4;" style="cursor: pointer;" (click) = "otherDetails(userAdd.id,$event,'test')">
+            <div class="card">
+               <img class="card-img-top" src="{{userAdd.main_image}}" alt="Card image">
+               <div class="card-body">
+                 <div  class="card-hd">
+                    <div class="related-header">
+                       <div class="related-elem">                          
+                          <p class="strike-through price-txt">£{{userAdd.price  | number}}</p>
+                       </div>  
+                        <div class="related-elem">                          
+                           <p class="model-car text-right">{{userAdd.registration}}</p>
+                        </div>
+                      </div>
+                  </div>
+                  <div  class="card-title">
+                     <h4>{{userAdd.make}} {{userAdd.model}} {{userAdd.variant}}</h4>
+                     <p class="p-card__desc">{{userAdd.vehicleCond}} | {{userAdd.gear}} | {{userAdd.fuelType}}</p>
+                  </div>
+                 
+               </div>
+             </div>
+         </div>
+
+      </div>
+   </div>
+</section>
+
+
+<ng-template #share>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">Share</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <form>
+         <label>Share the post with the world</label>
+         <div class="form-group">
+            <share-button text="Share" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+            <share-button button="linkedin" text="linkedin"  [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="twitter" text="Tweet" [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="whatsapp" text="Whatsapp" [showText]="true"   [url]=urlShare></share-button>
+         </div>
+      </form>
+   </div>
+</ng-template>
+<ng-template #message>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">Message</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefMessage.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <form [formGroup]="messageForm" autocomplete="off" novalidate (ngSubmit)="sendMessage()">
+      <div class="form-group">
+         <textarea [ngClass]="{ 'is-invalid': submitted && fM.message.errors }" formControlName="message" required class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Send</button>
+      </form>
+   </div>
+</ng-template>
+
+
+<ng-template #report>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">Report</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefReport.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <form [formGroup]="ReportForm" autocomplete="off" novalidate (ngSubmit)="sendReport()">
+      <div class="form-group">
+         <textarea [ngClass]="{ 'is-invalid': submitted && fR.report.errors }" formControlName="report" required class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Send</button>
+      </form>
+   </div>
+</ng-template>
+
+
+<ng-template #cars>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">View All Ads</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefAll.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body" id="modalDetails">
+      <div class="prodct-section">
+         <div class="products" style="cursor:pointer;width:80%;margin:30px auto;" (click) = "otherDetails(searchAds.id,$event.stopPropagation(),searchAds.user_id)" *ngFor = "let searchAds of userAdsListed |paginate: { itemsPerPage: 10, currentPage: p }">
+             <div class="pro-header" >
+                <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
+                <div class="actionbutton">
+                   <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>Add to list</a>
+                   <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                </div>
+             </div>
+             <div class="product-data">
+                <div class="row">
+                   <div class="col-lg-4">
+                      <div class="prp-image">
+                        <img src="{{searchAds.main_image}}" class="image-fit" alt="img">
+                      </div>
+                   </div>
+                   <div class="col-lg-8">
+                      <div class="vichle data">
+                         <div class="vichle-price">
+                            <h2>£ {{searchAds.price}}</h2>
+                         </div>
+                         <div class="vichle-info">
+                            <ul>
+                               <li>{{searchAds.mileage}} miles </li>
+                               <li>{{searchAds.created_at | date}}  </li>
+                               <li>{{searchAds.power}} </li>
+                               <li>{{searchAds.vehicleCond}}</li>
+                               <li>{{searchAds.owners}} (Previous Owners)</li>
+                               <li>{{searchAds.gear}} </li>
+                               <li>{{searchAds.fuelType}} </li>
+                               <!-- <li>4.4 l/100 km (comb) 1</li>
+                               <li>114 g CO2/km (comb) 1</li> -->
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="prodcut-ftr">
+                <span  style="text-transform: capitalize;">{{searchAds.sellers}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{searchAds.city}}</span>
+             </div>
+          </div>
+       
+       </div>
+       <div class="propagination">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+       </div>
+
+
+
+   </div>
+</ng-template>

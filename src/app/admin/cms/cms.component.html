@@ -1,0 +1,143 @@
+<div class="container-fluid" style="padding: 0px">
+    <div id="ui-view">
+       <div>
+          <div class="animated fadeIn">
+             <div class="card">
+                <div class="card-header">
+                   <i class="fa fa-edit"></i> CMS
+                 
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+<div class="modal-body" style="padding:27px">
+      <div class="row">
+         <div class="col-md-12">
+            
+               <form class="signup" [formGroup]="contentForm"  (ngSubmit)="save()">
+                <!-- <div class="row">
+                 
+                 </div> -->
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label"> Facebook</label>
+                        <textarea type="text" [(ngModel)]="custom.facebook"    formControlName="facebook" class="form-control" id="email_id" name="email_name"
+                        ></textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Linkedin</label>
+                        <textarea type="text" [(ngModel)]="custom.linkedin"    formControlName="linkedin" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Google</label>
+                        <textarea type="text" [(ngModel)]="custom.google"   formControlName="google" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" > 
+                       <label for="email_id" class="control-label"> Phone</label>
+                       <input type="text" [(ngModel)]="custom.phone"    formControlName="phone" class="form-control" id="email_id" name="email_name" 
+                       >
+                    </div>
+                 </div>
+             
+               </div>
+
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Secret Key</label>
+                        <textarea type="text" [(ngModel)]="custom.api"   formControlName="api" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+            
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Instagram</label>
+                        <textarea type="text" [(ngModel)]="custom.instagram"   formControlName="instagram" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Twitter</label>
+                        <textarea type="text" [(ngModel)]="custom.twitter"   formControlName="twitter" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+            
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Parrot release</label>
+                        <textarea type="text" [(ngModel)]="custom.parrot"   formControlName="parrot" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Plan Text</label>
+                        <textarea type="text" [(ngModel)]="custom.planText"   formControlName="planText" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Plan Bottom Text</label>
+                        <textarea type="text" [(ngModel)]="custom.planBottom"   formControlName="planBottom" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+            
+             
+             
+               </div>
+
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Search Detail Text</label>
+                        <textarea type="text" [(ngModel)]="custom.searchText"   formControlName="searchText" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Plan Lower Text(first)</label>
+                        <textarea type="text" [(ngModel)]="custom.planLowerFirst"   formControlName="planLowerFirst" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+            
+             
+             
+               </div>
+
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group"> 
+                        <label for="email_id" class="control-label">Plan Lower Text(second)</label>
+                        <textarea type="text" [(ngModel)]="custom.planLowerSecond"   formControlName="planLowerSecond" class="form-control" id="email_id" name="email_name" ></textarea>
+                     </div>
+                  </div>
+               </div>
+
+            <div>
+
+      </div>
+               <div class="form-group">
+                  <!-- Submit button !-->
+                  <button  class="btn btn-secondary btn-blue" style="color:white">Submit</button>
+               </div>
+               </form>
+            </div>
+         </div>
+      </div>

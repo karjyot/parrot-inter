@@ -1,0 +1,66 @@
+<section class="pagination">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12">
+             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+          </div>
+       </div>
+    </div>
+ </section>
+<section class="top-categories">
+<div class="container">
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="blog-title text-center">
+                Top categories
+            </h2>
+        </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-3 col-sm-12 col-xs-12" *ngFor="let cate of categories|paginate: { itemsPerPage: 10, currentPage: p }" (click) = "filterBlogs(cate)">
+            <div class="top-category-image">
+                <img _ngcontent-olb-c5="" alt="Card image" class="img-fluid" src="{{cate.image}}">
+                <p>{{cate.name}}</p>
+            </div>
+        </div>
+  
+    </div>
+</div>
+</section>
+
+
+<section class="top-categories" id="all-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="blog-title text-center"> {{filter}} Posts</h2>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let blog of blogs" (click) = "getBlogDetails(blog.id)" style="cursor:  pointer;">
+                <div class="card">
+                    <img _ngcontent-ddc-c5="" alt="Card image" class="card-img-top" src="{{blog.image}}">
+                    <div class="card-body" >
+                        <div class="card-heading">
+                            <div class="card-title">
+                                <h4>Blog</h4>                                
+                            </div>
+                            <div class="card-desc">
+                                <h3>{{blog.title}}
+                                </h3>
+                                <p class="blog-desc" [innerHTML]="blog.content | words : 50">
+                                   </p>
+                                <span class="blog-date">{{blog.created_at | date}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+        </div>
+    </section>
+      <div class="propagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls></div>

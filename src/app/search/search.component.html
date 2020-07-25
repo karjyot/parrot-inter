@@ -1,0 +1,791 @@
+<section class="pagination">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12">
+             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+          </div>
+       </div>
+    </div>
+ </section>
+ <section class="pagemain-content">
+    <div class="container">
+    <div class="row">
+
+
+       <div class="col-md-12 col-lg-3">
+          <form  [formGroup]="searchForm">
+          <div class="sidebarmenu">
+             <ul class="list-unstyled components">
+                <li class="active">
+                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family:inherit">Specifications & Location</a>
+                   <ul class="collapse list-unstyled show" id="homeSubmenu">
+                     <li *ngIf="adType == 'truck'">
+                        <div class="form-group">
+                           <label>Category</label>
+                           <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
+                              <option value="">Category</option>
+                              <option value = "rigid" >Rigid Trucks</option>
+                              <option value = "tractor" >Tractor Units</option>
+                              <option value = "trailer" >Trailers</option>
+                           </select>
+                        </div>
+                     </li>
+
+                      <li>
+                         <div class="form-group">
+                            <label>Make</label>
+                            <select class="form-control" formControlName="make" id="sel1"(change)="getModels()">
+                              <option value="">Select Make</option>
+                              <option value = "{{make.make}}" *ngFor="let make of makes">{{make.make}}</option>
+                            </select>
+                         </div>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Model</label>
+                            <select class="form-control" formControlName="model" (change) = "searchDetailsModel()" id="sel1">
+                              <option value="">Select Model</option>
+                              <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                            </select>
+                         </div>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Variant</label>
+                            <input type="text"  class="form-control"  formControlName="variant" (change) = "variant()" placeholder="eg GTI"  >
+                         </div>
+                      </li>
+                      <!-- <li>
+                         <div class="addmaker">
+                            <a href="JavaScript:void(0)"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add more Makes/Models</a>
+                         </div>
+                      </li> -->
+                      <li *ngIf="adType == 'car'">
+                         <div class="form-group">
+                            <label>Body type</label>
+                            <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
+                            <option value="">Select Body Type</option>
+                            <option value="{{x.name}}" *ngFor="let x of bodyTypes">{{x.name}}</option>
+                            </select>
+                         </div>
+                      </li>
+
+                      <li *ngIf="adType == 'bike'">
+                        <div class="form-group">
+                           <label>Body type</label>
+                           <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
+                           <option value="">Select Body Type</option>
+                           <option value="{{x.name}}" *ngFor="let x of bodyTypesBikes">{{x.name}}</option>
+                           </select>
+                        </div>
+                     </li>
+                     <li *ngIf="adType == 'truck'">
+                        <div class="form-group">
+                           <label>Body type</label>
+                           <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
+                           <option value="">Select Body Type</option>
+                           <option value="{{x.name}}" *ngFor="let x of bodyTypesTrucks">{{x.name}}</option>
+                           </select>
+                        </div>
+                     </li>
+
+                     <li *ngIf="adType == 'van'">
+                        <div class="form-group">
+                           <label>Body type</label>
+                           <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
+                           <option value="">Select Body Type</option>
+                           <option value="{{x.name}}" *ngFor="let x of bodyTypesVans">{{x.name}}</option>
+                           </select>
+                        </div>
+                     </li>
+
+                      <li>
+                         <div class="form-group">
+                            <label>First registration</label>
+                            <select class="form-control" (change) = "firstRegistration()"  formControlName="firstRegistration" id="sel1">
+                              <option value="">Please Select</option>
+                              <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
+                            </select>
+                         </div>
+                      </li>
+                      <li >
+                        <div class="form-group">
+                           <select class="form-control" (change)="price()" formControlName="priceFrom" id="sel1">
+                              <option value="">Price From</option>
+                              <option value="500" >£500</option>
+                              <option value="1000" >£1000</option>
+                              <option value="1500" >£1500</option>
+                              <option value="2000" >£2000</option>
+                              <option value="2500" >£2500</option>
+                              <option value="3000" >£3000</option>
+                              <option value="4000" >£4000</option>
+                              <option value="5000" >£5000</option>
+                              <option value="6000" >£6000</option>
+                              <option value="7000" >£7000</option>
+                              <option value="8000" >£8000</option>
+                             
+                              <option value="9000" >£9000</option>
+                              <option value="10000" >£10000</option>
+                              <option value="12500" >£12500</option>
+                              <option value="17500" >£17500</option>
+                              <option value="20000" >£20000</option>
+                              <option value="25000" >£25000</option>
+                              <option value="30000" >£30000</option>
+                              <option value="40000" >£40000</option>
+                              <option value="50000" >£50000</option>
+                              <option value="75000" >£75000</option>
+                              <option value="100000" >£100000</option>
+                           </select>
+
+                        
+                          
+                        </div>
+                      </li>
+                      <li >
+                        <div class="form-group">
+                           <select class="form-control" (change)="priceTo()" formControlName="priceTo" id="sel1">
+                              <option value="">Price to</option>
+                              <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              
+                           </select>
+
+                           
+                            
+                          </div>
+                     </li>
+                      <!-- <li>
+                         <div class="form-group">
+                            <label>Countries <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            </label>
+                            <select class="form-control" id="sel1">
+                               <option>UK</option>
+                              
+                            </select>
+                         </div>
+                      </li> -->
+                      <li>
+                         <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" (change) = "city()" formControlName="city" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City">
+                            <!-- <select class="form-control" id="sel1">
+                               <option>City/zip code</option>
+                               <option>BMW</option>
+                               <option>Mercedes-Benz</option>
+                               <option>Volkswagen</option>
+                               <option>Renault</option>
+                            </select> -->
+                         </div>
+                      </li>
+                      <!-- <li>
+                         <div class="form-group">
+                            <label>Radius(km)</label>
+                            <select class="form-control" id="sel1">
+                               <option>Radius(km)</option>
+                               <option>BMW</option>
+                               <option>Mercedes-Benz</option>
+                               <option>Volkswagen</option>
+                               <option>Renault</option>
+                            </select>
+                         </div>
+                      </li> -->
+                      <li class="search-mask">
+                         <div class="offertype mr-t-10">
+                            <!-- <span>
+                               <div class="form-group">
+                                  <input type="checkbox" id="cross-border">
+                                  <label for="cross-border">cross-border</label>
+                               </div>
+                            </span> -->
+                            <span>
+                            </span>
+                         </div>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Fuel type</label>
+                            <select class="form-control" id="sel1" formControlName="fuelType" (change)="fuelType()">
+                              <option value="">Please Select</option>
+                              <option value="{{x.name}}" *ngFor="let x of diesalTypes">{{x.name}}</option>
+                           </select>
+                           
+                         </div>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Mileage From</label>
+                            <select class="form-control" (change) = "mileage()" formControlName="mileageFrom" id="sel1">
+                              <option value="">Mileage From</option>
+                              <option value="2500">2500 miles</option>
+                              <option value="5000">5000 miles</option>
+                              <option value="10000">10000 miles</option>
+                              <option value="20000">20000 miles</option>
+                              <option value="30000">30000 miles</option>
+                              <option value="40000">40000 miles</option>
+                              <option value="50000">50000 miles</option>
+                              <option value="60000">60000 miles</option>
+                              <option value="70000">70000 miles</option>
+                              <option value="80000">80000 miles</option>
+                              <option value="90000">90000 miles</option>
+                              <option value="100000">100000 miles</option>
+                              <option value="125000">125000 miles</option>
+                              <option value="150000">150000 miles</option>
+                              <option value="175000">175000 miles</option>
+                              <option value="200000">200000 miles</option>
+                              
+                           </select>
+                            <!-- <input type="text" placeholder="Mileage" class="form-control" (change) = "mileage()" formControlName="mileage"> -->
+                            <!-- <select class="form-control" id="sel1">
+                               <option>to</option>
+                               <option>BMW</option>
+                               <option>Mercedes-Benz</option>
+                               <option>Volkswagen</option>
+                               <option>Renault</option>
+                            </select> -->
+                         </div>
+                      </li>
+                      <li>
+                        <div class="form-group">
+                           <label>Mileage To</label>
+                           <select class="form-control" (change) = "mileageTo()" formControlName="mileageTo" id="sel1">
+                             <option value="">Mileage To</option>
+                             <option value="2500">2500 miles</option>
+                             <option value="5000">5000 miles</option>
+                             <option value="10000">10000 miles</option>
+                             <option value="20000">20000 miles</option>
+                             <option value="30000">30000 miles</option>
+                             <option value="40000">40000 miles</option>
+                             <option value="50000">50000 miles</option>
+                             <option value="60000">60000 miles</option>
+                             <option value="70000">70000 miles</option>
+                             <option value="80000">80000 miles</option>
+                             <option value="90000">90000 miles</option>
+                             <option value="100000">100000 miles</option>
+                             <option value="125000">125000 miles</option>
+                             <option value="150000">150000 miles</option>
+                             <option value="175000">175000 miles</option>
+                             <option value="200000">200000 miles</option>
+                             
+                          </select>
+                           <!-- <input type="text" placeholder="Mileage" class="form-control" (change) = "mileage()" formControlName="mileage"> -->
+                           <!-- <select class="form-control" id="sel1">
+                              <option>to</option>
+                              <option>BMW</option>
+                              <option>Mercedes-Benz</option>
+                              <option>Volkswagen</option>
+                              <option>Renault</option>
+                           </select> -->
+                        </div>
+                         <!-- <div class="row">
+                            <div class="col-lg-4">
+                               <div class="form-group">
+                                  <label>Power</label>
+                                  <select class="form-control"  id="sel1">
+                                    <option>KW</option>
+                                    <option>HP</option>
+                                    
+                                 </select>
+                               </div>
+                            </div>
+                            <div class="col-lg-8 ">
+                               <div class="form-group">
+                                  <label>From</label>
+                                  <input type="text" (change) = "power()" formControlName="power" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="km">
+                               </div>
+                               
+                            </div>
+                         </div> -->
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Gear</label>
+                            <select class="form-control" id="sel1" (change) = "gear()" formControlName="gear">
+                              <option value="">Select Gear</option> 
+                              <option value="{{x.name}}" *ngFor="let x of gearTypes">{{x.name}}</option>
+                            </select>
+                         </div>
+                      </li>
+                      <li class="doornumbers" *ngIf="vehicleType == 'car'">
+                         <label>No. of Doors</label>
+                         <ul>
+                           <!-- <li [ngClass]="{'active': doors == 'all'}" (click) = "getDoors('all')">All</li> -->
+                           <li [ngClass]="{'active': doors == 2}" (click) = "getDoors('2')">2/3</li>
+                           <li [ngClass]="{'active': doors == 4}" (click) = "getDoors('4')">4/5</li>
+                           <li [ngClass]="{'active': doors == 6}" (click) = "getDoors('6')">6/7</li>
+                        </ul>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>No. of Seats</label>
+                            <select class="form-control" id="sel1" (change) = "seats()" formControlName="seats">
+                              <option value="">Select Seats</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                               
+                            </select>
+                         </div>
+                      </li>
+                      <li *ngIf="vehicleType == 'car'">  <div class="form-group">
+                        <label>Engine Size</label>
+                        <select class="form-control" id="sel1"  formControlName="engineSize" >
+                          <option value="">Select Engine Size</option>
+                          <option value="1.2">1.2</option>
+                          <option value="1.4">1.4</option>
+                          <option value="1.6">1.6</option>
+                          <option value="1.8">1.8</option>
+                          <option value="2.0">2.0</option>
+                          <option value="2.1">2.1</option>
+                          <option value="2.4">2.4</option>
+                          <option value="2.6">2.6</option>
+                          <option value="3.0">3.0</option>
+                          <option value="3.8">3.8</option>
+                          <option value="others">others</option>
+                        </select>
+                       
+                     
+                  </div></li>
+                      <li *ngIf="vehicleType == 'car'"> <div class="form-group">
+                        <label>Accelration</label>
+                        <select class="form-control" id="sel1"  formControlName="accleration" >
+                          <option value="">Select Accelration</option>
+                          <option value="0-5s (0-60mph) ">0-5s (0-60mph) </option>
+                          <option value="0-8s (0-60mph) ">0-8s (0-60mph) </option>
+                          <option value="8-12s (0-60mph) ">8-12s (0-60mph) </option>
+                          
+                        </select>
+                       
+                     
+                  </div></li>
+                      <li *ngIf="vehicleType == 'car'">  <div class="form-group">
+                        <label>Annual Tax</label>
+                        <select class="form-control" id="sel1"  formControlName="annualTax" >
+                          <option value="">Select Annual Tax</option>
+                          <option value="£0) ">£0</option>
+                          <option value="Up to £20  ">Up to £20 </option>
+                          <option value="Up to £30  ">Up to £30 </option>
+                          <option value="Up to £130 ">Up to £130 </option>
+                          <option value="Up to £145 ">Up to £145 </option>
+                          <option value="Up to £185 ">Up to £185 </option>
+                          <option value="Up to £270">Up to £270 </option>
+                          <option value="Up to £500 ">Up to £500 </option>
+                          <option value=">Up to £500+">Up to £500+ </option>
+                        
+                        </select>
+                       
+                     
+                  </div></li>
+                      <li *ngIf="vehicleType == 'car'"> <div class="form-group">
+                        <label>Fuel Consumpation</label>
+                        <select class="form-control" id="sel1" formControlName="fuelConsumpation" >
+                          <option value="">Select Fuel Consumpation</option>
+                         
+                          <option value="30+ mpg">30+ mpg </option>
+                          <option value="40+ mpg">40+ mpg </option>
+                          <option value="50+ mpg">50+ mpg </option>
+                          
+                        
+                        </select>
+                       
+                     
+                  </div></li>
+                    
+                      <!-- <li class="doornumbers">
+                         <label>No. of Doors</label>
+                         <ul>
+                            <li class="active">All</li>
+                            <li>2/3</li>
+                            <li>4/5</li>
+                            <li>6/7</li>
+                         </ul>
+                      </li> -->
+                      <li class="sidebar search-mask">
+                         <h6>Vehicle condition</h6>
+                         <ul>
+                           <li>
+                             
+                          
+                                    <div class="offertype mr-t-10"  *ngFor = "let cond of vehicalCondions">
+                                       <span *ngIf="vehicleType == 'car'">
+                                          <div class="form-group">
+                                             <input type="checkbox" name="myCheckbox" [(ngModel)]="cond.checked" [ngModelOptions]="{standalone: true}" id="{{cond.name}}" value="cross-border"  (change) = "selectOnlyThis($event)">
+                                             <label for="{{cond.name}}">{{cond.name}}</label>
+                                          </div>
+                                       </span>
+                                    </div>
+                                    <div class="offertype mr-t-10"  *ngFor = "let cond of vehicalCondionsBike">
+                                       <span *ngIf="vehicleType != 'car'">
+                                          <div class="form-group">
+                                             <input type="checkbox" name="myCheckbox" [(ngModel)]="cond.checked" [ngModelOptions]="{standalone: true}" id="{{cond.name}}" value="cross-border"  (change) = "selectOnlyThis($event)">
+                                             <label for="{{cond.name}}">{{cond.name}}</label>
+                                          </div>
+                                       </span>
+                                    </div>
+                                
+                             
+                           </li>
+                        </ul>
+                      </li>
+                   </ul>
+                </li>
+                <li>
+                   <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Equipment</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu2">
+                      <li class="sidebar search-mask" *ngFor ="let eqp of equpments">
+                        <div class="offertype mr-t-10">
+                                  <span>
+                                     <div class="form-group">
+                                       <input type="checkbox" id="{{eqp.name}}" (change) = "getEqpValues()" [(ngModel)]="eqp.checked" [ngModelOptions]="{standalone: true}">
+                                       <label for="{{eqp.name}}">{{eqp.name}}</label>
+                                     </div>
+                                  </span>
+                               </div>
+                      </li>
+                     
+                   </ul>
+                </li>
+                <li>
+                   <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exterior</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu3">
+                      <li> <span>Body Color</span></li>
+                      <li class="sidebar search-mask ex-color" *ngFor = "let code of color"> 
+                        <div class="offertype mr-t-10">
+                                  <span>
+                                    <div class="form-group biege" [ngClass] = "code.name">
+                                       <input type="checkbox" name = "colorCheckbox" [(ngModel)]="code.checked" [ngModelOptions]="{standalone: true}" id="{{code.name}}" (change) = "selectOnlyThisColor($event)">
+                                       <label for="{{code.name}}">{{code.name}}</label>
+                                    </div>
+                                  </span>
+                               </div>
+                      </li>
+            
+                      <li> <span>Paintwork</span></li>
+                      <li class="sidebar search-mask">
+                        <div class="offertype mr-t-10">
+                                  <span>
+                                     <div class="form-group">
+                                       <input type="checkbox" id="75"  >
+                                       <label for="75">Metallic</label>
+                                     </div>
+                                  </span>
+                               </div>
+                      </li>
+
+
+                   </ul>
+                </li>
+                <li *ngIf="vehicleType == 'car'">
+                   <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Interior</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu4">
+                      <li> <span>Interior Color</span></li>
+                      <li class="sidebar search-mask ex-color" *ngFor = "let code of color">
+                        <div class="offertype mr-t-10">
+                                  <span>
+                                     <div class="form-group biege" [ngClass] = "code.name">
+                                       <input type="checkbox" [checked]="code.checked"  [(ngModel)]="code.checked" [ngModelOptions]="{standalone: true}" name = "colorCheckboxExt" id="{{code.name}}-exter" (change) = "exteriorColor($event)">
+                                       <label for="{{code.name}}-exter">{{code.name}}</label>
+                                     </div>
+                                  </span>
+                               </div>
+                      </li>
+                    
+                      <li class="sidebar search-mask"> <span>Upholstery</span></li>
+                      <li class="sidebar search-mask" *ngFor ="let hole of upholsetry">
+                        <div class="offertype mr-t-10">
+                                  <span>
+                                     <div class="form-group">
+                                       <input type="checkbox" id="{{hole.name}}" [checked] = "hole.checked"  name = "uphole" (change) = "uphole($event)">
+                                       <label for="{{hole.name}}">{{hole.name}}</label>
+                                     </div>
+                                  </span>
+                               </div>
+                      </li>
+                   </ul>
+                </li>
+                <li>
+                   <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle condition</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu5">
+                      <li class="doornumbers">
+                         <label>Previous Owners</label>
+                         <ul>
+                           <li  [ngClass]="{'active': owners == '1'}" (click) = "getOwner('1')">1</li>
+                           <li [ngClass]="{'active': owners == '2'}" (click) = "getOwner('2')">2</li>
+                           <li [ngClass]="{'active': owners == '3'}" (click) = "getOwner('3')">3</li>
+                           <li [ngClass]="{'active': owners == '4'}" (click) = "getOwner('4')">4</li>
+                         </ul>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>Had Accident</label>
+                            <select class="form-control" id="sel1" formControlName="accident" (change) = "accident()">
+                              <option value="">Select </option> 
+                              <option value="Category A">Category A</option>
+                              <option value="Category B">Category B</option>
+                              <option value="Category C">Category C</option>
+                              <option value="Category D">Category D</option>
+                        
+                            </select>
+                         </div>
+                      </li>
+                      <li class="search-mask" *ngFor ="let gur of gurrantee">
+                               <div class="offertype mr-t-10">
+                                  <span>
+                                     <div class="form-group">
+                                       <input type="checkbox" id="{{gur.name}}" [checked]="gur.checked" name="guranteeType" (change)="setGurantee($event)">
+                                       <label for="{{gur.name}}">{{gur.name}}</label>
+                                     </div>
+                                  </span>
+                               </div>
+                            </li>
+
+                   </ul>
+                </li>
+                <li>
+                   <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Environment</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu6">
+
+                     <li>
+                        <div class="form-group">
+                 <label>Euro Emission Class (at least)</label>
+                 <select class="form-control" id="sel1" formControlName = "emmison"  required>
+                   <option value="">Please Select</option>
+                    <option value="Euro 1">Euro 1</option>
+                    <option value="Euro 2">Euro 2</option>
+                    <option value="Euro 3">Euro 3</option>
+                    <option value="Euro 4">Euro 4</option>
+                    <option value="Euro 5">Euro 5</option>
+                    <option value="Euro 6">Euro 6</option>
+                    <option value="Euro 6c">Euro 6c</option>
+                    <option value="Euro 6d">Euro 6d</option>
+                    
+                 </select>
+              </div>
+            </li>
+                     <li *ngIf="vehicleType == 'car'">
+                         <div class="form-group">
+                            <label>CO2 Emission</label>
+                            <select class="form-control" id="sel1" formControlName = "co2" >
+                              <option value="">Please Select</option>
+                             <option value="Up to 140 g / miles CO2">Up to 140 g / miles CO2 </option>
+                             <option value="Up to 150 g / miles CO2">Up to 150 g / miles CO2 </option>
+                             <option value="Up to 165 g / miles CO2">Up to 165 g / miles CO2 </option>
+                             <option value="Up to 175 g / miles CO2">Up to 175 g / miles CO2 </option>
+                             <option value="Up to 185 g / miles CO2">Up to 185 g / miles CO2 </option>
+                             <option value="Up to 200 g / miles CO2">Up to 200 g / miles CO2 </option>
+                             <option value="Up to 225 g / miles CO2 ">Up to 225 g / miles CO2 </option>
+                             <option value="Up to 255 g / miles CO2 ">Up to 255 g / miles CO2 </option>
+                             <option value="255 g / miles +">255 g / miles +</option>
+                            </select>
+                         </div>
+                      </li>
+                      <li class="doornumbers" *ngIf="vehicleType == 'car'">
+                         <label>Emission Label (at least)</label>
+                         <ul>
+                           <li [ngClass]="{'active': emmison == '1'}" (click) = "getEmmisonLabel('1')"><span>1</span></li>
+                           <li [ngClass]="{'active': emmison == '2'}" (click) = "getEmmisonLabel('2')"><span>2</span></li>
+                           <li [ngClass]="{'active': emmison == '3'}" (click) = "getEmmisonLabel('3')"><span>3</span></li>
+                           <li [ngClass]="{'active': emmison == '4'}" (click) = "getEmmisonLabel('4')"><span>4</span></li>
+                         </ul>
+                      </li>
+                         <li class="search-mask" *ngIf="vehicleType == 'car'">
+                                  <div class="offertype mr-t-10">
+                                     <span>
+                                        <div class="form-group">
+                                           <input type="checkbox" id="98" formControlName="filter" (change) = "filter()">
+                                           <label for="98">Particulate filter</label>
+                                        </div>
+                                     </span>
+                                  </div>
+                               </li>
+                   </ul>
+                </li>
+                <li>
+                   <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Offer details</a>
+                   <ul class="collapse list-unstyled" id="pageSubmenu7">
+                     <li class="search-mask">
+                                  <div class="offertype mr-t-10">
+                                     <span>
+                                        <div class="form-group">
+                                           <input type="checkbox"  formControlName="vat" (change) = "vat()" id="99">
+                                           <label for="99">VAT deductible</label>
+                                        </div>
+                                     </span>
+                                  </div>
+                               </li>
+                               <li>
+                        
+                      </li>
+                   </ul>
+                </li>
+             </ul>
+          </div>
+          </form>
+       </div>
+
+
+
+
+
+       <div class="col-md-12 col-lg-9">
+          <div class="cl-listingsummery">
+             <h4 *ngIf="ads">{{ads.length}} Offers <span>for your search</span></h4>
+             <div class="sort-pricing">
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                   <a href="javascript:void(true)"><span>Sort :</span> {{filterSelction}} <i class="fa fa-angle-down" aria-hidden="true"></i>
+                   <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products"(click) ="$event.stopPropagation()"> 
+                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateAsc',$event.stopPropagation())">Date Ascending</a></li>
+                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateDesc',$event.stopPropagation())">Date Descending</a></li>
+                   <li class="active"><a href="javascript:void(true)" (click) = "sortArray('priceAsc',$event.stopPropagation())">Price Ascending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('priceDesc',$event.stopPropagation())">Price Descending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('mileAsc',$event.stopPropagation())">Mile Ascending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('mileDesc',$event.stopPropagation())">Mile Descending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('powerAsc',$event.stopPropagation())">Power Ascending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('powerDesc',$event.stopPropagation())">Power Descending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegAsc',$event.stopPropagation())">First Registration Ascending</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegDesc',$event.stopPropagation())">First Registration Descending</a></li>
+
+                </ul>
+             </div>
+             <!-- <h5 class="filter-text">No filters selected</h5> -->
+             <div class="search-tags">
+               <ul>
+                  <li *ngFor="let tags of searchTags">{{tags}}
+                     <i class="fa fa-window-close" style="cursor: pointer;" aria-hidden="true" (click)="deleteTag(tags)"></i>
+                  </li>
+                
+               </ul>
+            </div>
+            <div style="float:right;">
+               <button type="button" (click) = "saveSearch()" class="btn btn-primary orange-cls mb-4" *ngIf="userDetails && userDetails.user_type=='buyer'">Save Search</button>
+            </div>
+          </div>
+          <div class="prodct-section">
+            <div class="products" style="cursor:pointer" (click) = "details(searchAds.id,$event.stopPropagation(),searchAds.user_id)" *ngFor = "let searchAds of ads|paginate: { itemsPerPage: 10, currentPage: p }">
+                <div class="pro-header" >
+                   <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
+                   <div class="actionbutton">
+                      <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>Add to list</a>
+                      <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                   </div>
+                </div>
+                <div class="product-data">
+                   <div class="row">
+                      <div class="col-lg-4">
+                         <div class="prp-image">
+                           <img src="{{searchAds.main_image}}" class="image-fit" alt="img">
+                         </div>
+                      </div>
+                      <div class="col-lg-8">
+                         <div class="vichle data">
+                            <div class="vichle-price">
+                               <h2>£ {{searchAds.price  | number}}</h2>
+                            </div>
+                            <div class="vichle-info">
+                               <ul>
+                                  <li>{{searchAds.mileage}} miles </li>
+                                  <li>{{searchAds.created_at | date}}  </li>
+                                  <!-- <li>{{searchAds.power}} </li> -->
+                                  <li>{{searchAds.vehicleCond}}</li>
+                                  <li>{{searchAds.owners}} (Previous Owners)</li>
+                                  <li>{{searchAds.gear}} </li>
+                                  <li>{{searchAds.fuelType}} </li>
+                                  <li *ngIf="searchAds.accleration != 'null'">{{searchAds.accleration}} </li>
+                                  <li *ngIf="searchAds.co2 != 'null'">{{searchAds.co2}} </li>
+                                  <!-- <li>4.4 l/100 km (comb) 1</li>
+                                  <li>114 g CO2/km (comb) 1</li> -->
+                               </ul>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="prodcut-ftr">
+                   <span  style="text-transform: capitalize;">{{searchAds.sellers}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{searchAds.city}}</span>
+                </div>
+             </div>
+          
+          </div>
+          <div class="propagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <!-- <ul class="pagination">
+                 
+<li class="page-item"><a class="page-link" href="#"><< Previous</a></li>
+<li class="page-item"><a class="page-link" href="#">1</a></li>
+<li class="page-item active"><a class="page-link" href="#">2</a></li>
+<li class="page-item"><a class="page-link" href="#">3</a></li>
+<li class="page-item"><a class="page-link" href="#">4</a></li>
+<li class="page-item"><a class="page-link" href="#">5</a></li>
+<li class="page-item"><a class="page-link" href="#">6</a></li>
+<li class="page-item"><a class="page-link" href="#">7</a></li>
+<li class="page-item"><a class="page-link" href="#">8</a></li>
+<li class="page-item"><a class="page-link" href="#">9</a></li>
+<li class="page-item"><a class="page-link" href="#">10</a></li>
+<li class="page-item"><a class="page-link" href="#">11</a></li>
+<li class="page-item"><a class="page-link" href="#">..</a></li>
+<li class="page-item"><a class="page-link" href="#">25</a></li>
+<li class="page-item"><a class="page-link" href="#">Next >></a></li>
+</ul> -->
+          </div>
+          <div class="content">
+      <p class="referText"> {{cmsData.searchText}}</p>
+    </div>
+       </div>
+    </div>
+    </div>
+ </section>
+
+
+ <ng-template #share>
+   <div class="modal-header">
+         <h4 class="modal-title pull-left">Share</h4>
+     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body">
+
+         <form>
+               <label>Share the post with the world</label>
+                 <div class="form-group">
+                     <share-button text="Share" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+                     <share-button button="linkedin" text="linkedin"  [showText]="true"   [url]=urlShare></share-button>
+                     <share-button button="twitter" text="Tweet" [showText]="true"   [url]=urlShare></share-button>
+                     <share-button button="whatsapp" text="Whatsapp" [showText]="true"   [url]=urlShare></share-button>
+                 </div>
+              
+                
+            
+             </form>
+  
+   </div>
+ </ng-template>

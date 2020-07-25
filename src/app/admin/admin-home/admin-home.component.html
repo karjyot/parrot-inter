@@ -1,0 +1,145 @@
+<main class="main">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb">
+     <li class="breadcrumb-item active">Dashboard</li>
+     <!-- Breadcrumb Menu-->
+     <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+        </div>
+     </li>
+  </ol>
+  <div class="container-fluid">
+     <div class="animated fadeIn">
+        <div class="row">
+           <div class="col-sm-6 col-lg-4">
+              <div class="card text-white" style="background: green;">
+                 <div class="card-body pb-0">
+                    <button class="btn btn-transparent p-0 float-right" type="button">
+                   
+                    </button>
+                    <div class="text-value" *ngIf="listCounts"><b>{{listCounts.seller}}</b></div>
+                    <div><b>Total Sellers</b></div>
+                 </div>
+                 <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart1" height="70"></canvas>
+                 </div>
+              </div>
+           </div>
+           <!-- /.col-->
+           <!-- /.col-->
+           <div class="col-sm-6 col-lg-4">
+              <div class="card text-white" style="background: purple;">
+                 <div class="card-body pb-0">
+                    <button class="btn btn-transparent p-0 float-right" type="button">
+                    <i class="cui-comment-square icons"></i>
+                    </button>
+                    <div class="text-value" *ngIf="listCounts"><b>{{listCounts.buyer}}</b></div>
+                    <div><b>Total Buyers</b></div>
+                 </div>
+                 <div class="chart-wrapper mt-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart3" height="70"></canvas>
+                 </div>
+              </div>
+           </div>
+           <!-- /.col-->
+           <div class="col-sm-6 col-lg-4">
+              <div class="card text-white bg-danger">
+                 <div class="card-body pb-0">
+                    <button class="btn btn-transparent p-0 float-right" type="button">
+                    <i class="cui-dashboard icons"></i>
+                    </button>
+                    <div class="text-value" *ngIf="listCounts"><b>{{listCounts.ads}}</b></div>
+                    <div><b>Total Ads</b></div>
+                 </div>
+                 <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart4" height="70"></canvas>
+                 </div>
+              </div>
+           </div>
+           <!-- <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-success">
+               <div class="card-body pb-0">
+                  <button class="btn btn-transparent p-0 float-right" type="button">
+                  <i class="cui-dashboard icons"></i>
+                  </button>
+                  <div class="text-value" *ngIf="listCounts">{{listCounts.domains}}</div>
+                  <div>Total avaliable domains</div>
+               </div>
+               <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                  <canvas class="chart" id="card-chart4" height="70"></canvas>
+               </div>
+            </div>
+         </div> -->
+           <div class="col-lg-8">
+              <div class="card">
+                 <div class="card-header"><i class="fa fa-align-justify"></i> Most Recent Users </div>
+                 <div class="card-body">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                       <thead>
+                          <tr>
+                             <th>Name</th>
+                             <th>Type</th>
+                             <th style="width:200px;">Phone</th>
+                             <th>Email</th>
+                             <th style="width:200px;">Date</th>
+                             <th>Status</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr *ngFor="let item of listUsers| slice:0:5; let i = index">
+                             <td class="wordBreak">{{item.name}}</td>
+                             <td class="wordBreak">{{item.user_type}}</td>
+                             
+                             <td class="wordBreak">{{item.phone}}</td>
+                           
+                             <td class="wordBreak">{{item.email}}</td>
+                             <td class="wordBreak">{{item.created_at | date}}</td>
+                             <td>
+                                <span class="badge badge-success" *ngIf="item.status==1">Active</span>
+                                <span class="badge badge-danger" *ngIf="item.status==0">Inactive</span>
+                             </td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
+              </div>
+           </div>
+           <div class="col-lg-4">
+              <div class="card">
+                 <div class="card-header"><i class="fa fa-align-justify"></i>Most Recent Ads</div>
+                 <div class="card-body">
+                    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                       <thead>
+                          <tr>
+                             <th>Name</th>
+                             <th>Make</th>
+                             <th style="width: 100;">Type</th>
+                             <th style="width: 224px;">Date</th>
+                           
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr *ngFor="let items of records | slice:0:5; let i = index">
+                           <td class="wordBreak">{{items.name}}</td>
+                              <td class="wordBreak">{{items.make}}</td>
+                              <td class="wordBreak">{{items.type }}</td>
+            
+                              <td class="wordBreak">
+                                {{items.created_at | date}}
+                              </td>
+
+                           </tr>
+                          
+                       </tbody>
+                    </table>
+              
+                 </div>
+              </div>
+              </div>
+           <!-- /.col-->
+        </div>
+        <!-- /.row-->
+        <!-- /.row-->
+     </div>
+  </div>
+</main>

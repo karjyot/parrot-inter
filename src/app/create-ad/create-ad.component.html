@@ -1,0 +1,829 @@
+<div class="detail-title">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12 col-md-12">
+             <h1 class="text-center">Create Ad</h1>
+          </div>
+          <!-- <div class="col-lg-6 col-md-6"><button>Remove all filters</button></div> -->
+       </div>
+    </div>
+ </div>
+ <section class="detailsearch-info">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12 col-lg-12">
+             <form [formGroup]="AdForm" autocomplete="off" novalidate (ngSubmit)="createAd()">
+             <div class="sidebarmenu">
+
+               <div class="custom-radios" style="float: left;
+               margin-bottom: 15px;">
+                   <div>
+                       Car <input type="radio" (click) = "setTypeVeh('car')"  formControlName="type" name= "type" value="car" id="color-1"  checked>
+                       <label for="color-1">
+                         <span>
+                         </span>
+                       </label>
+                     </div>
+                     <div>
+                        Van <input type="radio" id="color-4" (click) = "setTypeVeh('van')"  formControlName="type" name= "type" value="van" >
+                        <label for="color-4">
+                          <span>
+                          </span>
+                        </label>
+                      </div>
+                      <div>
+                        Truck <input type="radio" id="color-3" (click) = "setTypeVeh('truck')"  formControlName="type" name= "type" value="truck" >
+                        <label for="color-3">
+                          <span>
+                          </span>
+                        </label>
+                      </div>
+
+
+                     <div>
+                       Bike <input type="radio" id="color-2" (click) = "setTypeVeh('bike')"  formControlName="type" name= "type" value="bike" >
+                       <label for="color-2">
+                         <span>
+                         </span>
+                       </label>
+                     </div>
+               
+               </div>
+               
+           
+
+                <ul class="list-unstyled components">
+                   <li class="active">
+                      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Specifications & Location</a>
+                      <ul class="collapse list-unstyled show" id="homeSubmenu">
+                         <li>
+                            <div class="row">
+                              <!-- <div class="col-lg-4 col-md-12"  *ngIf="adType == 'truck'">
+                                 <div class="form-group">
+                                    <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
+                                       <option value="">Category</option>
+                                       <option value = "rigid" >Rigid Trucks</option>
+                                       <option value = "tractor" >Tractor Units</option>
+                                       <option value = "trailer" >Trailers</option>
+                                    </select>
+                                 </div>
+                              </div> -->
+                              <div class="col-lg-4 col-md-12" *ngIf="adType == 'truck'">
+                                 <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
+                                       <option value="">Category</option>
+                                       <option value = "rigid" >Rigid Trucks</option>
+                                       <option value = "tractor" >Tractor Units</option>
+                                       <option value = "trailer" >Trailers</option>
+                                    </select>
+                                 </div>
+                              </div>
+                               <div class="col-lg-4 col-md-12">
+                                  <div class="form-group">
+                                     <label>Make</label>
+                                     <select [ngClass]="{ 'is-invalid': submitted && f.make.errors }" formControlName="make"  class="form-control" id="sel1" (change)="getModels()" required>
+                                       <option value="">Select Make</option>
+                                       <option value = "{{make.make}}" *ngFor="let make of makes ">{{make.make}}</option>
+                                       
+                                     </select>
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-12">
+                                  <div class="form-group">
+                                     <label>Model</label>
+                                     <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.model.errors }" formControlName="model" required>
+                                       <option value="">Select Model</option>
+                                       <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                                        
+                                     </select>
+                                  </div>
+                               </div>
+                            
+                            </div>
+                         </li>
+                        
+                         <li>
+                            <div class="row">
+                              <div class="col-lg-4 col-md-12">
+                                 <div class="form-group">
+                                    <label>Variant</label>
+                                    <input type="text"  class="form-control" placeholder="eg GTI" [ngClass]="{ 'is-invalid': submitted && f.variant.errors }" formControlName="variant" required>
+                                 </div>
+                              </div>
+                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'car'">
+                                  <div class="form-group">
+                                     <label>Body type</label>
+                                     <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
+                                       <option value="">Select Body Type</option>
+                                       <option value="{{x.name}}" *ngFor="let x of bodyTypes">{{x.name}}</option>
+                                       
+                                     </select>
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'van'">
+                                 <div class="form-group">
+                                    <label>Body type</label>
+                                    <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
+                                      <option value="">Select Body Type</option>
+                                      <option value="{{x.name}}" *ngFor="let x of bodyTypesVans">{{x.name}}</option>
+                                      
+                                    </select>
+                                 </div>
+                              </div>
+
+                               
+
+
+                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'bike'">
+                                 <div class="form-group">
+                                    <label>Body type</label>
+                                    <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
+                                      <option value="">Select Body Type</option>
+                                      <option value="{{x.name}}" *ngFor="let x of bodyTypesBikes">{{x.name}}</option>
+                                      
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4 col-md-12" *ngIf="adType == 'truck'">
+                                 <div class="form-group">
+                                    <label>Body type</label>
+                                    <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
+                                      <option value="">Select Body Type</option>
+                                      <option value="{{x.name}}" *ngFor="let x of bodyTypesTrucks">{{x.name}}</option>
+                                      
+                                    </select>
+                                 </div>
+                              </div>
+                               <div class="col-lg-4 col-md-12">
+                                 
+                                     <div class="form-group">
+                                        <label>First registration</label>
+                                        <select class="form-control" id="sel1" formControlName="registration" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" required>
+                                          <option value="">Please Select</option>
+                                          <option value="{{x}}" *ngFor="let x of years">{{x}}</option>
+                                        </select>
+                                        
+                                    
+                                  </div>
+                               </div>
+                             
+                            </div>
+                         </li>
+                         <li>
+                            <div class="row">
+                              <div class="col-lg-4 col-md-12">
+                                 <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control"  placeholder="Price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price" numbersOnly required>
+                              </div>
+                           </div>
+                              <div class="col-lg-4 col-md-12">
+                                 <!-- <div class="two-select"> -->
+                                    <div class="form-group">
+                                       <label>Mileage</label>
+                                       <input type="text" class="form-control" numbersOnly placeholder="Mileage" [ngClass]="{ 'is-invalid': submitted && f.mileage.errors }" formControlName="mileage" >
+                                       
+                                 </div>
+                              </div>
+                               <!-- <div class="col-lg-4 col-md-12">
+                                  <div class="form-group">
+                                     <label>Countries <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                     </label>
+                                     <select class="form-control" id="sel1">
+                                        <option>UK</option>
+                                     </select>
+                                  </div>
+                               </div> -->
+                               <div class="col-lg-4 col-md-12">
+                                  <div class="form-group">
+                                     <label>City</label>
+                                     <input type="text" class="form-control" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" formControlName="city" >
+                                  </div>
+                               </div>
+                            
+                              
+                            </div>
+                         </li>
+                        
+                         <li>
+                            <div class="row">
+                             
+                              <div class="col-lg-4 col-md-12">
+                                 <div class="form-group">
+                                    <label>Fuel type</label>
+                                    <select class="form-control" formControlName = "fuelType"  [ngClass]="{ 'is-invalid': submitted && f.fuelType.errors }" id="sel1" required>
+                                     <option value="">Please Select</option>
+                                     <option value="{{x.name}}" *ngFor="let x of diesalTypes">{{x.name}}</option>
+                                    </select>
+                                 </div>
+                              </div>
+                               <!-- <div class="col-lg-4 col-md-12">
+                                  <div class="row">
+                                     <div class="col-lg-6">
+                                        <div class="form-group">
+                                           <label>Power</label>
+                                           <select class="form-control" formControlName="powerUnits"  id="sel1" >
+                                              <option value="KW">KW</option>
+                                              <option value="HP">HP</option>
+                                              
+                                           </select>
+                                        </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                        <div class="form-group">
+                                           <label style="visibility: hidden;">From</label>
+                                           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="km" [ngClass]="{ 'is-invalid': submitted && f.power.errors }" formControlName="power">
+                                        </div>
+                                       
+                                     </div>
+                                  </div>
+                               </div> -->
+                               <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                   <label>Gear</label>
+                                   <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.gear.errors }" formControlName="gear">
+                                    <option value="">Select Gear</option> 
+                                    <option value="{{x.name}}" *ngFor="let x of gearTypes">{{x.name}}</option>
+                                      
+                                   </select>
+                                </div>
+                             </div>
+
+                                  <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                   <label>Total Gears</label>
+                                   <input type="text" [ngClass]="{ 'is-invalid': submitted && f.totalGears.errors }" placeholder="Total Gears" class="form-control" formControlName = "totalGears" required>
+                                      
+                               
+                                </div>
+                             </div>
+
+                             <!-- <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                 <label>Displacement</label>
+                                 <input type="text" class="form-control" formControlName = "displacement" placeholder="Displacement" [ngClass]="{ 'is-invalid': submitted && f.displacement.errors }" required>
+                                    
+                               
+                              </div>
+                           </div> -->
+
+                           <!-- <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                 <label>Weight</label>
+                                 <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.weight.errors }"  placeholder="Weight" formControlName = "weight" required>
+                                    
+                                
+                              </div>
+                           </div> -->
+
+                        
+
+                            </div>
+                         </li>
+                         <li>
+                            <div class="row">
+                              <div class="col-lg-4 col-md-12">
+                                 <div class="form-group">
+                                    <label>Cylinder</label>
+                                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cylinder.errors }"  placeholder="Cylinders" formControlName = "cylinder" required>
+                                       
+                                  
+                                 </div>
+                              </div>
+   
+                         
+                               <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
+                                  <div class="doornumbers">
+                                     <label>No. of Doors</label>
+                                     <ul>
+                                        <!-- <li [ngClass]="{'active': doors == 'all'}" (click) = "getDoors('all')">All</li> -->
+                                        <li [ngClass]="{'active': doors == 2}" (click) = "getDoors('2')">2/3</li>
+                                        <li [ngClass]="{'active': doors == 4}" (click) = "getDoors('4')">4/5</li>
+                                        <li [ngClass]="{'active': doors == 6}" (click) = "getDoors('6')">6/7</li>
+                                     </ul>
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-12">
+                                
+                                     <div class="form-group">
+                                        <label>No. of Seats</label>
+                                        <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.seats.errors }" formControlName="seats" required>
+                                          <option value="">Select Seats</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                           
+                                        </select>
+                                       
+                                     
+                                  </div>
+                               </div>
+
+                               <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
+                                
+                                 <div class="form-group">
+                                    <label>Engine Size</label>
+                                    <select class="form-control" id="sel1" >
+                                      <option value="">Select Engine Size</option>
+                                      <option value="1.2">1.2</option>
+                                      <option value="1.4">1.4</option>
+                                      <option value="1.6">1.6</option>
+                                      <option value="1.8">1.8</option>
+                                      <option value="2.0">2.0</option>
+                                      <option value="2.1">2.1</option>
+                                      <option value="2.4">2.4</option>
+                                      <option value="2.6">2.6</option>
+                                      <option value="3.0">3.0</option>
+                                      <option value="3.8">3.8</option>
+                                      <option value="others">others</option>
+                                    </select>
+                                   
+                                 
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
+                                
+                              <div class="form-group">
+                                 <label>Accelration</label>
+                                 <select class="form-control" id="sel1"  formControlName="accleration" >
+                                   <option value="">Select Accelration</option>
+                                   <option value="0-5s (0-60mph) ">0-5s (0-60mph) </option>
+                                   <option value="0-8s (0-60mph) ">0-8s (0-60mph) </option>
+                                   <option value="8-12s (0-60mph) ">8-12s (0-60mph) </option>
+                                   
+                                 </select>
+                                
+                              
+                           </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
+                                
+                           <div class="form-group">
+                              <label>Annual Tax</label>
+                              <select class="form-control" id="sel1" formControlName="annualTax" >
+                                <option value="">Select Annual Tax</option>
+                                <option value="£0) ">£0</option>
+                                <option value="Up to £20  ">Up to £20 </option>
+                                <option value="Up to £30  ">Up to £30 </option>
+                                <option value="Up to £130 ">Up to £130 </option>
+                                <option value="Up to £145 ">Up to £145 </option>
+                                <option value="Up to £185 ">Up to £185 </option>
+                                <option value="Up to £270">Up to £270 </option>
+                                <option value="Up to £500 ">Up to £500 </option>
+                                <option value=">Up to £500+">Up to £500+ </option>
+                              
+                              </select>
+                             
+                           
+                        </div>
+                     </div>
+
+                     <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
+                                
+                        <div class="form-group">
+                           <label>Fuel Consumpation</label>
+                           <select class="form-control" id="sel1"  formControlName="fuelConsumpation" >
+                             <option value="">Select Fuel Consumpation</option>
+                            
+                             <option value="30+ mpg">30+ mpg </option>
+                             <option value="40+ mpg">40+ mpg </option>
+                             <option value="50+ mpg">50+ mpg </option>
+                             
+                           
+                           </select>
+                          
+                        
+                     </div>
+                  </div>
+                            </div>
+                         </li>
+                         <li>
+                            <div class="row">
+                               <div class="col-lg-4 col-md-12">
+                                  <div class="doornumbers">
+                                     <label>Seller</label>
+                                     <ul>
+                                        <!-- <li [ngClass]="{'active': seller == 'all'}" (click) = "getSeller('all')">All</li> -->
+                                        <li [ngClass]="{'active': seller == 'dealer'}" (click) = "getSeller('dealer')">Dealer</li>
+                                        <li [ngClass]="{'active': seller == 'private'}" (click) = "getSeller('private')">Private</li>
+                                     </ul>
+                                  </div>
+                               </div>
+                            </div>
+                         </li>
+                         <li class="sidebar search-mask">
+                            <h6>Vehicle condition</h6>
+                            <ul>
+                               <li>
+                                  <div class="row">
+                                     <div class="col-lg-4 col-md-12" *ngFor = "let cond of vehicalCondions" >
+                                        <div class="offertype mr-t-10" *ngIf="adType == 'car'">
+                                           <span>
+                                              <div class="form-group">
+                                                 <input type="checkbox" name="myCheckbox" [checked] = "cond.checked" id="{{cond.name}}" value="cross-border"  (change) = "selectOnlyThis($event)">
+                                                 <label for="{{cond.name}}">{{cond.name}}</label>
+                                              </div>
+                                           </span>
+                                        </div>
+                                     </div>
+                                    
+                                     <div class="col-lg-4 col-md-12" *ngFor = "let cond of vehicalCondionsBike">
+                                       <div class="offertype mr-t-10"  *ngIf="adType != 'car'">
+                                          <span>
+                                             <div class="form-group">
+                                                <input type="checkbox" name="myCheckbox" [checked] = "cond.checked" id="{{cond.name}}" value="cross-border"  (change) = "selectOnlyThis($event)">
+                                                <label for="{{cond.name}}">{{cond.name}}</label>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+
+                                  </div>
+                               </li>
+                            </ul>
+                         </li>
+                      </ul>
+                   </li>
+                   <li>
+                      <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Equipment</a>
+                     <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck'  || adType == 'van'">Comfort & Convenience</span>
+                      <ul class="collapse list-unstyled show" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'" id="pageSubmenu2">
+                         <li>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-md-12"  *ngFor ="let eqp of equpments">
+                                      <div class="sidebar search-mask">
+                                       <div class="offertype mr-t-10">
+                                          <span>
+                                             <div class="form-group">
+                                                <input type="checkbox" id="{{eqp.name}}" (change) = "getEqpValues()" [(ngModel)]="eqp.checked" [ngModelOptions]="{standalone: true}">
+                                                <label for="{{eqp.name}}">{{eqp.name}}</label>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+                               </div>
+                            </div>
+                         </li>
+                      </ul>
+
+                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck'|| adType == 'van'">Entertainment & Media</span>
+                      <ul class="collapse list-unstyled show" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'" id="pageSubmenu2">
+                         <li>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-md-12"  *ngFor ="let eqpEnter of equpmentsEnter">
+                                      <div class="sidebar search-mask">
+                                       <div class="offertype mr-t-10">
+                                          <span>
+                                             <div class="form-group">
+                                                <input type="checkbox" id="{{eqpEnter.name}}" (change) = "getEqpValuesEnter()" [(ngModel)]="eqpEnter.checked" [ngModelOptions]="{standalone: true}">
+                                                <label for="{{eqpEnter.name}}">{{eqpEnter.name}}</label>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+                               </div>
+                            </div>
+                         </li>
+                      </ul>
+
+                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">Extras</span>
+                      <ul class="collapse list-unstyled show" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'" id="pageSubmenu2">
+                         <li>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-md-12"  *ngFor ="let eqpExtra of equpmentsExtra">
+                                      <div class="sidebar search-mask">
+                                       <div class="offertype mr-t-10">
+                                          <span>
+                                             <div class="form-group">
+                                                <input type="checkbox" id="{{eqpExtra.name}}" (change) = "getEqpValuesExtra()" [(ngModel)]="eqpExtra.checked" [ngModelOptions]="{standalone: true}">
+                                                <label for="{{eqpExtra.name}}">{{eqpExtra.name}}</label>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+                               </div>
+                            </div>
+                         </li>
+                      </ul>
+
+                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">Safety & Security</span>
+                      <ul class="collapse list-unstyled show" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'" id="pageSubmenu2">
+                         <li>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-md-12"  *ngFor ="let eqpSafety of equpmentsSafety">
+                                      <div class="sidebar search-mask">
+                                       <div class="offertype mr-t-10">
+                                          <span>
+                                             <div class="form-group">
+                                                <input type="checkbox" id="{{eqpSafety.name}}" (change) = "getEqpValuesSaftey()" [(ngModel)]="eqpSafety.checked" [ngModelOptions]="{standalone: true}">
+                                                <label for="{{eqpSafety.name}}">{{eqpSafety.name}}</label>
+                                             </div>
+                                          </span>
+                                       </div>
+                                    </div>
+                               </div>
+                            </div>
+                         </li>
+                      </ul>
+
+                      <ul class="collapse list-unstyled show" *ngIf="adType == 'bike'" id="pageSubmenu2">
+                        <li>
+                           <div class="row">
+                              
+                              <div class="col-lg-6 col-md-12"  *ngFor ="let eqp of bikes">
+                                     <div class="sidebar search-mask">
+                                      <div class="offertype mr-t-10">
+                                         <span>
+                                            <div class="form-group">
+                                               <input type="checkbox" id="{{eqp.name}}" (change) = "getEqpValues()" [(ngModel)]="eqp.checked" [ngModelOptions]="{standalone: true}">
+                                               <label for="{{eqp.name}}">{{eqp.name}}</label>
+                                            </div>
+                                         </span>
+                                      </div>
+                                   </div>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                   </li>
+
+
+                   <li>
+                      <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exterior</a>
+                      <ul class="collapse list-unstyled show" id="pageSubmenu3">
+                         <li> <span>Body Color</span></li>
+                         <li class="sidebar search-mask ex-color" *ngFor = "let code of color">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group biege" [ngClass] = "code.name">
+                                     <input type="checkbox" name = "colorCheckbox" [checked] = "code.checked" id="{{code.name}}" (change) = "selectOnlyThisColor($event)">
+                                     <label for="{{code.name}}">{{code.name}}</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                        
+                         <li> <span class="sidebarmenu list-unstyled a" style="padding:14px 0px;">Paintwork</span></li>
+                         <li class="sidebar search-mask">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group">
+                                     <input type="checkbox" id="75"  formControlName = "metalic">
+                                     <label for="75">Metallic</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                      </ul>
+                   </li>
+                   <li *ngIf="adType == 'car'">
+                      <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Interior</a>
+                      <ul class="collapse list-unstyled show" id="pageSubmenu4">
+                         <li> <span>Interior Color</span></li>
+                         <li class="sidebar search-mask ex-color" *ngFor = "let code of color">
+                           <div class="offertype mr-t-10">
+                              <span>
+                                 <div class="form-group biege" [ngClass] = "code.name">
+                                    <input type="checkbox" [checked]="code.checked" name = "colorCheckboxExt" id="{{code.name}}-exter" (change) = "exteriorColor($event)">
+                                    <label for="{{code.name}}-exter">{{code.name}}</label>
+                                 </div>
+                              </span>
+                           </div>
+                        </li>
+                         <li class="sidebar search-mask"> <span class="holstery">Upholstery</span></li>
+                         <li class="sidebar search-mask ex-color" *ngFor ="let hole of upholsetry">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group">
+                                     <input type="checkbox" id="{{hole.name}}" [checked] = "hole.checked"  name = "uphole" (change) = "uphole($event)">
+                                     <label for="{{hole.name}}">{{hole.name}}</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                         
+                      </ul>
+                   </li>
+                   <li>
+                      <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle condition</a>
+                      <ul class="collapse list-unstyled show" id="pageSubmenu5">
+                         <li>
+                            <div class="row">
+                               <div class="col-lg-4 col-md-12">
+                                  <div class="doornumbers">
+                            <label>Previous Owners</label>
+                            <ul>
+                               <!-- <li class="active">All</li> -->
+                               <li  [ngClass]="{'active': owners == '1'}" (click) = "getOwner('1')">1</li>
+                               <li [ngClass]="{'active': owners == '2'}" (click) = "getOwner('2')">2</li>
+                               <li [ngClass]="{'active': owners == '3'}" (click) = "getOwner('3')">3</li>
+                               <li [ngClass]="{'active': owners == '4'}" (click) = "getOwner('4')">4</li>
+                            </ul>
+                         </div>
+                               </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                   <div class="form-group">
+                               <label>Had Accident</label>
+                               <select class="form-control" id="sel1" formControlName = "hadAccident">
+                                 <option value="">Select </option> 
+                                 <option value="Category A">Category A</option>
+                                 <option value="Category B">Category B</option>
+                                 <option value="Category C">Category C</option>
+                                 <option value="Category D">Category D</option>
+                               </select>
+                            </div>
+                                </div>
+
+
+                            </div>
+                         </li>
+ 
+                         <li class="search-mask" *ngFor ="let gur of gurrantee">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group">
+                                     <input type="checkbox" id="{{gur.name}}" [checked]="gur.checked" name="guranteeType" (change)="setGurantee($event)">
+                                     <label for="{{gur.name}}">{{gur.name}}</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                         
+                      </ul>
+                   </li>
+                   <li>
+                      <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Environment</a>
+                      <ul class="collapse list-unstyled show" id="pageSubmenu6">
+                         <li>
+                            <div class="row">
+                               <div class="col-lg-4 col-md-12">
+                                      <div class="form-group">
+                               <label>Euro Emission Class (at least)</label>
+                               <select class="form-control" id="sel1" formControlName = "emmison" [ngClass]="{ 'is-invalid': submitted && f.emmison.errors }" required>
+                                 <option value="">Please Select</option>
+                                  <option value="Euro 1">Euro 1</option>
+                                  <option value="Euro 2">Euro 2</option>
+                                  <option value="Euro 3">Euro 3</option>
+                                  <option value="Euro 4">Euro 4</option>
+                                  <option value="Euro 5">Euro 5</option>
+                                  <option value="Euro 6">Euro 6</option>
+                                  <option value="Euro 6c">Euro 6c</option>
+                                  <option value="Euro 6d">Euro 6d</option>
+                                  
+                               </select>
+                            </div>
+                               </div>
+
+                               <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'"> 
+                                 <div class="form-group">
+                          <label>CO2 Emission </label>
+                          <select class="form-control" id="sel1" formControlName = "co2" >
+                            <option value="">Please Select</option>
+                             <option value="Up to 140 g / miles CO2">Up to 140 g / miles CO2 </option>
+                             <option value="Up to 150 g / miles CO2">Up to 150 g / miles CO2 </option>
+                             <option value="Up to 165 g / miles CO2">Up to 165 g / miles CO2 </option>
+                             <option value="Up to 175 g / miles CO2">Up to 175 g / miles CO2 </option>
+                             <option value="Up to 185 g / miles CO2">Up to 185 g / miles CO2 </option>
+                             <option value="Up to 200 g / miles CO2">Up to 200 g / miles CO2 </option>
+                             <option value="Up to 225 g / miles CO2 ">Up to 225 g / miles CO2 </option>
+                             <option value="Up to 255 g / miles CO2 ">Up to 255 g / miles CO2 </option>
+                             <option value="255 g / miles +">255 g / miles +</option>
+                             
+                          </select>
+                       </div>
+                          </div>
+                               
+                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'car'">
+                                  <div class="doornumbers">
+                            <label>Emission Label (at least)</label>
+                            <ul>
+                              
+                               <li [ngClass]="{'active': emmison == '1'}" (click) = "getEmmisonLabel('1')"><span>1</span></li>
+                               <li [ngClass]="{'active': emmison == '2'}" (click) = "getEmmisonLabel('2')"><span>2</span></li>
+                               <li [ngClass]="{'active': emmison == '3'}" (click) = "getEmmisonLabel('3')"><span>3</span></li>
+                               <li [ngClass]="{'active': emmison == '4'}" (click) = "getEmmisonLabel('4')"><span>4</span></li>
+                            </ul>
+                         </div>
+                               </div>
+
+
+                            </div>
+                        
+                         </li>
+                         
+                         <li class="search-mask" *ngIf="adType == 'car'">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group">
+                                     <input type="checkbox" id="98" formControlName="filter">
+                                     <label for="98">Particulate filter</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                      </ul>
+                   </li>
+                   <li>
+                      <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Offer details</a>
+                      <ul class="collapse list-unstyled show" id="pageSubmenu7">
+                         <li class="search-mask">
+                            <div class="offertype mr-t-10">
+                               <span>
+                                  <div class="form-group">
+                                     <input type="checkbox" id="99" formControlName="vat"> 
+                                     <label for="99">VAT deductible</label>
+                                  </div>
+                               </span>
+                            </div>
+                         </li>
+                         <li>
+                           
+                            
+                         </li>
+                      </ul>
+                   </li>
+
+                   <li>
+                     <a href="#pageSubmenu8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Description</a>
+                     <ul class="collapse list-unstyled show" id="pageSubmenu8">
+                        <li class="search-mask">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="form-group"> 
+                                <textarea class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"  formControlName = "description" required></textarea>
+                                 </div>
+                              </div>
+                            </div>
+                           
+
+
+
+                        </li>
+                     </ul>
+                  </li>
+                   <li>
+                     <a href="#pageSubmenu9" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Car Images
+                        <span style="font-size: 12px;"> </span>
+
+                     </a>
+                     <ul class="collapse list-unstyled show" id="pageSubmenu8">
+                        <li class="search-mask">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="form-group"> 
+                                    <div *ngFor='let url of urls' style="padding: 0 25px 0 0; float:left;">
+                                        
+                                         
+                                         <img    [src]="url" class="" style="width:150px!important;height:200px;object-fit: cover">
+                                         <a (click)="removeImg(url)" class="card-link image-delete"><i class="fa fa-trash" style="position: absolute;color:red">
+                                          
+                                             </i></a>
+                                        </div>
+                                 </div>
+                              </div>
+                            </div>
+                           <div class="col-md-4" style="padding:0px;">
+                              <div class="form-group">
+                                 <label for="email_id" class="control-label">Upload Image</label>
+                                 <div class="custom-file">
+                                   <input type="file" class="custom-file-input" id="customFile"  (change)="onSelectFile($event)" multiple accept="image/*">
+                                   <label class="custom-file-label" for="customFile">Choose file</label>
+                                 </div>
+                              </div>
+                            </div>
+
+
+
+                        </li>
+                     </ul>
+                  </li>
+
+
+
+
+
+
+
+                </ul>
+
+                <button type="submit" class="btn btn-primary orange-cls mb-4">Create</button>
+             </div>
+            </form>
+          </div>
+       </div>
+    </div>
+ </section>

@@ -1,0 +1,67 @@
+@media (max-width: 1199px){
+header .lgin-buttons a {padding: 6px 7px;}
+.search-mask .nav-tabs li a.active {padding: 17px 25px;}
+.search-mask .nav-tabs li a {padding: 12px 25px;}
+.login-form .main-div { max-width: 50%;}	
+section.pagination {padding: 15px 0;}
+.prodct-section .products .prp-image img {max-width: 100%;}
+.propagination ul.pagination li a {padding: 8px 11.8px;}
+.info-section .btn-theme.white,.info-section .btn-theme.orange {font-size: 14px;}
+.plan-page-sub-p {font-size: 24px;}
+.packages-section .plan-box p {font-size: 18px;}
+}
+@media (max-width: 992px){
+.banner .banner-text {width: 100%;}
+.menu-responsive { position: absolute; right: 0;}
+.menu-responsive .navbar-light .navbar-toggler { position: absolute; right: 0;
+    top: 14px; right: 26px;}
+.menu-responsive .navbar-collapse { position: absolute; top: 50px;
+    right: 22px; width: 241px;  background: #fff;  padding: 10px; border: 1px solid #ccc;
+    border-radius: 4px;  z-index: 9;}
+.navbar-light .navbar-nav .nav-link { padding: 4px 0;}
+.login-form .main-div {max-width: 80%;}
+.cl-listingsummery {margin-top: 20px;}
+.info-section .padding-inner {padding: 20px;}
+.plan-page-sub-p {font-size: 20px;	}
+.packages-section .plan-box { width: 50%; max-width: 48%;}
+#wrapper .sidebar-nav {width: 100%;position: inherit;}
+#wrapper .main { width: 100%;padding: 0;}
+#wrapper .navbar-btn-carrot{display: none;}
+.submit-btn.checkout{float: left;width:100%; margin-bottom: 15px;}
+}
+@media (max-width: 767px){
+.bannerbotton-text h5 {text-align: center;}
+.search-mask .nav-tabs li a.active {padding: 17px 20px;}
+.search-mask .nav-tabs li a {padding: 12px 20px;}
+footer .app-link ul {float: left;}
+.menu-responsive .navbar-light .navbar-toggler { right: 2px;}
+.menu-responsive .navbar-collapse {right: 0px;}
+.login-form .main-div {max-width: 100% !important;padding: 20px;}
+.login-form h2 {font-size: 24px;}
+.product-data .row {width: 100%;}
+.prodct-section .products .pro-header .actionbutton {float: left;margin: 0 0 15px;}
+.prodct-section .product-data .vichle-info ul li {width: 100%;}
+.propagination ul.pagination li a {padding: 8px 3.8px;}
+.prodct-section .vichle-price h2 {margin: 10px 0 0;}
+.info-section .product-detail .pro-header .actionbutton {float: left;}
+.info-section .product-detail.vichleinfo-main {padding: 10px;}
+.detail-title button {float: left;margin: 10px 0 0;}
+.sidebarmenu {margin: 0 0 10px;}
+.plansub-page .planbtm-text b {font-size: 16px;}
+.packages-section .plan-box { width: 92%; max-width: 100%;  float: none; margin: 0 0 25px;
+ min-height: auto;}
+ .packages-section .plan-box h3 { font-size: 24px;}
+.profile-wrapper {width: 150px;position: relative;}
+.inbox_people ,.mesgs{width: 100%;}
+ngx-gallery {
+width: 100%; float: left;max-width: 100%; height: 200px;}
+ul.post-social-list-footer {
+    position: relative;
+    text-align: center;
+    top:0;right: 0px;
+    justify-content: center;
+}
+.ngx-gallery-image.ngx-gallery-active.ngx-gallery-clickable{width:100% !important;}
+table#vrmSearchTable{width: 100%;}
+
+}

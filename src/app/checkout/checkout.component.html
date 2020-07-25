@@ -1,0 +1,45 @@
+<div class="login-form sidebarmenu " style="text-align:center;">
+    <div class="main-div search-mask" style="max-width:50%">
+      <p class="referText">Refer and get paid commissions</p>
+       <div class="panel">
+          <h2>Checkout</h2>
+       </div>
+       <div>
+         <div class="visa-image">
+          <img src="assets/images/checkout1.jpeg">
+         </div>
+       
+         
+        
+<!-- 
+        <div class="form-group offertype ">
+          <div _ngcontent-icg-c5="" class="form-group"><input _ngcontent-icg-c5="" name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label _ngcontent-icg-c5="" for="Used"><span>Wallet Amount : {{remaining}}$</span></label>
+            
+          </div>
+       </div>
+        -->
+        
+       </div>
+       <div class="stripe-payment">
+       <div class="row">
+        <div class="col-lg-9 col-md-12 mt-2 mb-2">
+         <div  class="offertype mr-t-10"><span ><div _ngcontent-wlj-c5="" class="form-group"><input  name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label for="Used">Wallet Amount : {{remaining}} {{currency.symbol}}</label></div></span></div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+         <button (click) = "payWallet()" class="btn submit-btn checkout" [disabled] = "isDiablePay">
+           PAY
+         </button>
+        </div>
+      </div>
+       
+       <form novalidate (ngSubmit)="buy(planDetails.price)" [formGroup]="stripeTest" class="text-center">
+        <input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
+        <div id="card-element" class="field"></div>
+        <button type="submit" class="btn btn-primary submit-btn">
+          PAY {{currency.symbol}} {{planDetails.price}}
+        </button>
+      </form>
+    </div>
+    </div>
+
+ </div>

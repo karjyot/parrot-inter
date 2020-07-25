@@ -1,0 +1,87 @@
+
+    <div class="sidebars" id="contain" style="height:100%">
+                <nav class="sidebar-nav">
+                  <ul class="nav" style="    padding-top: 54px;">
+                    <li class="nav-item" style="cursor: pointer;" (click) = "redirectUrl('dashboard')">
+                      <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'dashboard'}">
+                        <i class="nav-icon icon-speedometer"></i> Dashboard
+                     
+                      </a>
+                    </li>
+                  
+                    <li class="nav-item" (click) = "redirectUrl('users')" style="cursor: pointer;">
+                      <a class="nav-link "  [ngClass]="{'adminActive':selectedPage == 'users'}">
+                        <i class="nav-icon icon-user"></i> Users</a>
+                    </li>
+                    <li class="nav-item"  (click) = "redirectUrl('ads')" style="cursor: pointer;">
+                      <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'ads'}">
+                        <i class="nav-icon icon-people"></i> Ads</a>
+                    </li>
+                    <li class="nav-item"  (click) = "redirectUrl('admin-plans')" style="cursor: pointer;">
+                      <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'admin-plans'}">
+                        <i class="nav-icon icon-power"></i> Plans</a>
+                    </li>
+                    <li class="nav-item"  (click) = "redirectUrl('admin-percentage')" style="cursor: pointer;">
+                      <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'admin-percentage'}">
+                        <i class="nav-icon icon-settings"></i> Percentage referral</a>
+                    </li>
+                    
+
+                 <li class="nav-item"  (click) = "redirectUrl('make')" style="cursor: pointer;">
+                        <a class="nav-link" [ngClass]="{'adminActive':selectedPage == 'make'}">
+                          <i class="nav-icon icon-grid"></i> Make</a>
+                      </li>
+                      <li class="nav-item"  (click) = "redirectUrl('payments')" style="cursor: pointer;">
+                        <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'payments'}">
+                          <i class="nav-icon icon-credit-card"></i> Payments</a>
+                      </li>
+                      <li class="nav-item"  (click) = "redirectUrl('referal-requests')" style="cursor: pointer;">
+                        <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'referal-requests'}">
+                          <i class="nav-icon icon-magnifier"></i> Payment Requests</a>
+                      </li>
+                      
+                      <li class="nav-item"  (click) = "redirectUrl('models')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'models'}">
+                            <i class="nav-icon icon-compass"></i> Models</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('dataprotection')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'dataprotection'}">
+                            <i class="nav-icon icon-event"></i> Data Protection</a>
+                        </li>
+                           <li class="nav-item"  (click) = "redirectUrl('blogs')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'blogs'}">
+                            <i class="nav-icon icon-compass"></i>Blogs</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('categories')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'categories'}">
+                            <i class="nav-icon icon-event"></i> Blog Categories</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('comments')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'comments'}">
+                            <i class="nav-icon icon-event"></i> Blog Comments</a>
+                        </li>
+
+                        <li class="nav-item"  (click) = "redirectUrl('about')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'about'}">
+                            <i class="nav-icon icon-share-alt"></i> About Us</a>
+                        </li>
+
+                        <li class="nav-item"  (click) = "redirectUrl('carriers')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'carriers'}">
+                            <i class="nav-icon icon-share-alt"></i> Careers</a>
+                        </li>
+
+                        <li class="nav-item"  (click) = "redirectUrl('terms')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'terms'}">
+                            <i class="nav-icon icon-screen-smartphone"></i> T & C</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('cms')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'cms'}">
+                            <i class="nav-icon icon-screen-smartphone"></i> CMS</a>
+                        </li>
+                  </ul>
+                </nav>
+               
+              </div>
+
+         

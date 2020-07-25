@@ -1,0 +1,116 @@
+<div class="login-form">
+    <div class="main-div" style="max-width: 100%;">
+       <div class="panel">
+          <h2>Vehicle details</h2>
+    
+       </div>
+       <div id="firstSection">
+        <div class="ContentRow">
+            <div class="InnerContent">
+    <div id="searchResult" *ngIf="vehicleDetails">
+        <h3 class="NoMargin HideOnMobile" style="font-weight:500">We've identified this vehicle using the details you provided</h3>
+        <h3 style="font-weight:500;color:grey">  {{vehicleDetails.make}} {{vehicleDetails.yearOfManufacture}} </h3>
+       
+        <div class="Column">
+            <table id="vrmSearchTable">
+                    <tbody><tr>
+                        <td class="Reg"><strong>Registration number:</strong></td>
+                        <td class="Reg">{{vehicleDetails.registrationNumber}}</td>
+                    </tr>
+                <tr>
+                    <td><strong>Fuel type:</strong></td>
+                    <td>{{vehicleDetails.fuelType}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Colour:</strong></td>
+                    <td>{{vehicleDetails.colour}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Date of first registration:</strong></td>
+                    <td>{{vehicleDetails.monthOfFirstRegistration}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Wheel Plan:</strong></td>
+                    <td>{{vehicleDetails.wheelplan}}</td>
+                </tr>
+                <tr>
+                    <td><strong>C02 Emmission:</strong></td>
+                    <td>{{vehicleDetails.co2Emissions}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Engine Capacity:</strong></td>
+                    <td>{{vehicleDetails.engineCapacity}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tax Status:</strong></td>
+                    <td>{{vehicleDetails.taxStatus}}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Tax Due Date:</strong></td>
+                    <td>{{vehicleDetails.taxDueDate}}</td>
+                </tr>
+
+                <!-- <tr>
+                    <td><strong>Real Driving Emmission:</strong></td>
+                    <td>{{vehicleDetails.realDrivingEmissions}}</td>
+                </tr> -->
+            </tbody>
+        </table>
+              
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        <div class="Bottom">
+            <div id="pushDownArrow" class="HideOnMobile" style=""></div>
+        </div>
+    </div>
+    </div>
+
+ </div>
+
+
+<!-- <div id="firstSection">
+    <div class="ContentRow">
+        <div class="InnerContent">
+<div id="searchResult">
+    <h1 class="HeaderMargin HideOnMobile">Vehicle details</h1>
+    <h2 class="NoMargin HideOnMobile">We've identified this vehicle using the details you provided</h2>
+    <h2 class="NoMargin ShowOnMobile">We've identified this vehicle</h2>
+    <h3>
+        BMW
+        520D M SPORT AUTO
+2013        </h3>
+   
+    <div class="Column">
+        <table id="vrmSearchTable">
+                <tbody><tr>
+                    <td class="Reg"><strong>Registration number:</strong></td>
+                    <td class="Reg">FG63EWK</td>
+                </tr>
+            <tr>
+                <td><strong>Body type:</strong></td>
+                <td>5 Door Hatchback</td>
+            </tr>
+            <tr>
+                <td><strong>Colour:</strong></td>
+                <td>Grey</td>
+            </tr>
+            <tr>
+                <td><strong>Date of first registration:</strong></td>
+                <td>October 2013</td>
+            </tr>
+        </tbody>
+    </table>
+          
+    </div>
+</div>
+
+        </div>
+    </div>
+    <div class="Bottom">
+        <div id="pushDownArrow" class="HideOnMobile" style=""></div>
+    </div>
+</div> -->

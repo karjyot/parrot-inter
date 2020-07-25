@@ -1,0 +1,71 @@
+
+<div class="login-form">
+   <div class="main-div" style="max-width: 80%;">
+      <div class="row align-items-center">
+         <div class="col-md-10">
+            <b> My Referral Link:</b> {{referalLink}} 
+         </div>
+         <div  class="col-md-2">
+            <button type="button" (click) = "copyText()" ngxClipboard [cbContent]="referalLink" class="btn btn-primary">Copy</button>
+         </div>
+      </div>
+     
+ 
+   </div>
+
+</div>
+
+<div class="login-form">
+    <div class="main-div" style="max-width: 50%;">
+       <div class="panel">
+          <h2>Referral</h2>
+         
+       </div>
+       <form [formGroup]="referalForm" autocomplete="off" novalidate (ngSubmit)="forgot()">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" required>
+          </div>
+         
+          <button type="submit" class="btn btn-primary">Submit</button>
+       </form>
+    </div>
+
+ </div>
+
+ <div class="login-form">
+   <div class="main-div" style="max-width: 80%;">
+      <h2> Referred Users</h2>
+    <table class="table table-hover">
+      <thead>
+          <tr>
+              <th styke="width:50px">No.</th>
+              <th>Email</th>
+              <th class="text-center">image</th>
+             
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor = "let wal of ref | paginate: { itemsPerPage: perPage, currentPage: p }; let i = index">
+              <td class="col-md-1" style="text-align: center;width:50px" > {{i+1}} </td>
+              <td class="col-md-9"><em>{{wal.email}}</em></td>
+              <td class="col-md-1 text-center"><img src="{{wal.image}}" style="width:50px;height:50px;"></td>
+     
+          </tr>
+      
+      </tbody>
+   </table>
+   <div class="row">
+ 
+      <div class="col-sm-12 col-md-7">
+         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+            <ul class="pagination">
+               <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </ul>
+         </div>
+      </div>
+   </div>
+   </div>
+
+</div>
+ <!--  -->
+

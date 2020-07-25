@@ -1,0 +1,640 @@
+<section class="banner">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12 col-lg-5 d-flex">
+             <div class="search-mask">
+                <ul class="nav nav-tabs" role="tablist">
+                   <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" (click) = "setType('car')">
+                        <img src="assets/images/tabicon-1.png">
+                      </a>
+                   </li>
+                   <li class="nav-item">
+                     <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"   (click) = "setType('van')">
+                       <img src="assets/images/van.png" style="width: 36px;">
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" style="padding: 11px 37px;"  data-toggle="tab" href="#tabs-3" role="tab" (click) = "setType('truck')">
+                       <img src="assets/images/tabicon-3.png">
+                     </a>
+                  </li>
+                   <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"  (click) = "setType('bike')">
+                       <img src="assets/images/tabicon-2.png">
+                      </a>
+                   </li>
+             
+                    
+                </ul>
+                <!-- Tab panes -->
+
+                <form  [formGroup]="searchForm" autocomplete="off" novalidate >
+                <div class="tab-content">
+                   <div class="tab-pane active" id="tabs-1" role="tabpanel"  >
+                      <div class="offertype">
+                         <span>
+                            <div class="form-group">
+                               <input type="checkbox" id="html" (change) = "searchDetails()" formControlName="new" >
+                               <label for="html">New</label>
+                            </div>
+                         </span>
+                         <span>
+                            <div class="form-group">
+                               <input type="checkbox" id="used"  (change) = "searchDetails()" formControlName="used">
+                               <label for="used">Used</label>
+                            </div>
+                         </span>
+                         <span>
+                            <div class="form-group">
+                               <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered">
+                               <label for="registered">Pre-registered</label>
+                            </div>
+                         </span>
+                      </div>
+                      <div class="row">
+                         <div class="col-md-6 col-lg-6 d-flex">
+                            <div class="form-group">
+                               <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
+                                  <option value="">Make</option>
+                                  <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
+                                 
+                               </select>
+                            </div>
+                         </div>
+                         <div class="col-md-6 col-lg-6 d-flex">
+                            <div class="form-group">
+                               <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
+                                  <option value="">Model</option>
+                                  <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                                 
+                               </select>
+                            </div>
+                         </div>
+                         <div class="col-md-6 col-lg-6 d-flex">
+                            <div class="form-group">
+                               <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
+                              <option value=""> Please select</option>
+                                  <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
+                                
+                                  
+                               </select>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right:0px;padding-left: 7.5px;">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">Price From</option>
+                                 <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              </select>
+
+                           
+                             
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
+                          <div class="form-group">
+                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">Price to</option>
+                              <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              
+                           </select>
+
+                           
+                            
+                          </div>
+                       </div>
+                         <!-- <div class="col-md-6 col-lg-6 d-flex">
+                            <div class="form-group">
+                               <select class="form-control" id="sel1">
+                                  <option>UK</option>
+                                 
+                               </select>
+                            </div>
+                         </div> -->
+                         <div class="col-md-6 col-lg-6 d-flex">
+                            <div class="form-group">
+                              <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                            </div>
+                         </div>
+                        
+                      </div>
+                      
+                      <div class="cl-fillter">
+                         <div class="row">
+                           
+                            <div class="col-md-6 col-lg-6 d-flex ">
+                             <div class="d-flex">
+                                    <button (click)="search()">{{totalRecords}} Result</button>
+                             </div>
+                          
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="tab-pane" id="tabs-2" role="tabpanel">
+                     <div class="offertype">
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="html1" (change) = "searchDetails()" formControlName="new" >
+                              <label for="html1">New</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="used1"  (change) = "searchDetails()" formControlName="used">
+                              <label for="used1">Used</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered1">
+                              <label for="registered1">Pre-registered</label>
+                           </div>
+                        </span>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
+                                 <option value="">Make</option>
+                                 <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
+                                 <option value="">Model</option>
+                                 <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
+                                 <option value="">First Registration</option>
+                                 <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
+                                 
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 0px;padding-left: 7.5px;">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">Price From</option>
+                                 <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              </select>
+
+                           
+                             
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
+                          <div class="form-group">
+                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">Price to</option>
+                              <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              
+                           </select>
+
+                           
+                            
+                          </div>
+                       </div>
+                        <!-- <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" id="sel1">
+                                 <option>UK</option>
+                                
+                              </select>
+                           </div>
+                        </div> -->
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                           </div>
+                        </div>
+                       
+                     </div>
+                     
+                     <div class="cl-fillter">
+                        <div class="row">
+                          
+                           <div class="col-md-6 col-lg-6 d-flex ">
+                            <div class="d-flex">
+                                   <button (click)="search()">{{totalRecords}} Result</button>
+                            </div>
+                         
+                           </div>
+                        </div>
+                     </div>
+                   </div>
+                   <div class="tab-pane" id="tabs-3" role="tabpanel">
+                     <div class="offertype">
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="html1" (change) = "searchDetails()" formControlName="new" >
+                              <label for="html1">New</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="used1"  (change) = "searchDetails()" formControlName="used">
+                              <label for="used1">Used</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered1">
+                              <label for="registered1">Pre-registered</label>
+                           </div>
+                        </span>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
+                                 <option value="">Category</option>
+                                 <option value = "rigid" >Rigid Trucks</option>
+                                 <option value = "tractor" >Tractor Units</option>
+                                 <option value = "trailer" >Trailers</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
+                                 <option value="">Make</option>
+                                 <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="row">
+                 
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
+                                 <option value="">Model</option>
+                                 <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
+                                 <option value="">First Registration</option>
+                                 <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
+                                 
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 0px;padding-left: 7.5px;">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">Price From</option>
+                                 <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              </select>
+
+                           
+                             
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
+                          <div class="form-group">
+                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">Price to</option>
+                              <option value="500" >£500</option>
+                                 <option value="1000" >£1000</option>
+                                 <option value="1500" >£1500</option>
+                                 <option value="2000" >£2000</option>
+                                 <option value="2500" >£2500</option>
+                                 <option value="3000" >£3000</option>
+                                 <option value="4000" >£4000</option>
+                                 <option value="5000" >£5000</option>
+                                 <option value="6000" >£6000</option>
+                                 <option value="7000" >£7000</option>
+                                 <option value="8000" >£8000</option>
+                                
+                                 <option value="9000" >£9000</option>
+                                 <option value="10000" >£10000</option>
+                                 <option value="12500" >£12500</option>
+                                 <option value="17500" >£17500</option>
+                                 <option value="20000" >£20000</option>
+                                 <option value="25000" >£25000</option>
+                                 <option value="30000" >£30000</option>
+                                 <option value="40000" >£40000</option>
+                                 <option value="50000" >£50000</option>
+                                 <option value="75000" >£75000</option>
+                                 <option value="100000" >£100000</option>
+                              
+                           </select>
+
+                           
+                            
+                          </div>
+                       </div>
+                        <!-- <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" id="sel1">
+                                 <option>UK</option>
+                                
+                              </select>
+                           </div>
+                        </div> -->
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                           </div>
+                        </div>
+                       
+                     </div>
+                     
+                     <div class="cl-fillter">
+                        <div class="row">
+                          
+                           <div class="col-md-6 col-lg-6 d-flex ">
+                            <div class="d-flex">
+                                   <button (click)="search()">{{totalRecords}} Result</button>
+                            </div>
+                         
+                           </div>
+                        </div>
+                     </div>
+                   </div>
+                   <div class="tab-pane" id="tabs-4" role="tabpanel"  >
+                     <div class="offertype">
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="html" (change) = "searchDetails()" formControlName="new" >
+                              <label for="html">New</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox" id="used"  (change) = "searchDetails()" formControlName="used">
+                              <label for="used">Used</label>
+                           </div>
+                        </span>
+                        <span>
+                           <div class="form-group">
+                              <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered">
+                              <label for="registered">Pre-registered</label>
+                           </div>
+                        </span>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
+                                 <option value="">Make</option>
+                                 <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
+                                 <option value="">Model</option>
+                                 <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
+                                
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
+                             <option value=""> Please select</option>
+                                 <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
+                               
+                                 
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right:0px;padding-left: 7.5px;">
+                          <div class="form-group">
+                             <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                <option value="">Price From</option>
+                                <option value="500" >£500</option>
+                                <option value="1000" >£1000</option>
+                                <option value="1500" >£1500</option>
+                                <option value="2000" >£2000</option>
+                                <option value="2500" >£2500</option>
+                                <option value="3000" >£3000</option>
+                                <option value="4000" >£4000</option>
+                                <option value="5000" >£5000</option>
+                                <option value="6000" >£6000</option>
+                                <option value="7000" >£7000</option>
+                                <option value="8000" >£8000</option>
+                               
+                                <option value="9000" >£9000</option>
+                                <option value="10000" >£10000</option>
+                                <option value="12500" >£12500</option>
+                                <option value="17500" >£17500</option>
+                                <option value="20000" >£20000</option>
+                                <option value="25000" >£25000</option>
+                                <option value="30000" >£30000</option>
+                                <option value="40000" >£40000</option>
+                                <option value="50000" >£50000</option>
+                                <option value="75000" >£75000</option>
+                                <option value="100000" >£100000</option>
+                             </select>
+
+                          
+                            
+                          </div>
+                       </div>
+                       <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
+                         <div class="form-group">
+                          <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                             <option value="">Price to</option>
+                             <option value="500" >£500</option>
+                                <option value="1000" >£1000</option>
+                                <option value="1500" >£1500</option>
+                                <option value="2000" >£2000</option>
+                                <option value="2500" >£2500</option>
+                                <option value="3000" >£3000</option>
+                                <option value="4000" >£4000</option>
+                                <option value="5000" >£5000</option>
+                                <option value="6000" >£6000</option>
+                                <option value="7000" >£7000</option>
+                                <option value="8000" >£8000</option>
+                               
+                                <option value="9000" >£9000</option>
+                                <option value="10000" >£10000</option>
+                                <option value="12500" >£12500</option>
+                                <option value="17500" >£17500</option>
+                                <option value="20000" >£20000</option>
+                                <option value="25000" >£25000</option>
+                                <option value="30000" >£30000</option>
+                                <option value="40000" >£40000</option>
+                                <option value="50000" >£50000</option>
+                                <option value="75000" >£75000</option>
+                                <option value="100000" >£100000</option>
+                             
+                          </select>
+
+                          
+                           
+                         </div>
+                      </div>
+                        <!-- <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                              <select class="form-control" id="sel1">
+                                 <option>UK</option>
+                                
+                              </select>
+                           </div>
+                        </div> -->
+                        <div class="col-md-6 col-lg-6 d-flex">
+                           <div class="form-group">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                           </div>
+                        </div>
+                       
+                     </div>
+                     
+                     <div class="cl-fillter">
+                        <div class="row">
+                          
+                           <div class="col-md-6 col-lg-6 d-flex ">
+                            <div class="d-flex">
+                                   <button (click)="search()">{{totalRecords}} Result</button>
+                            </div>
+                         
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </form>
+             </div>
+          </div>
+          <div class="col-md-1 col-lg-1"></div>
+          <div class="col-md-12 col-lg-6 d-flex">
+            <div class="banner-text text-center">
+              <h4>Parrot Auto Trader <span>in a new design.</span></h4>
+              <span class="tagline">Find your dream car even faster</span>
+            </div>
+          </div>
+       </div>
+    </div>
+ </section>

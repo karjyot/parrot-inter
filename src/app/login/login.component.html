@@ -1,0 +1,30 @@
+<div class="login-form">
+    <div class="main-div">
+       <div class="panel">
+          <h2>Login</h2>
+          <div class="infoaccount-signin">
+            <a href="JavaScript:void(0)" class="btn btn-block btn-facebook"  (click)="socialLogin('facebook')"><i class="fa fa-facebook" aria-hidden="true"></i> Sign in via Facebook</a>
+             <a href="JavaScript:void(0)" class="btn btn-block btn-google"  (click)="socialLogin('google')"><i class="fa fa-google" aria-hidden="true"></i>
+Sign in via Google</a>
+         </div>
+       </div>
+       <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="login()">
+          <div class="form-group">
+             <input type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email" class="form-control" formControlName="email" required>
+          </div>
+          <div class="form-group">
+             <input type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" class="form-control" formControlName="password" required>
+          </div>
+            <div class="checkbox text-left">
+             <label class="checkbox">
+             <input type="checkbox" value="remember-me"  formControlName = "rememberme">Remember me
+             </label>
+          </div>
+          <div class="forgot">
+             <a routerLink="/forgot-password">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+       </form>
+    </div>
+
+ </div>

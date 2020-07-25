@@ -1,0 +1,17 @@
+><div class="login-form">
+    <div class="main-div">
+       <div class="panel">
+          <h2>Check Your Vehicle</h2>
+
+       </div>
+       <form>
+          <div class="form-group">
+              <label>Enter Registration</label>
+             <input type="email" placeholder="eg AB12CDE" [(ngModel)] = "registration" [ngModelOptions]="{standalone: true}" class="form-control" required>
+          </div>
+         
+          <button type="button" class="btn btn-primary" (click) = "start()">Start Check</button>
+       </form>
+    </div>
+
+ </div>

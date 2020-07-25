@@ -1,0 +1,130 @@
+<div class="subscribe">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 mx-auto">
+        <form action="" method="post">	
+          <div class="input-group">
+              <input type="email" class="form-control" [(ngModel)] = "email"  [ngModelOptions]="{standalone: true}" placeholder="Enter your email" required="required">
+              <div class="input-group-append">
+                <input type="button" (click)="subscribe()" class="btn btn-primary" value="Subscribe">
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bannerbotton-text">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <p>We lead and others follow</p>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <h5>Parrot Auto Trader <span>: A UK and Northern Ireland automotive classified leader.</span></h5>
+      </div>
+
+  </div>
+
+  </div> 
+  </div>
+<footer>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-lg-4 d-flex">
+      <div class="footer-links">
+        <ul>
+          <li><a routerLink="/about-us">About PAT</a></li>
+          <li><a  routerLink="/contact-us">Contact us</a></li>
+          <li><a routerLink="/terms">Terms and Conditions</a></li>
+          <li><a routerLink="/data-protection">Data Protection Information</a></li>
+          <li><a routerLink="/carriers">Careers</a></li>
+            <li><a routerLink="/blog">Blog</a></li>
+            <li><a routerLink="/vehicle-check">Vehicle Check</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2 col-lg-2 d-flex">
+      <div class="footer-links">
+        <ul>
+          <!-- <li><a routerLink="/vehicle-valuation">Vehicle Valuation</a></li> -->
+          <li><a routerLink="/buy-car">Buy Car</a></li>
+          <li><a  routerLink="/buy-bike">Buy Bike</a></li>
+          <li><a routerLink="/buy-truck">Buy Trucks</a></li>
+          <li><a routerLink="/buy-vehicle">Buy Vehicle</a></li>
+          <li><a routerLink="/faq">FAQ</a></li>
+          <li><a routerLink="/how-it-works">How it Works</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2 col-lg-2 d-flex text-center">
+      <img src="assets/images/footer-logo.png" alt="logo">
+    </div>
+    <div class="col-md-4 col-lg-4 d-flex">
+      <div class="app-link">
+        <ul>
+          <li><a href="JavaScript:void(0)"><i class="fa fa-apple" aria-hidden="true"></i>
+        Parrot Auto Trader for iOS</a></li>
+          <li><a href="JavaScript:void(0)"><i class="fa fa-android" aria-hidden="true"></i>  Parrot Auto Trader for Android</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="copyright-text">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <p style="font-weight: bold;">Registered in UK. Registration No.12692582</p>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <p style="font-weight: bold;">   ©Copyright 2020 by parrot auto trader. All Rights reserved</p>
+      </div>
+
+  </div>
+  </div>
+
+ 
+ 
+  <ul class="post-social-list-footer" *ngIf="cmsData">
+    <li >
+      <a _ngcontent-c5="" class="facebook-pop" href="{{cmsData.facebook}}" target="_blank">
+        <i _ngcontent-c5="" _ngcontent-c8="" class="fa fa-facebook-f"></i>
+      </a>
+    </li>
+    <li _ngcontent-c5="">
+      <a _ngcontent-c5="" class="linkedin-pop" href="{{cmsData.linkedin}}" target="_blank">
+        <i _ngcontent-c5="" _ngcontent-c8="" class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li _ngcontent-c5="">
+      <a _ngcontent-c5="" class="google-pop" href="{{cmsData.google}}" target="_blank">
+        <i _ngcontent-c5="" _ngcontent-c8="" class="fa fa-google"></i>
+      </a>
+    </li>
+    <li _ngcontent-c5="">
+      <a _ngcontent-c5="" class="instagram-pop" href="{{cmsData.instagram}}" target="_blank">
+        <i _ngcontent-c5="" _ngcontent-c8="" class="fa fa-instagram"></i>
+      </a>
+    </li>
+
+    <li _ngcontent-c5="">
+      <a _ngcontent-c5="" class="twitter-pop" href="{{cmsData.twitter}}" target="_blank">
+        <i _ngcontent-c5="" _ngcontent-c8="" class="fa fa-twitter"></i>
+      </a>
+    </li>
+
+    <li _ngcontent-c5="">
+      <a _ngcontent-c5="" class="parrot-pop" href="{{cmsData.parrot}}" target="_blank">
+        <img src="assets/images/release.jpg">
+      </a>
+    </li>
+
+  </ul>
+</div>
+
+
+</footer> 

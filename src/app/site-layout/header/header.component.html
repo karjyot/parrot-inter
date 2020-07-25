@@ -1,0 +1,99 @@
+<header>
+   <div class="container">
+      <div class="row">
+         <div class=" col-md-4 col-lg-3 d-flex">
+            <div class="site-logo">
+               <a routerLink="/"> <img src="assets/images/logo.png" alt="logo"></a>
+            </div>
+         </div>
+         <div class="col-md-4 col-lg-6 d-flex menu-responsive">
+            <!-- Navigation -->
+            
+            <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+               <i class="fa fa-bars" aria-hidden="true"></i>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(true)" (click) = "usedCars()">Used Cars</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(true)" (click) = "newCars()">New Cars</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(true)" (click) = "bike()" >Bikes</a>
+                     </li>
+                     <li class="nav-item" *ngIf="details && details.user_type=='seller'">
+                        <a class="nav-link" routerLink="/plans" >Sell my car</a>
+                     </li>
+                     <li class="nav-item" *ngIf="!isLogin">
+                        <a class="nav-link" routerLink="/register" >Sell my car</a>
+                     </li>
+                     <li class="nav-item" *ngIf="cmsData && cmsData.phone">
+                        <a class="nav-link" >{{cmsData.phone}}</a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+         <div class="col-md-4 col-lg-3 d-flex loginresponsive" style="align-items: center;
+            justify-content: flex-end;">
+            <div class="lgin-buttons" *ngIf= "!isLogin">
+               <a routerLink="/register">Signup</a>
+               <a  routerLink="/login">Signin</a>
+            </div>
+            <div class="header-top-main">	
+            <div class=" head_icon  notlogin"  *ngIf= "isLogin">
+               <a class=" " style="cursor: pointer;" clickOutside (click) = "toggleMessages()">
+               <i class="fa fa-envelope-o" style="font-size:24px;">
+               </i>
+               <div class="badge badge-top" *ngIf="showMessages" style="display: none;" id="messageNumber"  [ngClass]="{'noMessage':unreadMessage == 0}"><span class="ng-binding">{{unreadMessage}}</span>
+            </div>
+            </a>      
+            <div class="dropdown-menu-mg dropdown-menu-right mailbox animated bounceInDown"  id ="messages" aria-labelledby="2">
+               <ul class="list-style-none">
+                  <li *ngIf="getMessages">
+                     <div  *ngIf="getMessages.length != 0" class="drop-title border-bottom">You have {{getMessages.length}} messages</div>
+                  </li>
+                  <li *ngFor="let message of getMessages| slice:0:4;  let last = last;">
+                     <div class="message-center message-body">
+                        <a href="javascript:void(0)" class="message-item"  (click)="viewMessage(message)" [ngStyle]="last?{'border-bottom': 'none'} :''">
+                        <span class="user-img"> <img src="{{message.image}}" alt="user" class="rounded-circle">  </span>
+                        <span class="mail-contnet">
+                           <h6 class="message-title">{{message.name}} {{message.lname}}</h6>
+                           <span class="mail-desc">{{message.title | truncate : 100 : "....."}}</span> <span class="time" style="float:right"> {{message.creation_date |  timeago:live}}</span> 
+                        </span>
+                        </a>
+                     </div>
+                  <li  *ngIf="getMessages">
+                     <a  *ngIf="getMessages.length == 0" class="nav-link text-center link text-dark"  href="javascript:void(0);"> <b>No Message Recieved</b>  </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="dropdown admin" *ngIf= "isLogin">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img [src]="imageUrl" />
+            {{details.name}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 12rem;">
+               <a class="dropdown-item" routerLink = "/my-ads" href="#" *ngIf="details.user_type=='seller'">My Ads</a>
+               <a class="dropdown-item" routerLink = "/profile" href="#">My Profile</a>
+               <a class="dropdown-item" routerLink = "/messages/custom" href="#">Messages</a>
+               <!-- <a class="dropdown-item" routerLink = "/my-plan" href="#">My Plan</a> -->
+               <a class="dropdown-item" routerLink = "/bookmarks" href="#">My Favourites</a>
+               <a class="dropdown-item" routerLink='/saved-searches' href="#" *ngIf="details.user_type=='buyer'">Saved Searches</a>
+               <a class="dropdown-item" routerLink='/referal'>Refer and Earn</a>
+               <a class="dropdown-item" routerLink='/wallet'>My Wallet</a>
+               <a class="dropdown-item" routerLink='/bank-info'>Bank Details</a>
+               <a class="dropdown-item" routerLink='/payments-requests'>Bank Transfers</a>
+               <a class="dropdown-item" routerLink = '/change-user-password'>Change Password</a>
+               <a class="dropdown-item" href="#" (click) = "logout()">logout</a>
+            </div>
+         </div>
+         </div>
+      </div>
+   </div>
+   </div>
+</header>
