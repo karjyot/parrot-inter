@@ -23,7 +23,7 @@
        <div class="stripe-payment">
        <div class="row">
         <div class="col-lg-9 col-md-12 mt-2 mb-2">
-         <div  class="offertype mr-t-10"><span ><div _ngcontent-wlj-c5="" class="form-group"><input  name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label for="Used">Wallet Amount : {{remaining}} {{currency.symbol}}</label></div></span></div>
+         <div  class="offertype mr-t-10"><span ><div _ngcontent-wlj-c5="" class="form-group"><input  name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label for="Used">Wallet Amount : {{remaining * userCurrency.toFixed(2) || '0'}} {{currency.symbol}}</label></div></span></div>
         </div>
         <div class="col-lg-3 col-md-12">
          <button (click) = "payWallet()" class="btn submit-btn checkout" [disabled] = "isDiablePay">
@@ -36,7 +36,7 @@
         <input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
         <div id="card-element" class="field"></div>
         <button type="submit" class="btn btn-primary submit-btn">
-          PAY {{currency.symbol}} {{planDetails.price}}
+          PAY {{currency.symbol}} {{planDetails.price * userCurrency.toFixed(2) || '0'}}
         </button>
       </form>
     </div>

@@ -282,7 +282,8 @@ export class SearchComponent implements OnInit {
       priceFrom:[''],
       priceTo:[''],
       emmison:[''],
-      category:['']
+      category:[''],
+      countryName:['']
       })
 
       const now = new Date().getUTCFullYear();    
@@ -298,7 +299,9 @@ export class SearchComponent implements OnInit {
     if(searchTags.model){
       this.searchForm.controls['model'].setValue(searchTags.model);
     }
-
+    if(searchTags.countryName){
+      this.searchForm.controls['countryName'].setValue(searchTags.countryName);
+    }
     if(searchTags.city){
       this.searchForm.controls['city'].setValue(searchTags.city);
     }

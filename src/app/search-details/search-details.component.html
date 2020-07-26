@@ -14,7 +14,7 @@
             <div class="info-section">
                <div class="sticky-vinfo">
                   <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
-                  <h4 class="price">£ {{adDetails.price}}</h4>
+                  <h4 class="price">{{adDetails.currency}} {{adDetails.price}}</h4>
                   <button>contact a seller</button>    
                </div>
                <div class="product-detail vichleinfo-main">
@@ -34,7 +34,7 @@
                         <div class="col-md-12 col-lg-5">
                            <div class="vichle data">
                               <div class="vichle-price">
-                                 <h2>£ {{adDetails.price | number}}</h2>
+                                 <h2>{{adDetails.currency}} {{adDetails.price | number}}</h2>
                               </div>
                               <div class="vichle-info">
                                  <ul>
@@ -495,7 +495,7 @@
                  <div  class="card-hd">
                     <div class="related-header">
                        <div class="related-elem">                          
-                          <p class="strike-through price-txt">£{{userAdd.price  | number}}</p>
+                          <p class="strike-through price-txt">{{userAdd.currency}} {{userAdd.price  | number}}</p>
                        </div>  
                         <div class="related-elem">                          
                            <p class="model-car text-right">{{userAdd.registration}}</p>

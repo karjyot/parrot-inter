@@ -16,11 +16,15 @@ export class LoginSidebarComponent implements OnInit {
   remaining:any
   usedAmount:any;
   wallet:any
+  conversion:any
   ngOnInit() {
     this.userDetails = this.loginService.getUserDetails()
     if(this.userDetails){
       this.imageUrl = this.userDetails.image;
-      this.userDetails.countryObj =  JSON.parse( this.userDetails.countryObj );
+      this.userDetails.countryObj =  JSON.parse( this.userDetails.countryObj);
+      let countryObj = JSON.parse(this.loginService.getUserDetails().countryObj)
+      let currncies = this.loginService.getCurrncies();
+      this.conversion =  this.loginService.checkUserCurrency(countryObj.code,currncies);
     }
 
     this.loginService.getWalletSummary(this.loginService.getUserDetails().id).subscribe((result:any) => {

@@ -16,11 +16,16 @@ export class WalletComponent implements OnInit {
   usedAmount : any;
   remaining:any
   userDetails:any
+  conversion:any
   constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
 
   ngOnInit() {
     this.ngxService.start();
    this.userDetails = JSON.parse(this.loginService.getUserDetails().countryObj)
+   let countryObj = JSON.parse(this.loginService.getUserDetails().countryObj)
+   let currncies = this.loginService.getCurrncies();
+   this.conversion =  this.loginService.checkUserCurrency(countryObj.code,currncies);
+
     this.loginService.getWalletSummary(this.loginService.getUserDetails().id).subscribe((result:any) => {
       this.wallet = result['success'];
       let used = result['used'];

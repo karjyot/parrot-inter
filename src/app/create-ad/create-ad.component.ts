@@ -243,7 +243,7 @@ export class CreateAdComponent implements OnInit {
   extCol = 'beige';
   upholeData:'alcantara';
   ngOnInit() {
-    let  countryCode = JSON.parse(this.loginService.getUserDetails().countryObj).country
+    let  countryCode = JSON.parse(this.loginService.getUserDetails().countryObj).country_code
     console.log(countryCode)
     this.maximumImages = this.loginService.getPlanDetails().photos;
     this.getMakes();

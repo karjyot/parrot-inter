@@ -122,6 +122,7 @@ getUnreadMessage(id){
   usedCars(){
   let  data = {
     used:"Used",
+    countryName:this.loginService.getUserLocation().country
    // type:"car"
   }
   this.loginService.setSearchData(data);
@@ -132,7 +133,7 @@ getUnreadMessage(id){
   newCars(){
     let  data = {
       new:"New",
-     // type:"car"
+      countryName:this.loginService.getUserLocation().country
     }
     this.loginService.setSearchData(data);
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
@@ -142,6 +143,7 @@ getUnreadMessage(id){
     let  data = {
      // new:"New",
     //  type:"bike"
+    countryName:this.loginService.getUserLocation().country
     }
     this.loginService.setSearchData(data);
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>

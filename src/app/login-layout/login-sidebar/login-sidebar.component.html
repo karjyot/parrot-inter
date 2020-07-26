@@ -6,7 +6,7 @@
                <div class="referal-image">
                   <img src="{{imageUrl}}" class="img-fluid">
                   <h5> {{userDetails.name}}</h5>
-                  <span class="ref-balance">Balance: {{userDetails.countryObj.symbol}} {{remaining}}</span>
+                  <span class="ref-balance">Balance: {{userDetails.countryObj.symbol}} {{remaining * conversion.toFixed(2) || '0'}}</span>
                </div>
             </div>
              <li [class.active]="urlmatch('my-ads')"><a routerLink='/my-ads' *ngIf="userDetails.user_type=='seller'">My Ads</a></li>

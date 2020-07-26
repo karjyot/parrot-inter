@@ -18,6 +18,7 @@ export class MyAdsComponent implements OnInit {
   currentRow:any;
   isLogin:any;
   modal: BsModalRef | null;
+  currency:any
   constructor(private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class MyAdsComponent implements OnInit {
   listData(){
     this.ngxService.start();
     let userID = this.loginService.getUserDetails().id;
+    this.currency = JSON.parse(this.loginService.getUserDetails().countryObj)
     this.loginService.userAdsGet(userID).subscribe((result) => {
       this.ads = result["success"];
       this.ads.sort((val1, val2)=> {return <any> new Date(val2.created_at) - <any> new 

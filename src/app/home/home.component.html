@@ -148,14 +148,14 @@
                             
                           </div>
                        </div>
-                         <!-- <div class="col-md-6 col-lg-6 d-flex">
+                         <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
-                               <select class="form-control" id="sel1">
-                                  <option>UK</option>
+                               <select class="form-control" id="sel1"  (change)="changeCountry()" formControlName =  "countryName">
+                                  <option value="{{x.country}}" *ngFor="let x of countries">{{x.country}}</option>
                                  
                                </select>
                             </div>
-                         </div> -->
+                         </div>
                          <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
                               <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">

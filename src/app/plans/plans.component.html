@@ -9,7 +9,7 @@
                 <div class = "center">
                    <h2 style="background-color: #D3001D ;"></h2>
                    <h5><span style="text-transform: capitalize;" [innerHTML]="plan.plan_name"></span></h5>
-                   <h3>{{plan.symbol}} <b [innerHTML]="plan.price" style="color:#000"></b></h3>
+                   <h3>{{plan.symbol}} <b [innerHTML]="plan.price * conversion.toFixed(2) || '0'" style="color:#000"></b></h3>
                    <p>Up to <b [innerHTML]="plan.photos" style="color:#000"></b> photos</p>
                    <p> {{plan.text}} <b [innerHTML]="plan.duration" style="color:#000"></b></p>
                    <p *ngIf="plan.description"  [innerHTML]="plan.description"></p>

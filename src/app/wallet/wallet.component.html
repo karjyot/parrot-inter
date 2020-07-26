@@ -28,7 +28,7 @@
                         <tr *ngFor = "let wal of wallet; let i = index">
                             <td class="col-md-1" style="text-align: center"> {{i+1}} </td>
                             <td class="col-md-9"><em>{{wal.email}}</em></td>
-                            <td class="col-md-1 text-center">{{userDetails.symbol}}{{wal.amount}}</td>
+                            <td class="col-md-1 text-center">{{userDetails.symbol}} {{wal.amount * conversion.toFixed(2) || '0'}}</td>
                    
                         </tr>
                       
@@ -44,17 +44,17 @@
                             </p></td>
                             <td class="text-center">
                             <p>
-                                <strong>{{userDetails.symbol}} {{totalAmount}}</strong>
+                                <strong>{{userDetails.symbol}} {{totalAmount*conversion.toFixed(2) || '0'}}</strong>
                             </p>
                             <p>
-                                <strong>{{userDetails.symbol}} {{usedAmount}}</strong>
+                                <strong>{{userDetails.symbol}} {{usedAmount*conversion.toFixed(2) || '0'}}</strong>
                             </p></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                            <td class="text-center text-danger"><h4><strong>{{userDetails.symbol}} {{remaining}}</strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>{{userDetails.symbol}} {{remaining*conversion.toFixed(2) || '0'}}</strong></h4></td>
                         </tr>
                     </tbody>
                 </table>

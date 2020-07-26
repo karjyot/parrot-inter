@@ -165,7 +165,7 @@ export function getAuthServiceConfigs() {
     FormsModule, 
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    NgxStripeModule.forRoot('pk_live_2l3t5U5QFg9vNd5yqu7mqOVC00SyG7DyoX'),
+    NgxStripeModule.forRoot('pk_test_i2rFMVlrLofRcsWY0mPzbyNd001hlLYk8P'),
     SocialLoginModule,
     NgxPaginationModule,
     ShareButtonModule,

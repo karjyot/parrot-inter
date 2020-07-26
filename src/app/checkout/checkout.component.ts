@@ -43,12 +43,16 @@ export class CheckoutComponent implements OnInit {
   checkboxWallet:false;
   deductedWallet:any;
   currency:any
- 
+  currencyRates:any
+  userCurrency:any
   ngOnInit() {
   
     this.ngxService.start();
     
    this.currency = JSON.parse(this.loginService.getUserDetails().countryObj)
+   this.currencyRates = this.loginService.getCurrncies();
+    this.userCurrency = this.loginService.checkUserCurrency(this.currency.code,this.currencyRates)
+    console.log(this.userCurrency)
     this.loginService.getWalletSummary(this.loginService.getUserDetails().id).subscribe((result:any) => {
       this.wallet = result['success'];
       let used = result['used'];
@@ -161,13 +165,13 @@ export class CheckoutComponent implements OnInit {
   formData.append('limit_images',this.loginService.getPlanDetails().photos)
   formData.append('powerUnits',"")
   formData.append('userID',this.loginService.getUserDetails().id)
-  formData.append('country',"United Kingdom")
+  formData.append('country',this.currency.country)
   formData.append('engineSize',this.AdForm.engineSize)
   formData.append('accleration',this.AdForm.accleration)
   formData.append('annualTax',this.AdForm.annualTax)
   formData.append('fuelConsumpation',this.AdForm.fuelConsumpation)
-
   formData.append('co2',this.AdForm.co2)
+  formData.append('currency',this.currency.symbol)
   formData.append('category',this.AdForm.category)
   
 

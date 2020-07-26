@@ -28,7 +28,7 @@ export class AppComponent {
       this.getCurrencyconversion();
      }
      //  
-       
+     this.getUserLocation()
      
 
 
@@ -166,8 +166,15 @@ export class AppComponent {
     }
 
     getCurrencyconversion(){
+     
       this.loginService.currency().subscribe((result) => {
         this.loginService.setCurrncies(result)
+      })
+    }
+
+    getUserLocation(){
+      this.loginService.getUserCurrentLocation().subscribe((result) => {
+        this.loginService.setUserLocation(result)
       })
     }
   }

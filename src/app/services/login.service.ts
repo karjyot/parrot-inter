@@ -194,9 +194,25 @@ public messageData(data: any){
   setCurrncies(data){
     this.localStorage.setItem('setCurrncies',  JSON.stringify(data));
   }
+
+  setUserLocation(data){
+    this.localStorage.setItem('setUserLocation',  JSON.stringify(data));
+  }
+ 
+  getUserLocation(){
+    let details = this.localStorage.getItem('setUserLocation');
+    return JSON.parse(details);
+  }
+
+ 
   getCurrncies(){
     let details = this.localStorage.getItem('setCurrncies');
     return JSON.parse(details);
+  }
+
+  getUserCurrentLocation(){
+    return this.http.get(' http://ip-api.com/json');
+   
   }
 
 
@@ -558,7 +574,8 @@ getVehicleCheck(){
   return JSON.parse(details);
 }
 checkUserCurrency(country,countryObj){
-
+console.log(country)
+console.log(countryObj)
   for(var key in countryObj.rates){
   if(key == country){
     return countryObj.rates[key]

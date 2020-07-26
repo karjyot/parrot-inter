@@ -16,6 +16,7 @@ export class PlansComponent implements OnInit {
   plans:any
   userID:any;
   cmsData:any
+  conversion:any
   constructor(private activatedRoute:ActivatedRoute,private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
 
   ngOnInit() {
@@ -29,10 +30,11 @@ export class PlansComponent implements OnInit {
 
       if(this.loginService.getUserDetails()){
         let countryObj = JSON.parse(this.loginService.getUserDetails().countryObj)
-        let conversion =  this.loginService.checkUserCurrency(countryObj.code,currncies);
+        this.conversion =  this.loginService.checkUserCurrency(countryObj.code,currncies);
      
         for(var i=0;i<this.plans.length; i++){
-         this.plans[i].price =  (parseFloat(this.plans[i].price) * parseFloat(conversion)).toFixed(2)
+        
+        // this.plans[i].price =  (parseFloat(this.plans[i].price) * parseFloat(conversion)).toFixed(2)
           this.plans[i].symbol = countryObj.symbol
         }    
       }

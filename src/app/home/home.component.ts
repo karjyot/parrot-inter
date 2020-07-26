@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject,ChangeDetectorRef,ViewChild } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { LoginService } from "./../services/login.service";
 import {CookieService} from 'angular2-cookie/core';
 import { Location } from '@angular/common';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+import { GooglePlaceModule,GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { Router,ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-home',
@@ -16,10 +16,12 @@ import { Router,ActivatedRoute } from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('placesRef',{static: false}) placesRef: GooglePlaceDirective;
   searchForm : FormGroup
   resultMakes:any
+  countries:any
   constructor(private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService, private titleService: Title,
-    private meta: Meta) {}
+    private meta: Meta, private ref: ChangeDetectorRef) {}
   totalRecords:any;
   options:any;
   city:any;
@@ -36,9 +38,11 @@ export class HomeComponent implements OnInit {
     // this.meta.addTag({name: 'description', content: 'Angular project training on rsgitech.com'});
     // this.meta.addTag({name: 'author', content: 'rsgitech'});
     // this.meta.addTag({name: 'robots', content: 'index, follow'});
-    this.options = {
+
+    let countrycode = this.loginService.getUserLocation().countryCode;
+        this.options = {
       types: ['(cities)'],
-      componentRestrictions: { country: ['UK'] }
+      componentRestrictions: { country: countrycode }
       }
     this.searchForm = this.formBuilder.group({ 
       new:[false],
@@ -49,21 +53,24 @@ export class HomeComponent implements OnInit {
       priceFrom:[''],
       priceTo:[''],
       city:[''],
+      countryName:[''],
       firstRegistration:[''],
       type:[],
       category:['']
     })
     this.searchForm.value.type = "car";
-    this.searchDetails();
+   
     const now = new Date().getUTCFullYear();    
     const years = Array(now - (now - 30)).fill('').map((v, idx) => now - idx);
     this.years = years;
-    this.getMakes()
+    this.getMakes();
+  this.getCountries()
   }
 
 
 
   searchDetails(){
+
     //this.searchForm.value.type = this.type
   if(this.searchForm.value.new == true){
     this.searchForm.value.new = "New"
@@ -78,6 +85,7 @@ export class HomeComponent implements OnInit {
     this.searchForm.value.city  = this.city
   }
     let data = this.searchForm.value;
+    console.log(data)
     this.ngxService.start();
     this.loginService.filterSearch(data,this.type).subscribe((result) => {
       this.totalRecords = result["success"].length
@@ -215,6 +223,44 @@ console.log(this.truckMakes)
       }
     }
   }
+
+  getCountries(){
+    this.ngxService.start();
+    this.loginService.countries().subscribe((result:any) => {
+      this.countries = result['message'];
+      let userCurrentCounry = this.loginService.getUserLocation();
+      this.searchForm.value.countryName = userCurrentCounry.country;
+      this.searchForm.controls['countryName'].setValue(userCurrentCounry.country);
+      this.options = {
+        types: ['(cities)'],
+        componentRestrictions: { country: [userCurrentCounry.countryCode] }
+        }
+
+      this.ngxService.stop();
+      this.searchDetails();
+      },(err) => {
+
+        this.ngxService.stop();
+       })
+  }
+  changeCountry(){
+    let code = this.getcountrycode().country_code
+    console.log(code)
+    this.options.componentRestrictions.country = code;
+    
+    this.placesRef.reset()
+    this.searchDetails();
+  }
+
+  getcountrycode(){
+    for(var i=0; i<this.countries.length; i++){
+      if(this.countries[i].country == this.searchForm.value.countryName){
+
+        return this.countries[i]
+      }
+    }
+  }
+
 }
 
 
