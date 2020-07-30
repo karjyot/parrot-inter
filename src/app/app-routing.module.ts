@@ -21,6 +21,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ChangeUserPasswordComponent } from './change-user-password/change-user-password.component'
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ApiGuard } from './auth/api.guard';
+
 import { ReferalComponent } from './referal/referal.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -82,8 +84,10 @@ const routes: Routes = [{
     title: 'Parrot Auto Trader - Used and New Cars for sale ',
     //descrption: 'Description of Home Component',
     //ogTitle: 'Description of Home Component for social media',
-    keywords:'Buy Car, Buy Truck, Buy Vehicle, Buy Truck, Buy Bikes, Parrot Auto Trader, Auto Trader , User Cars for sale, New cars for sale'
-  }
+    keywords:'Buy Car, Buy Truck, Buy Vehicle, Buy Truck, Buy Bikes, Parrot Auto Trader, Auto Trader , User Cars for sale, New cars for sale',
+   
+  },
+  canActivate:[ApiGuard],
  },{
       
   path: 'search/:id',
@@ -93,7 +97,8 @@ const routes: Routes = [{
     //descrption: 'Description of Home Component',
     //ogTitle: 'Description of Home Component for social media',
     keywords:'Buy Car, Buy Truck, Buy Vehicle, Buy Truck, Buy Bikes, Parrot Auto Trader, Auto Trader , User Cars for sale, New cars for sale'
-  }
+  },
+  canActivate:[ApiGuard],
  },{
       
   path: 'buy-car',
@@ -187,8 +192,8 @@ const routes: Routes = [{
     //descrption: 'Description of Home Component',
     //ogTitle: 'Description of Home Component for social media',
     keywords:'Buy Car, Buy Truck, Buy Vehicle, Buy Truck, Buy Bikes, Parrot Auto Trader, Auto Trader , User Cars for sale, New cars for sale'
-  }
-  
+  },
+  canActivate:[ApiGuard],
 
  },{
       

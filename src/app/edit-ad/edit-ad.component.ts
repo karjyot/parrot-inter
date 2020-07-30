@@ -5,6 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router,ActivatedRoute } from "@angular/router";
 import {CookieService} from 'angular2-cookie/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-ad',
@@ -233,7 +234,7 @@ export class EditAdComponent implements OnInit {
     }
   ]
   years:any
-  constructor(private _cookieService:CookieService,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private _cookieService:CookieService,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
   AdForm : FormGroup
   submitted = false
   intCol = 'beige';
@@ -380,14 +381,16 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
 }
   
   if(this.urls.length == 0){
-    this.toastr.error("Please select atleast one image.")
+    let message = this.translate.get('selectImage')['value'];
+    this.toastr.error(message);
     return;
   }
 
 
 console.log(this.AdForm)
   if(this.AdForm.invalid){
-    this.toastr.error("Please add valid fields")
+    let message = this.translate.get('req')['value'];
+    this.toastr.error(message);
     return
   }
 
@@ -455,7 +458,8 @@ console.log(this.AdForm)
       this.toastr.success('Your ad updated successfully.')
        this.ngxService.stop();
       }, (err) => {
-       this.toastr.error('Network error occured.');
+        let message = this.translate.get('networkerr')['value'];
+        this.toastr.error(message);
       
       });
 
@@ -467,17 +471,20 @@ console.log(this.AdForm)
     var allowedExtensions = ["jpg","jpeg","png","JPG","JPEG","PNG"]; // allowed extensions
     let fileExtesion = event.target.files[0].type.split("/")[1]; // image selection extension
     if(allowedExtensions.indexOf(fileExtesion) == -1){
-      this.toastr.error("There was an upload error.Make sure to upload a JPG or PNG file and try again.");
+      let message = this.translate.get('uploadError')['value'];
+        this.toastr.error(message);
       return;
     }
     if(event.target.files[0]){
     if(event.target.files[0].size/1024/1024 > 2){
-      this.toastr.error('File size should be less than 2 mb.');
+      let message = this.translate.get('fileSize')['value'];
+        this.toastr.error(message);
       return;
      }
     }
      if(this.urls.length == this.limitImages){
-      this.toastr.error("You have reached your limit as per selected plan.");
+      let message = this.translate.get('reached')['value'];
+        this.toastr.error(message);
       return;
     }
     if (event.target.files && event.target.files[0]) {
@@ -508,9 +515,11 @@ console.log(this.AdForm)
       this.ngxService.start()
       this.loginService.deleteAdImage(data.imageId).subscribe((result) => {
          this.ngxService.stop()
-      this.toastr.success('Image deleted Succesfully.');
+         let message = this.translate.get('imageDel')['value'];
+         this.toastr.error(message);
        }, (err) => {
-         this.toastr.error('Internal server error.');
+        let message = this.translate.get('networkerr')['value'];
+        this.toastr.error(message);
          this.ngxService.stop()
        });
     }
@@ -581,7 +590,8 @@ vanArr.sort(function(a, b){
   this.AdForm.controls['make'].setValue(make);
   this.getModels(model)
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
    }
@@ -599,7 +609,8 @@ vanArr.sort(function(a, b){
      
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
    
@@ -669,7 +680,8 @@ vanArr.sort(function(a, b){
 
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
   }
@@ -824,7 +836,8 @@ vanArr.sort(function(a, b){
 
        this.ngxService.stop();
       }, (err) => {
-       this.toastr.error('Network error occured.');
+        let message = this.translate.get('networkerr')['value'];
+        this.toastr.error(message);
       
       });
   }

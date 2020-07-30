@@ -5,7 +5,7 @@ import { NavigationEnd,Router } from "@angular/router";
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from "./../services/login.service";
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
   stripeTest: FormGroup;
   submitted = false;
   plans:any
-  constructor(private fb: FormBuilder,private stripeService: StripeService,private ngxService: NgxUiLoaderService,private loginService: LoginService,private toastr: ToastrService,private router : Router) { }
+  constructor(private fb: FormBuilder,private stripeService: StripeService,private ngxService: NgxUiLoaderService,private loginService: LoginService,private toastr: ToastrService,private router : Router,private translate: TranslateService) { }
   planDetails:any;
   wallet : any
   totalAmount:any;
@@ -178,7 +178,8 @@ export class CheckoutComponent implements OnInit {
     this.submitted = true;
     
     if (this.stripeTest.invalid) {
-      this.toastr.error('Please fill valid fields', 'Error');
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message);
          return;
    }
 this.ngxService.start()
@@ -203,7 +204,8 @@ this.ngxService.start()
      this.router.navigateByUrl('/my-ads');
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message);
      
      });
       
@@ -263,7 +265,8 @@ this.ngxService.start()
        this.ngxService.stop();
       }, (err) => {
         this.ngxService.stop();
-       this.toastr.error('Network error occured.');
+        let message = this.translate.get('networkerr')['value'];
+        this.toastr.error(message);
       
       });  
   }

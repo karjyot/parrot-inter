@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
@@ -14,7 +15,7 @@ import { Location } from '@angular/common';
 })
 export class BlogDetailsComponent implements OnInit {
   comment:any
-  constructor(private location: Location,private route: ActivatedRoute,private router : Router,private formBuilder: FormBuilder,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService) { }
+  constructor(private location: Location,private route: ActivatedRoute,private router : Router,private formBuilder: FormBuilder,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService,private translate: TranslateService) { }
   blogData:any;
   blogId:any;
   blogComments:any;
@@ -48,11 +49,13 @@ export class BlogDetailsComponent implements OnInit {
   }
   addComment(){
     if(!this.loginService.getUserDetails()){
-      this.toastr.error("Please login to add comment.");
+      let message = this.translate.get('blogEr')['value'];
+      this.toastr.error(message);
       return
     }
     if(!this.comment){
-      this.toastr.error("Please enter comment.");
+      let message = this.translate.get('enterComment')['value'];
+      this.toastr.error(message);
       return
     }
     

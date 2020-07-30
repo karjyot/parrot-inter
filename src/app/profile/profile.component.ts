@@ -6,7 +6,7 @@ import { MustMatch } from './../helpers/must-match.validator';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   userType:any;
   countries:any;
   isLogin:any;
-  constructor(private router : Router,private formBuilder: FormBuilder,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService) { }
+  constructor(private router : Router,private formBuilder: FormBuilder,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService,private translate: TranslateService) { }
 
   ngOnInit() {
    
@@ -43,7 +43,8 @@ export class ProfileComponent implements OnInit {
 
     this.submitted = true;
     if (this.profileForm.invalid) {
-      this.toastr.error("Please fill required fields.")
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message)
         return;
     }
     this.ngxService.start();
@@ -77,7 +78,8 @@ export class ProfileComponent implements OnInit {
     var allowedExtensions = ["jpg","jpeg","png","JPG","JPEG","PNG"]; // allowed extensions
     let fileExtesion = event.target.files[0].type.split("/")[1]; // image selection extension
     if(allowedExtensions.indexOf(fileExtesion) == -1){
-      this.toastr.error("There was an upload error.Make sure to upload a JPG or PNG file and try again.");
+      let message = this.translate.get('uploadError')['value'];
+      this.toastr.error(message)
       return;
     }
     this.ngxService.start();
@@ -108,7 +110,8 @@ export class ProfileComponent implements OnInit {
           this.loginService.setUserDetails(userDetails)
           this.imageUrl = result["message"];
           this.loginService.sendImageUpdate( this.imageUrl);
-          this.toastr.success('Image updated successfully.');
+          let message = this.translate.get('imageUp')['value'];
+          this.toastr.success(message)
           this.ngxService.stop();
          }, (err) => {
         

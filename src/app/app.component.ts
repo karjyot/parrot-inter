@@ -6,6 +6,8 @@ import { Subscription }   from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import defaultLanguage from "./../assets/i18n/fr.json";
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +25,10 @@ export class AppComponent {
   private revokeChoiceSubscription: Subscription;
   private noCookieLawSubscription: Subscription;
   constructor(private ccService: NgcCookieConsentService, private activatedRoute: ActivatedRoute,private loginService: LoginService,private router: Router,private titleService: Title,
-    private metaService: Meta){
+    private metaService: Meta,private translate: TranslateService){
+     // translate.setTranslation('fr', defaultLanguage);
+     // translate.setDefaultLang('fr');
+      
      if(!this.loginService.getCurrncies()){
       this.getCurrencyconversion();
      }

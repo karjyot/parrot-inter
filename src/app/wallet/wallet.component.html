@@ -2,7 +2,7 @@
 <div class="login-form">
     <div class="main-div" style="max-width: 100%;">
        <div class="panel">
-          <h2>Wallet</h2>
+          <h2>{{'wallet' | translate}}</h2>
          
        </div>
 
@@ -18,9 +18,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th >No.</th>
-                            <th>Email</th>
-                            <th class="text-center">Amount</th>
+                            <th >{{'num' | translate}}</th>
+                            <th>{{'email' | translate}}</th>
+                            <th class="text-center">{{'amount' | translate}}</th>
                            
                         </tr>
                     </thead>
@@ -37,10 +37,10 @@
                             <td>   </td>
                             <td class="text-right">
                             <p>
-                                <strong>Subtotal: </strong>
+                                <strong>{{'sub' | translate}}: </strong>
                             </p>
                             <p>
-                                <strong>Used: </strong>
+                                <strong>{{'usedA' | translate}}: </strong>
                             </p></td>
                             <td class="text-center">
                             <p>
@@ -62,7 +62,7 @@
                     Withdraw  <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
             </div>
-            <p *ngIf="wallet && wallet.length == 0"> No referral made yet.</p>
+            <p *ngIf="wallet && wallet.length == 0"> {{'noRef' | translate}}</p>
 
         </div>
     </div>

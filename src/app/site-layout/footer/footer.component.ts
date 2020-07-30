@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LoginService } from "./../../services/login.service";
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -11,7 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class FooterComponent implements OnInit {
   cmsData:any
   email:any
-  constructor(private modalService: BsModalService,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService) { }
+  constructor(private modalService: BsModalService,private loginService: LoginService,private toastr: ToastrService,private ngxService: NgxUiLoaderService,private translate: TranslateService) { }
 
   ngOnInit() {
     this.cmsData = this.loginService.getCms();
@@ -26,10 +27,13 @@ export class FooterComponent implements OnInit {
     this.ngxService.start();
     this.loginService.subscribeEmail({email:this.email}).subscribe((result) => {
       this.email = "";
-      this.toastr.success("Please check your email for email subscription.")
+      let message = this.translate.get('subs')['value'];
+      this.toastr.success(message)
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error("You have already subscribed")
+      let message = this.translate.get('already')['value'];
+      this.toastr.error(message)
+    
       this.ngxService.stop();
      });
   

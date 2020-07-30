@@ -3,17 +3,17 @@
        <!-- OVERVIEW -->
        <div class="panel panel-headline">
           <div class="container">
-<h3 class=" text-center">Messaging</h3>
+<h3 class=" text-center">{{'messaging' | translate}}</h3>
 <div class="messaging" *ngIf = "getMessages && getMessages.length > 0">
 <div class="inbox_msg">
 <div class="inbox_people">
   <div class="headind_srch">
     <div class="recent_heading">
-      <h4>Recent</h4>
+      <h4>{{'recent' | translate}}</h4>
     </div>
     <div class="srch_bar">
       <div class="stylish-input-group">
-        <input type="text" class="search-bar"  placeholder="Search" placeholder="Search" [(ngModel)]="searchText">
+        <input type="text" class="search-bar" placeholder="{{'searchtxt' | translate}}" [(ngModel)]="searchText">
         <span class="input-group-addon">
         <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
         </span> </div>
@@ -50,7 +50,7 @@
   </div>
   <div class="type_msg">
     <div class="input_msg_write">
-      <input type="text" [(ngModel)]="messageData.description" class="write_msg" placeholder="Type a message" />
+      <input type="text" [(ngModel)]="messageData.description" class="write_msg" placeholder="{{'typeMsg' | translate}}" />
       <button class="msg_send_btn" type="button" (click)="sendMessage()"><i class="fa fa-paper-plane-o" aria-hidden="true" ></i></button>
     </div>
   </div>
@@ -67,7 +67,7 @@ text-align: center;
 font-size: 21px;
 margin: 0px 0 0 0;
 padding: 22px 0 24px 13px;
-">No messages.</div>
+">{{'noMsgs' | translate}}</div>
 </div>
 </div>
 </div>

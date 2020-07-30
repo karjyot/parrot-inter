@@ -1,22 +1,22 @@
 <div class="login-form">
     <div class="main-div" style="max-width:50%">
        <div class="panel">
-          <h2>Bank Details</h2>
-         <p *ngIf="bankaccount"> Your bank Account is {{bankaccount}}</p>
-         <p *ngIf="sortCode"> Your bank Account is {{sortCode}}</p>
+          <h2>{{'bankDetails' | translate}}</h2>
+         <p *ngIf="bankaccount"> {{'bankText' | translate}} {{bankaccount}}</p>
+         <p *ngIf="sortCode"> {{'sortCode' | translate}} {{sortCode}}</p>
        </div>
        <form [formGroup]="bankForm" autocomplete="off" novalidate (ngSubmit)="bank()">
           <div class="form-group">
-             <input type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Name " class="form-control" formControlName="name" required>
+             <input type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="{{'name' | translate}} " class="form-control" formControlName="name" required>
           </div>
           <div class="form-group">
-            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.sortCode.errors }" placeholder="Sort Code " class="form-control" formControlName="sortCode" required>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.sortCode.errors }" placeholder="{{'sort' | translate}} " class="form-control" formControlName="sortCode" required>
          </div>
           <div class="form-group">
-             <input type="text" [ngClass]="{ 'is-invalid': submitted && f.account.errors }" placeholder="Account Number" class="form-control" formControlName="account" required>
+             <input type="text" [ngClass]="{ 'is-invalid': submitted && f.account.errors }" placeholder="{{'accountNumber' | translate}}" class="form-control" formControlName="account" required>
           </div>
      
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">{{'save' | translate}}</button>
        </form>
     </div>
 

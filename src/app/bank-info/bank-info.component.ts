@@ -5,7 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
 import {CookieService} from 'angular2-cookie/core';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-bank-info',
   templateUrl: './bank-info.component.html',
@@ -13,7 +13,7 @@ import {CookieService} from 'angular2-cookie/core';
 })
 export class BankInfoComponent implements OnInit {
 
-  constructor(private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
   bankForm :FormGroup
   submitted = false
   bankaccount:any
@@ -29,8 +29,9 @@ export class BankInfoComponent implements OnInit {
   }
   bank(){
     this.submitted = true
+    let message = this.translate.get('req')['value'];
     if(this.bankForm.invalid){
-      this.toastr.error("Please fill requierd Information")
+      this.toastr.error(message)
       return;
     }
     this.ngxService.start();
@@ -42,7 +43,8 @@ export class BankInfoComponent implements OnInit {
       details.account = this.bankaccount;
       details.sortCode = this.sortCode;
       this.loginService.setUserDetails(details);
-      this.toastr.success("Your bank details updated succesfully.");
+      let message = this.translate.get('bankSuccess')['value'];
+      this.toastr.success(message);
      // this.router.navigateByUrl('/payments-requests')
       this.ngxService.stop();
       },(err) => {

@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { GooglePlaceModule,GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { Router,ActivatedRoute } from "@angular/router";
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,11 +18,16 @@ import { Router,ActivatedRoute } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   @ViewChild('placesRef',{static: false}) placesRef: GooglePlaceDirective;
+  @ViewChild('placesRef1',{static: false}) placesRef1: GooglePlaceDirective;
+  @ViewChild('placesRef2',{static: false}) placesRef2: GooglePlaceDirective;
+  @ViewChild('placesRef3',{static: false}) placesRef3: GooglePlaceDirective;
   searchForm : FormGroup
+  conversion:any
   resultMakes:any
+  countryObj:any
   countries:any
   constructor(private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService, private titleService: Title,
-    private meta: Meta, private ref: ChangeDetectorRef) {}
+    private meta: Meta, private ref: ChangeDetectorRef,private translate: TranslateService) {}
   totalRecords:any;
   options:any;
   city:any;
@@ -64,7 +70,9 @@ export class HomeComponent implements OnInit {
     const years = Array(now - (now - 30)).fill('').map((v, idx) => now - idx);
     this.years = years;
     this.getMakes();
-  this.getCountries()
+  this.getCountries();
+ 
+
   }
 
 
@@ -92,7 +100,8 @@ export class HomeComponent implements OnInit {
       this.ngxService.stop();
       this.loginService.setSearchData(data)
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message)
       this.ngxService.stop();
      });
   }
@@ -111,6 +120,8 @@ export class HomeComponent implements OnInit {
    }
    setType(type){
      this.type = type
+     
+    
      if(type == 'bike'){
       this.makes = this.bikeMakes
     }else if(type == 'truck'){
@@ -121,10 +132,19 @@ export class HomeComponent implements OnInit {
       else{
       this.makes = this.makescpy
     }
-
+    this.getCountryCurrency( this.loginService.getUserLocation().country)
     this.searchForm.value.type = type;
-    //this.searchForm.value.city = "";
-    //this.searchForm.value.model = "";
+    let userCurrentCounry = this.loginService.getUserLocation();
+    this.searchForm.value.countryName = userCurrentCounry.country;
+    this.searchForm.controls['countryName'].setValue(userCurrentCounry.country);
+    let code = this.getcountrycode().country_code
+    this.options.componentRestrictions.country = code;
+    this.placesRef.reset()
+    this.placesRef1.reset()
+    this.placesRef2.reset()
+    this.placesRef3.reset()
+   
+    
     this.searchForm.controls['city'].setValue("");
     this.searchForm.controls['model'].setValue("");
     this.searchForm.controls['make'].setValue("");
@@ -184,7 +204,8 @@ export class HomeComponent implements OnInit {
 })
 console.log(this.truckMakes)
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message)
       this.ngxService.stop();
      });
    }
@@ -198,7 +219,8 @@ console.log(this.truckMakes)
       this.models = result["success"]
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Network error occured.');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message)
       this.ngxService.stop();
      });
      let id = this.filterMakeID();
@@ -228,6 +250,8 @@ console.log(this.truckMakes)
     this.ngxService.start();
     this.loginService.countries().subscribe((result:any) => {
       this.countries = result['message'];
+      this.loginService.setCountries( this.countries )
+      this.getCountryCurrency( this.loginService.getUserLocation().country)
       let userCurrentCounry = this.loginService.getUserLocation();
       this.searchForm.value.countryName = userCurrentCounry.country;
       this.searchForm.controls['countryName'].setValue(userCurrentCounry.country);
@@ -236,6 +260,7 @@ console.log(this.truckMakes)
         componentRestrictions: { country: [userCurrentCounry.countryCode] }
         }
 
+        console.log(this.conversion)
       this.ngxService.stop();
       this.searchDetails();
       },(err) => {
@@ -245,10 +270,12 @@ console.log(this.truckMakes)
   }
   changeCountry(){
     let code = this.getcountrycode().country_code
-    console.log(code)
     this.options.componentRestrictions.country = code;
-    
+    this.getCountryCurrency( this.searchForm.value.countryName)
     this.placesRef.reset()
+    this.placesRef1.reset()
+    this.placesRef2.reset()
+    this.placesRef3.reset()
     this.searchDetails();
   }
 
@@ -259,6 +286,26 @@ console.log(this.truckMakes)
         return this.countries[i]
       }
     }
+  }
+
+  getCountryCurrency(userCurrentCounry){
+    let countries = this.loginService.getCountries();
+    let currncies = this.loginService.getCurrncies();
+  console.log(countries)
+  console.log(currncies)
+    
+    let countryObj;
+    for(var i=0;i<countries.length; i++){
+      if(countries[i].country == userCurrentCounry){
+        this.countryObj = countries[i];
+        break;
+      }
+    }
+    this.conversion =  this.loginService.checkUserCurrency(this.countryObj.code,currncies);
+    console.log( this.conversion)
+
+    //let countryCode = userCurrentCounry.countryCode
+    //this.conversion =  this.loginService.checkUserCurrency(countryCode,currncies);
   }
 
 }

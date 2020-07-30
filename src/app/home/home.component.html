@@ -36,19 +36,19 @@
                          <span>
                             <div class="form-group">
                                <input type="checkbox" id="html" (change) = "searchDetails()" formControlName="new" >
-                               <label for="html">New</label>
+                               <label for="html">{{'new' | translate}}</label>
                             </div>
                          </span>
                          <span>
                             <div class="form-group">
                                <input type="checkbox" id="used"  (change) = "searchDetails()" formControlName="used">
-                               <label for="used">Used</label>
+                               <label for="used">{{'used' | translate}}</label>
                             </div>
                          </span>
                          <span>
                             <div class="form-group">
                                <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered">
-                               <label for="registered">Pre-registered</label>
+                               <label for="registered">{{'pre' | translate}}</label>
                             </div>
                          </span>
                       </div>
@@ -56,7 +56,7 @@
                          <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
                                <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
-                                  <option value="">Make</option>
+                                  <option value="">{{'make' | translate}}</option>
                                   <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
                                  
                                </select>
@@ -65,7 +65,7 @@
                          <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
                                <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
-                                  <option value="">Model</option>
+                                  <option value="">{{'model' | translate}}</option>
                                   <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                                  
                                </select>
@@ -74,7 +74,7 @@
                          <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
                                <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
-                              <option value=""> Please select</option>
+                              <option value=""> {{'select' | translate}}</option>
                                   <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
                                 
                                   
@@ -83,31 +83,31 @@
                          </div>
                          <div class="col-md-3 col-lg-3 d-flex" style="padding-right:0px;padding-left: 7.5px;">
                            <div class="form-group">
-                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
-                                 <option value="">Price From</option>
-                                 <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                              <select *ngIf="countryObj" class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">{{'priceFrom' | translate}}</option>
+                                 <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number }}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               </select>
 
                            
@@ -116,31 +116,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
                           <div class="form-group">
-                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
-                              <option value="">Price to</option>
-                              <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                           <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">{{'priceTo' | translate}}</option>
+                              <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               
                            </select>
 
@@ -158,7 +158,7 @@
                          </div>
                          <div class="col-md-6 col-lg-6 d-flex">
                             <div class="form-group">
-                              <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                              <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" placeholder="{{'city' | translate}}" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'city' | translate}}">
                             </div>
                          </div>
                         
@@ -169,7 +169,7 @@
                            
                             <div class="col-md-6 col-lg-6 d-flex ">
                              <div class="d-flex">
-                                    <button (click)="search()">{{totalRecords}} Result</button>
+                                    <button (click)="search()">{{totalRecords}} {{'result' | translate}}</button>
                              </div>
                           
                             </div>
@@ -181,19 +181,19 @@
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="html1" (change) = "searchDetails()" formControlName="new" >
-                              <label for="html1">New</label>
+                              <label for="html1">{{'new' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="used1"  (change) = "searchDetails()" formControlName="used">
-                              <label for="used1">Used</label>
+                              <label for="used1">{{'used' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered1">
-                              <label for="registered1">Pre-registered</label>
+                              <label for="registered1">{{'pre' | translate}}</label>
                            </div>
                         </span>
                      </div>
@@ -201,7 +201,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
-                                 <option value="">Make</option>
+                                 <option value="">{{'make' | translate}}</option>
                                  <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
                                 
                               </select>
@@ -210,7 +210,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
-                                 <option value="">Model</option>
+                                 <option value="">{{'model' | translate}}</option>
                                  <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                                 
                               </select>
@@ -219,7 +219,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
-                                 <option value="">First Registration</option>
+                                 <option value="">{{'select' | translate}}</option>
                                  <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
                                  
                               </select>
@@ -227,31 +227,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 0px;padding-left: 7.5px;">
                            <div class="form-group">
-                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
-                                 <option value="">Price From</option>
-                                 <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                              <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">{{'priceFrom' | translate}}</option>
+                                 <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               </select>
 
                            
@@ -260,31 +260,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
                           <div class="form-group">
-                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
-                              <option value="">Price to</option>
-                              <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                           <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">{{'priceTo' | translate}}</option>
+                              <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               
                            </select>
 
@@ -292,17 +292,17 @@
                             
                           </div>
                        </div>
-                        <!-- <div class="col-md-6 col-lg-6 d-flex">
-                           <div class="form-group">
-                              <select class="form-control" id="sel1">
-                                 <option>UK</option>
-                                
-                              </select>
-                           </div>
-                        </div> -->
+                       <div class="col-md-6 col-lg-6 d-flex">
+                        <div class="form-group">
+                           <select class="form-control" id="sel1"  (change)="changeCountry()" formControlName =  "countryName">
+                              <option value="{{x.country}}" *ngFor="let x of countries">{{x.country}}</option>
+                             
+                           </select>
+                        </div>
+                     </div>
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
-                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef2="ngx-places" placeholder="{{'city' | translate}}" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'city' | translate}}">
                            </div>
                         </div>
                        
@@ -313,7 +313,7 @@
                           
                            <div class="col-md-6 col-lg-6 d-flex ">
                             <div class="d-flex">
-                                   <button (click)="search()">{{totalRecords}} Result</button>
+                                   <button (click)="search()">{{totalRecords}} {{'result' | translate}}</button>
                             </div>
                          
                            </div>
@@ -325,19 +325,19 @@
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="html1" (change) = "searchDetails()" formControlName="new" >
-                              <label for="html1">New</label>
+                              <label for="html1">{{'new' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="used1"  (change) = "searchDetails()" formControlName="used">
-                              <label for="used1">Used</label>
+                              <label for="used1">{{'used' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered1">
-                              <label for="registered1">Pre-registered</label>
+                              <label for="registered1">{{'pre' | translate}}</label>
                            </div>
                         </span>
                      </div>
@@ -346,7 +346,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
-                                 <option value="">Category</option>
+                                 <option value="">{{'cate' | translate}}</option>
                                  <option value = "rigid" >Rigid Trucks</option>
                                  <option value = "tractor" >Tractor Units</option>
                                  <option value = "trailer" >Trailers</option>
@@ -356,7 +356,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
-                                 <option value="">Make</option>
+                                 <option value="">{{'make' | translate}}</option>
                                  <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
                                 
                               </select>
@@ -369,7 +369,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
-                                 <option value="">Model</option>
+                                 <option value="">{{'model' | translate}}</option>
                                  <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                                 
                               </select>
@@ -378,7 +378,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
-                                 <option value="">First Registration</option>
+                                 <option value="">{{'select' | translate}}</option>
                                  <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
                                  
                               </select>
@@ -386,31 +386,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 0px;padding-left: 7.5px;">
                            <div class="form-group">
-                              <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
-                                 <option value="">Price From</option>
-                                 <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                              <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                 <option value="">{{'priceFrom' | translate}}</option>
+                                 <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               </select>
 
                            
@@ -419,31 +419,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
                           <div class="form-group">
-                           <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
-                              <option value="">Price to</option>
-                              <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
+                           <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                              <option value="">{{'priceTo' | translate}}</option>
+                              <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                 
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                               
                            </select>
 
@@ -451,17 +451,17 @@
                             
                           </div>
                        </div>
-                        <!-- <div class="col-md-6 col-lg-6 d-flex">
-                           <div class="form-group">
-                              <select class="form-control" id="sel1">
-                                 <option>UK</option>
-                                
-                              </select>
-                           </div>
-                        </div> -->
+                       <div class="col-md-6 col-lg-6 d-flex">
+                        <div class="form-group">
+                           <select class="form-control" id="sel1"  (change)="changeCountry()" formControlName =  "countryName">
+                              <option value="{{x.country}}" *ngFor="let x of countries">{{x.country}}</option>
+                             
+                           </select>
+                        </div>
+                     </div>
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
-                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef3="ngx-places" placeholder="{{'city' | translate}}" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'city' | translate}}">
                            </div>
                         </div>
                        
@@ -472,7 +472,7 @@
                           
                            <div class="col-md-6 col-lg-6 d-flex ">
                             <div class="d-flex">
-                                   <button (click)="search()">{{totalRecords}} Result</button>
+                                   <button (click)="search()">{{totalRecords}} {{'result' | translate}}</button>
                             </div>
                          
                            </div>
@@ -484,19 +484,19 @@
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="html" (change) = "searchDetails()" formControlName="new" >
-                              <label for="html">New</label>
+                              <label for="html">{{'new' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox" id="used"  (change) = "searchDetails()" formControlName="used">
-                              <label for="used">Used</label>
+                              <label for="used">{{'used' | translate}}</label>
                            </div>
                         </span>
                         <span>
                            <div class="form-group">
                               <input type="checkbox"  (change) = "searchDetails()" formControlName="registered" id="registered">
-                              <label for="registered">Pre-registered</label>
+                              <label for="registered">{{'pre' | translate}}</label>
                            </div>
                         </span>
                      </div>
@@ -504,7 +504,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="getModels()" formControlName="make" id="sel1">
-                                 <option value="">Make</option>
+                                 <option value="">{{'make' | translate}}</option>
                                  <option value = "{{make.id}}" *ngFor="let make of makes">{{make.make}}</option>
                                 
                               </select>
@@ -513,7 +513,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="model" id="sel1">
-                                 <option value="">Model</option>
+                                 <option value="">{{'model' | translate}}</option>
                                  <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                                 
                               </select>
@@ -522,7 +522,7 @@
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
                               <select class="form-control" (change)="searchDetails()" formControlName="firstRegistration" id="sel1">
-                             <option value=""> Please select</option>
+                             <option value=""> {{'select' | translate}}</option>
                                  <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
                                
                                  
@@ -531,31 +531,31 @@
                         </div>
                         <div class="col-md-3 col-lg-3 d-flex" style="padding-right:0px;padding-left: 7.5px;">
                           <div class="form-group">
-                             <select class="form-control" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
-                                <option value="">Price From</option>
-                                <option value="500" >£500</option>
-                                <option value="1000" >£1000</option>
-                                <option value="1500" >£1500</option>
-                                <option value="2000" >£2000</option>
-                                <option value="2500" >£2500</option>
-                                <option value="3000" >£3000</option>
-                                <option value="4000" >£4000</option>
-                                <option value="5000" >£5000</option>
-                                <option value="6000" >£6000</option>
-                                <option value="7000" >£7000</option>
-                                <option value="8000" >£8000</option>
+                             <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceFrom" id="sel1">
+                                <option value="">{{'priceFrom' | translate}}</option>
+                                <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                                
-                                <option value="9000" >£9000</option>
-                                <option value="10000" >£10000</option>
-                                <option value="12500" >£12500</option>
-                                <option value="17500" >£17500</option>
-                                <option value="20000" >£20000</option>
-                                <option value="25000" >£25000</option>
-                                <option value="30000" >£30000</option>
-                                <option value="40000" >£40000</option>
-                                <option value="50000" >£50000</option>
-                                <option value="75000" >£75000</option>
-                                <option value="100000" >£100000</option>
+                                <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                              </select>
 
                           
@@ -564,31 +564,31 @@
                        </div>
                        <div class="col-md-3 col-lg-3 d-flex" style="padding-right: 7.5px;padding-left: 7.5px;">
                          <div class="form-group">
-                          <select class="form-control" (change)="searchDetails()" formControlName="priceTo" id="sel1">
-                             <option value="">Price to</option>
-                             <option value="500" >£500</option>
-                                <option value="1000" >£1000</option>
-                                <option value="1500" >£1500</option>
-                                <option value="2000" >£2000</option>
-                                <option value="2500" >£2500</option>
-                                <option value="3000" >£3000</option>
-                                <option value="4000" >£4000</option>
-                                <option value="5000" >£5000</option>
-                                <option value="6000" >£6000</option>
-                                <option value="7000" >£7000</option>
-                                <option value="8000" >£8000</option>
-                               
-                                <option value="9000" >£9000</option>
-                                <option value="10000" >£10000</option>
-                                <option value="12500" >£12500</option>
-                                <option value="17500" >£17500</option>
-                                <option value="20000" >£20000</option>
-                                <option value="25000" >£25000</option>
-                                <option value="30000" >£30000</option>
-                                <option value="40000" >£40000</option>
-                                <option value="50000" >£50000</option>
-                                <option value="75000" >£75000</option>
-                                <option value="100000" >£100000</option>
+                          <select class="form-control" *ngIf="countryObj" (change)="searchDetails()" formControlName="priceTo" id="sel1">
+                             <option value="">{{'priceTo' | translate}}</option>
+                             <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                                 <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
+                                
+                                 <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                                 <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
                              
                           </select>
 
@@ -596,17 +596,17 @@
                            
                          </div>
                       </div>
-                        <!-- <div class="col-md-6 col-lg-6 d-flex">
-                           <div class="form-group">
-                              <select class="form-control" id="sel1">
-                                 <option>UK</option>
-                                
-                              </select>
-                           </div>
-                        </div> -->
+                      <div class="col-md-6 col-lg-6 d-flex">
+                        <div class="form-group">
+                           <select class="form-control" id="sel1"  (change)="changeCountry()" formControlName =  "countryName">
+                              <option value="{{x.country}}" *ngFor="let x of countries">{{x.country}}</option>
+                             
+                           </select>
+                        </div>
+                     </div>
                         <div class="col-md-6 col-lg-6 d-flex">
                            <div class="form-group">
-                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City">
+                             <input type="text" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="{{'city' | translate}}" formControlName =  "city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'city' | translate}}">
                            </div>
                         </div>
                        
@@ -617,7 +617,7 @@
                           
                            <div class="col-md-6 col-lg-6 d-flex ">
                             <div class="d-flex">
-                                   <button (click)="search()">{{totalRecords}} Result</button>
+                                   <button (click)="search()">{{totalRecords}} {{'result' | translate}}</button>
                             </div>
                          
                            </div>
@@ -631,8 +631,8 @@
           <div class="col-md-1 col-lg-1"></div>
           <div class="col-md-12 col-lg-6 d-flex">
             <div class="banner-text text-center">
-              <h4>Parrot Auto Trader <span>in a new design.</span></h4>
-              <span class="tagline">Find your dream car even faster</span>
+              <h4>{{'parrot' | translate}} <span>{{'newDesign' | translate}} </span></h4>
+              <span class="tagline">{{'lower' | translate}} </span>
             </div>
           </div>
        </div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { AuthGuard } from './auth/auth.guard';
+import { ApiGuard } from './auth/api.guard';
 import { LoginService } from "./services/login.service";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -116,6 +117,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { Meta } from '@angular/platform-browser';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient} from '@angular/common/http';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
     domain: 'parrotautotrader.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
@@ -270,7 +274,14 @@ export function getAuthServiceConfigs() {
     ClipboardModule,
     CommonModule,
     TransferHttpCacheModule,
-    NgtUniversalModule
+    NgtUniversalModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
 
     
   ],
@@ -278,7 +289,10 @@ export function getAuthServiceConfigs() {
   providers: [{provide: CookieOptions, useValue: {}}, {
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  },CookieService,LoginService,Meta,AuthGuard,Platform,NgxUiLoaderService,ToolbarService, LinkService, ImageService, HtmlEditorService],
+  },CookieService,LoginService,Meta,AuthGuard,ApiGuard,Platform,NgxUiLoaderService,ToolbarService, LinkService, ImageService, HtmlEditorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
+}

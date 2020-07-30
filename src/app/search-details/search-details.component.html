@@ -2,7 +2,7 @@
    <div class="container">
       <div class="row">
          <div class="col-lg-12">
-            <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+            <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> {{'back' | translate}}</a>
          </div>
       </div>
    </div>
@@ -15,15 +15,15 @@
                <div class="sticky-vinfo">
                   <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
                   <h4 class="price">{{adDetails.currency}} {{adDetails.price}}</h4>
-                  <button>contact a seller</button>    
+                  <button>{{'contactSeller' | translate}}</button>    
                </div>
                <div class="product-detail vichleinfo-main">
                   <div class="pro-header">
                      <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
                      <div class="actionbutton">
-                        <a href="JavaScript:void(0)" (click)= "openMessage(message,adDetails)"><i class="fa fa-inbox" aria-hidden="true"></i>Message</a>
-                        <a href="JavaScript:void(0)" (click)= "bookmark(adDetails,'test')"><i class="fa "  [ngClass] = "{'fa-star-o':!adDetails.isBookMark,'fa-star':adDetails.isBookMark}" aria-hidden="true"></i>Add to list</a>
-                        <a href="JavaScript:void(0)" (click)= "openShare(share,$event,adDetails,'test')"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                        <a href="JavaScript:void(0)" (click)= "openMessage(message,adDetails)"><i class="fa fa-inbox" aria-hidden="true"></i>{{'message' | translate}}</a>
+                        <a href="JavaScript:void(0)" (click)= "bookmark(adDetails,'test')"><i class="fa "  [ngClass] = "{'fa-star-o':!adDetails.isBookMark,'fa-star':adDetails.isBookMark}" aria-hidden="true"></i>{{'addList' | translate}}</a>
+                        <a href="JavaScript:void(0)" (click)= "openShare(share,$event,adDetails,'test')"><i class="fa fa-share-alt" aria-hidden="true" ></i>{{'share' | translate}}</a>
                      </div>
                      <div class="row">
                         <div class="col-md-12 col-lg-7">
@@ -38,7 +38,7 @@
                               </div>
                               <div class="vichle-info">
                                  <ul>
-                                    <li><img src="assets/images/vihcle-info-icon-1.png"> {{adDetails.mileage}} miles<span>used</span></li>
+                                    <li><img src="assets/images/vihcle-info-icon-1.png"> {{adDetails.mileage}} {{'miles' | translate}}<span>{{'used1' | translate}}</span></li>
                                     <li><img src="assets/images/vihcle-info-icon-2.png"> {{adDetails.created_at | date}}</li>
                                     <li><img src="assets/images/vihcle-info-icon-3.png"><span>{{adDetails.gear}}, {{adDetails.fuelType}}</span></li>
                                  </ul>
@@ -66,7 +66,7 @@
 
                               <div class="row">
                                  <div class="col-md-6">
-                                    <button class="btn-theme orange" (click)="sendEmail(adDetails.email)">Send E-mail</button>
+                                    <button class="btn-theme orange" (click)="sendEmail(adDetails.email)">{{'sendEma' | translate}}</button>
                                  </div>
                                  <div class="col-md-6" *ngIf="adDetails.phone">
                                     <button class="btn-theme white">{{adDetails.phone}}</button>
@@ -82,22 +82,22 @@
                      <div class="row">
                         <div class="col-md-12">
                            <div class="nav-text">
-                              <a href="javascript:void(true)" class="float-right color3" (click)= "openReport(report,adDetails)"> Report offer </a>
+                              <a href="javascript:void(true)" class="float-right color3" (click)= "openReport(report,adDetails)"> {{'report' | translate}} </a>
                            </div>
                            <nav>
                               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                     href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">Details</a>
+                                    aria-selected="true">{{'detail' | translate}}</a>
                                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                     href="#nav-profile" role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">Equipment</a>
+                                    aria-selected="false">{{'eqp' | translate}}</a>
                                  <a class="nav-item nav-link" id="nav-Desciption-tab" data-toggle="tab"
                                     href="#nav-Desciption" role="tab" aria-controls="nav-Desciption"
-                                    aria-selected="false">Description</a>
+                                    aria-selected="false">{{'description' | translate}}</a>
                                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                     href="#nav-contact" role="tab" aria-controls="nav-contact"
-                                    aria-selected="false">Contact</a>
+                                    aria-selected="false">{{'contact' | translate}}</a>
                               </div>
                            </nav>
                            <div class="tab-content" id="nav-tabContent">
@@ -113,7 +113,7 @@
                                                 data-target="#collapseOneOne" aria-expanded="true"
                                                 aria-controls="collapseOneOne">
                                                 <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                <h5>Details</h5>
+                                                <h5>{{'detail' | translate}}</h5>
                                              </button>
                                           </h5>
                                        </div>
@@ -126,12 +126,12 @@
                                                    <table class="table">
                                                       <thead>
                                                          <tr>
-                                                            <th scope="col">State</th>
+                                                            <th scope="col">{{'state' | translate}}</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
                                                          <tr>
-                                                            <td class="color">Type</td>
+                                                            <td class="color">{{'type' | translate}}</td>
                                                             <td class="color2">{{adDetails.vehicleCond || '-'}}</td>
                                                          </tr>
                                                       </tbody>
@@ -140,32 +140,32 @@
                                                    <table class="table">
                                                       <thead>
                                                          <tr>
-                                                            <th scope="col">Drive </th>
+                                                            <th scope="col">{{'drive' | translate}} </th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
                                                          <tr>
-                                                            <td class="color">Gearing Type</td>
+                                                            <td class="color"> {{'gt' | translate}}  </td>
                                                             <td class="color2">{{adDetails.gear || '-'}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Gears</td>
+                                                            <td class="color">{{'gr' | translate}}</td>
                                                             <td class="color2">{{adDetails.totalGears || '-'}}</td>
                                                          </tr>
                                                          <tr  *ngIf="adDetails.type == 'car'">
-                                                            <td class="color">CO2 Emission </td>
+                                                            <td class="color">{{'ct' | translate}} </td>
                                                             <td class="color2">{{adDetails.co2 || '-'}}  </td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Cylinders</td>
+                                                            <td class="color">{{'cy' | translate}}</td>
                                                             <td class="color2">{{adDetails.cylinder || '-'}}</td>
                                                          </tr>
                                                          <tr *ngIf="adDetails.type == 'car'">
-                                                            <td class="color" >Fuel Consumpation</td>
+                                                            <td class="color" >{{'fcu' | translate}}</td>
                                                             <td class="color2">{{adDetails.fuelConsumpation || '-'}} </td>
                                                          </tr>
                                                          <tr  *ngIf="adDetails.type == 'car'">
-                                                            <td class="color">Acceleration</td>
+                                                            <td class="color">{{'acc' | translate}}</td>
                                                             <td class="color2">{{adDetails.accleration || '-'}} </td>
                                                          </tr>
                                                       </tbody>
@@ -174,13 +174,13 @@
                                                    <table class="table">
                                                       <thead>
                                                          <tr>
-                                                            <th scope="col">Environment</th>
+                                                            <th scope="col">{{'env' | translate}}</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
                                                          <tr>
-                                                            <td class="color">Fuel</td>
-                                                            <td class="color2">{{adDetails.fuelType || '-'}} <span *ngIf="adDetails.filter">(Particulate Filter)</span></td>
+                                                            <td class="color">{{'fl' | translate}}</td>
+                                                            <td class="color2">{{adDetails.fuelType || '-'}} <span *ngIf="adDetails.filter">({{'pf' | translate}})</span></td>
                                                          </tr>
                                                          <!-- <tr>
                                                             <td class="color">Consumption</td>
@@ -189,11 +189,11 @@
                                                                4.2 l/100 km (country)</td>
                                                             </tr> -->
                                                          <tr  *ngIf="adDetails.type == 'car'">
-                                                            <td class="color">Emission Label</td>
+                                                            <td class="color">{{'emisLab' | translate}}</td>
                                                             <td class="color2">{{adDetails.emison}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Emission Class</td>
+                                                            <td class="color">{{'emiscl' | translate}}</td>
                                                             <td class="color2">{{adDetails.emmison}}</td>
                                                          </tr>
                                                       </tbody>
@@ -204,36 +204,36 @@
                                                    <table class="table">
                                                       <thead>
                                                          <tr>
-                                                            <th scope="col">Properties</th>
+                                                            <th scope="col">{{'prop' | translate}}</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
                                                          <tr>
-                                                            <td class="color">Make</td>
+                                                            <td class="color">{{'labelMake' | translate}}</td>
                                                             <td class="color2">{{adDetails.make}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Model</td>
+                                                            <td class="color">{{'labelModel' | translate}}</td>
                                                             <td class="color2">{{adDetails.model}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">First Registration</td>
+                                                            <td class="color">{{'labelFirst' | translate}}</td>
                                                             <td class="color2">{{adDetails.registration}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Body Color</td>
+                                                            <td class="color">{{'labelBodycolor' | translate}}</td>
                                                             <td class="color2">{{adDetails.interiorColor}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">Body</td>
+                                                            <td class="color">{{'labelBody' | translate}}</td>
                                                             <td class="color2">{{adDetails.exteriorColor}}</td>
                                                          </tr>
                                                          <tr *ngIf="adDetails.type == 'car'">
-                                                            <td class="color" >No. of Doors</td>
+                                                            <td class="color" >{{'nDoors' | translate}}</td>
                                                             <td class="color2">{{adDetails.doors}}</td>
                                                          </tr>
                                                          <tr>
-                                                            <td class="color">No. of Seats</td>
+                                                            <td class="color">{{'nSeats' | translate}}</td>
                                                             <td class="color2">{{adDetails.seats}}</td>
                                                          </tr>
                                                       </tbody>
@@ -282,7 +282,7 @@
                                                 data-target="#collapseTwoOne" aria-expanded="true"
                                                 aria-controls="collapseTwoOne">
                                                 <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                <h5>Equipments</h5>
+                                                <h5>{{'eqp' | translate}}</h5>
                                              </button>
                                           </h5>
                                        </div>
@@ -292,7 +292,7 @@
                                              <div class="row">
                                                 <div class="col-md-3">
                                                    <p class="mb-0">
-                                                      <b>Comfort & Convenience</b>
+                                                      <b>{{'cnc' | translate}} </b>
                                                    </p>
                                                    <ul>
                                                       <li class= "features" *ngFor = "let eq of adDetails.eqpArr">{{eq.name}}</li>
@@ -300,7 +300,7 @@
                                                 </div>
                                                 <div class="col-md-3" *ngIf="adDetails.type == 'car'">
                                                    <p class="mb-0">
-                                                      <b>Entertainment & Media</b>
+                                                      <b>{{'enter' | translate}}</b>
                                                    </p>
                                                    <ul>
                                                       <li class= "features" *ngFor = "let eq of adDetails.eqpArrEnter">{{eq.name}}</li>
@@ -308,7 +308,7 @@
                                                 </div>
                                                 <div class="col-md-3" *ngIf="adDetails.type == 'car'">
                                                    <p class="mb-0">
-                                                      <b>Extras</b>
+                                                      <b>{{'extra' | translate}}</b>
                                                    </p>
                                                    <ul>
                                                       <li class= "features" *ngFor = "let eq of adDetails.eqpArrExtra">{{eq.name}}</li>
@@ -316,7 +316,7 @@
                                                 </div>
                                                 <div class="col-md-3" *ngIf="adDetails.type == 'car'">
                                                    <p class="mb-0">
-                                                      <b>Safety & Security</b>
+                                                      <b>{{'saftey' | translate}}</b>
                                                    </p>
                                                    <ul>
                                                       <li class= "features" *ngFor = "let eq of adDetails.eqpArrSaftey">{{eq.name}}</li>
@@ -339,7 +339,7 @@
                                                 data-target="#collapseThreeOne" aria-expanded="true"
                                                 aria-controls="collapseThreeOne">
                                                 <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                <h5>Desciption</h5>
+                                                <h5>{{'description' | translate}}</h5>
                                              </button>
                                           </h5>
                                        </div>
@@ -369,7 +369,7 @@
                                                 data-target="#collapseFourOne" aria-expanded="true"
                                                 aria-controls="collapseFourOne">
                                                 <span class="arrow-down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                <h5>Contact</h5>
+                                                <h5>{{'contact' | translate}}</h5>
                                              </button>
                                           </h5>
                                        </div>
@@ -392,65 +392,57 @@
                                                       </div>
                                                       <div class="col-md-6">
                                                          <div class="padding-inner">
-                                                            <h4 class="padt-b">Contact the seller</h4>
+                                                            <h4 class="padt-b">{{'contactSeller' | translate}}</h4>
                                                             <form [formGroup]="contactForm" autocomplete="off" novalidate (ngSubmit)="createContact()">
                                                             <div class="form-group">
-                                                               <label for="exampleInputName">Your Name</label>
+                                                               <label for="exampleInputName">{{'yname' | translate}}</label>
                                                                <input type="text" class="form-control" id="exampleInputName"
                                                                   aria-describedby="Name" placeholder="Enter Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" required>
-                                                               <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                                               anyone else.</small>
+                                                               <small id="emailHelp" class="form-text text-muted">{{'nevershare' | translate}}</small>
                                                             </div>
                                                             <div class="form-group">
-                                                               <label for="exampleInputEmail1">Your E-mail Address</label>
+                                                               <label for="exampleInputEmail1">{{'yemail' | translate}}</label>
                                                                <input type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" required class="form-control" id="exampleInputEmail1"
                                                                   aria-describedby="emailHelp" placeholder="Enter email">
-                                                               <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                                               anyone else.</small>
+                                                               <small id="emailHelp" class="form-text text-muted">{{'nevershare' | translate}}</small>
                                                             </div>
                                                             <div class="form-group">
-                                                               <label for="exampleInputPhone">Your Phone No.</label>
+                                                               <label for="exampleInputPhone">{{'yphone' | translate}}</label>
                                                                <input type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" required  id="exampleInputPhone"
                                                                   placeholder="e.g. +49()01234 - 1234567">
                                                             </div>
-                                                            <label>Your Message</label>
+                                                            <label>{{'ymsg' | translate}}</label>
                                                             <div class="form-group form-check">
                                                                <input type="checkbox"  formControlName = "vehicle"  class="form-check-input" id="exampleCheck1">
-                                                               <label class="form-check-label" for="exampleCheck1">Is the vechicle still
-                                                               available?</label>
+                                                               <label class="form-check-label" for="exampleCheck1">{{'isVehicle' | translate}}</label>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                <input type="checkbox" formControlName = "test" class="form-check-input" id="exampleCheck2">
-                                                               <label class="form-check-label" for="exampleCheck1">When can i take a test
-                                                               drive?</label>
+                                                               <label class="form-check-label" for="exampleCheck1">{{'whencan' | translate}}</label>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                <input type="checkbox"   formControlName = "contactMe" class="form-check-input" id="exampleCheck3">
-                                                               <label class="form-check-label" for="exampleCheck1">Please contact me.</label>
+                                                               <label class="form-check-label" for="exampleCheck1">{{'pleasecont' | translate}}</label>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                <input type="checkbox" formControlName = "tradePossible"  class="form-check-input" id="exampleCheck4">
-                                                               <label class="form-check-label" for="exampleCheck1">Is financing and/or a trade-in
-                                                               possible?</label>
+                                                               <label class="form-check-label" for="exampleCheck1">{{'isfin' | translate}}</label>
                                                             </div>
                                                             <div class="form-group">
                                                                <!-- <label for="exampleFormControlTextarea1">textarea</label> -->
                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"
                                                                   placeholder="Dear Sir or Madam, I'm interested in your vehicle. Please conta" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" formControlName="message" required ></textarea>
-                                                               <small class="color">Your input will be checked for security reasons by AS24
-                                                               team.</small>
+                                                               <small class="color">{{'yourIn' | translate}}</small>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                <input type="checkbox" formControlName = "agree" class="form-check-input" id="exampleCheck3">
-                                                               <label class="form-check-label color" for="exampleCheck1">I agree to the processing
-                                                               of my data as described in pta declaration of consent.
-                                                               I can revoke this consent at any time with effect for the future.</label>
+                                                               <label class="form-check-label color" for="exampleCheck1">{{'iagee' | translate}}</label>
                                                             </div>
                                                             <!-- <div class="form-group form-check">
                                                                <input type="checkbox" class="form-check-input" id="exampleCheck3">
                                                                <label class="form-check-label color" for="exampleCheck1">Send me a copy</label>
                                                                </div> -->
-                                                            <button type="submit" class="btn btn-theme orange2">Submit</button>
+                                                            <button type="submit" class="btn btn-theme orange2">{{'submit' | translate}}</button>
                                                             </form>
                                                          </div>
                                                       </div>
@@ -485,8 +477,8 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <h4 id="title" class="related-heading" *ngIf=" userAdsListed && userAdsListed.length > 0">More new ads from this user</h4>
-            <a href="javascript:void()"><span class="vew-all"  *ngIf=" userAdsListed && userAdsListed.length > 4"  (click)= "viewAll(cars)">View all </span></a>
+            <h4 id="title" class="related-heading" *ngIf=" userAdsListed && userAdsListed.length > 0">{{'moreAds' | translate}}</h4>
+            <a href="javascript:void()"><span class="vew-all"  *ngIf=" userAdsListed && userAdsListed.length > 4"  (click)= "viewAll(cars)">{{'viewAll' | translate}}</span></a>
          </div>         
          <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let userAdd of userAdsListed | slice:0:4;" style="cursor: pointer;" (click) = "otherDetails(userAdd.id,$event,'test')">
             <div class="card">
@@ -518,26 +510,26 @@
 
 <ng-template #share>
    <div class="modal-header">
-      <h4 class="modal-title pull-left">Share</h4>
+      <h4 class="modal-title pull-left">{{'share' | translate}}</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
       <span aria-hidden="true">&times;</span>
       </button>
    </div>
    <div class="modal-body">
       <form>
-         <label>Share the post with the world</label>
+         <label>{{'sharePost' | translate}}</label>
          <div class="form-group">
-            <share-button text="Share" [showText]="true" button="facebook"  [url]=urlShare></share-button>
-            <share-button button="linkedin" text="linkedin"  [showText]="true"   [url]=urlShare></share-button>
-            <share-button button="twitter" text="Tweet" [showText]="true"   [url]=urlShare></share-button>
-            <share-button button="whatsapp" text="Whatsapp" [showText]="true"   [url]=urlShare></share-button>
+            <share-button text="{{'share' | translate}}" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+            <share-button button="linkedin"  text="{{'linkedin' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="twitter" text="{{'Tweet' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="whatsapp"  text="{{'Whatsapp' | translate}}" [showText]="true"   [url]=urlShare></share-button>
          </div>
       </form>
    </div>
 </ng-template>
 <ng-template #message>
    <div class="modal-header">
-      <h4 class="modal-title pull-left">Message</h4>
+      <h4 class="modal-title pull-left">{{'message' | translate}}</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefMessage.hide()">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -547,7 +539,7 @@
       <div class="form-group">
          <textarea [ngClass]="{ 'is-invalid': submitted && fM.message.errors }" formControlName="message" required class="form-control"></textarea>
       </div>
-      <button type="submit" class="btn btn-success">Send</button>
+      <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
       </form>
    </div>
 </ng-template>
@@ -555,7 +547,7 @@
 
 <ng-template #report>
    <div class="modal-header">
-      <h4 class="modal-title pull-left">Report</h4>
+      <h4 class="modal-title pull-left">{{'Report' | translate}}</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefReport.hide()">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -565,7 +557,7 @@
       <div class="form-group">
          <textarea [ngClass]="{ 'is-invalid': submitted && fR.report.errors }" formControlName="report" required class="form-control"></textarea>
       </div>
-      <button type="submit" class="btn btn-success">Send</button>
+      <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
       </form>
    </div>
 </ng-template>
@@ -573,7 +565,7 @@
 
 <ng-template #cars>
    <div class="modal-header">
-      <h4 class="modal-title pull-left">View All Ads</h4>
+      <h4 class="modal-title pull-left">{{'viewAll' | translate}}</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefAll.hide()">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -584,8 +576,8 @@
              <div class="pro-header" >
                 <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
                 <div class="actionbutton">
-                   <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>Add to list</a>
-                   <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                   <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>{{'addList' | translate}}</a>
+                   <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>{{'share' | translate}}</a>
                 </div>
              </div>
              <div class="product-data">
@@ -602,7 +594,7 @@
                          </div>
                          <div class="vichle-info">
                             <ul>
-                               <li>{{searchAds.mileage}} miles </li>
+                               <li>{{searchAds.mileage}} {{'miles' | translate}} </li>
                                <li>{{searchAds.created_at | date}}  </li>
                                <li>{{searchAds.power}} </li>
                                <li>{{searchAds.vehicleCond}}</li>

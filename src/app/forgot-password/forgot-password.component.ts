@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -13,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotForm : FormGroup
   submitted = false
-  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
   ngOnInit() {
     if(this.loginService.isLoggedIn()){
       this.router.navigateByUrl('/dashboard');
@@ -26,13 +27,15 @@ export class ForgotPasswordComponent implements OnInit {
   forgot(){
     this.submitted = true;
     if (this.forgotForm.invalid) {
-      this.toastr.error("Please fill the required information.")
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message)
         return;
     }
     this.ngxService.start();
     let email = this.forgotForm.get('email').value
     this.loginService.forgotPassword({email:email}).subscribe((result:any) => {
-      this.toastr.success("A verification link has been sent to your email id");
+      let message = this.translate.get('verificationLink')['value'];
+      this.toastr.success(message);
       this.ngxService.stop();
       },(err) => {
        try{

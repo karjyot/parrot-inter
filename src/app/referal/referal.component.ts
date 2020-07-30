@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-referal',
@@ -18,7 +19,7 @@ export class ReferalComponent implements OnInit {
   perPage = 5;
   p = 1;
   ref:any
-  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
   ngOnInit() {
     
     this.referalLink =  location.protocol + '//parrotautotrader.co.uk/register?code='+this.loginService.getUserDetails().referal_code
@@ -38,17 +39,21 @@ export class ReferalComponent implements OnInit {
   forgot(){
     this.submitted = true;
     if (this.referalForm.invalid) {
-      this.toastr.error("Please fill the required information.")
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message)
         return;
     }
     this.ngxService.start();
     let email = this.referalForm.get('email').value
     this.loginService.referal({email:email,userId:this.loginService.getUserDetails().id}).subscribe((result:any) => {
-      this.toastr.success("Signup link has been sent to email id.");
+      let message = this.translate.get('signupLink')['value'];
+      this.toastr.success(message);
       this.ngxService.stop();
       },(err) => {
        try{
-        this.toastr.error("This email id already registered with PAT.");
+        let message = this.translate.get('alreadyRegisterd')['value'];
+        this.toastr.error(message);
+      
         }catch(e){
  
         }
@@ -57,7 +62,8 @@ export class ReferalComponent implements OnInit {
 
   }
   copyText(){
-    this.toastr.success("Link copy successfully!")
+    let message = this.translate.get('cpy')['value'];
+    this.toastr.success(message)
   }
 
   get f() { return this.referalForm.controls; }

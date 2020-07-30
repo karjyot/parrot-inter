@@ -6,6 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
 import {CookieService} from 'angular2-cookie/core';
+import {TranslateService} from '@ngx-translate/core';
 import {
   AuthService,
   FacebookLoginProvider,
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup
   submitted = false
 
-  constructor(private socialAuthService: AuthService,private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private socialAuthService: AuthService,private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
 
   ngOnInit() {
 
@@ -49,7 +50,8 @@ export class LoginComponent implements OnInit {
     this._cookieService.put('password',this.loginForm.get('password').value);
     this._cookieService.put('remember',this.loginForm.get('rememberme').value);
     if (this.loginForm.invalid) {
-      this.toastr.error("Please fill the required information.")
+      let message = this.translate.get('req')['value'];
+       this.toastr.error(message)
         return;
     }
     this.ngxService.start();
@@ -64,7 +66,8 @@ export class LoginComponent implements OnInit {
      
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Invalid username/password.');
+      let message = this.translate.get('invalid')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
    
@@ -116,8 +119,8 @@ export class LoginComponent implements OnInit {
           
           },
           err => {
-          console.log(err)
-          this.toastr.error('You already registerd with PAT.'); 
+            let message = this.translate.get('alreadyRegisterd')['value'];
+          this.toastr.error(message); 
           this.ngxService.stop();
           }
         );

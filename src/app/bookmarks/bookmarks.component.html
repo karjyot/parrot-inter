@@ -2,7 +2,7 @@
    <div class="container-fluid">
       <!-- OVERVIEW -->
       <div class="panel panel-headline">
-        <div  style="text-align: center;"><h2 >List of Favourites</h2></div>
+        <div  style="text-align: center;"><h2 >{{'listFav'|translate}}</h2></div>
         
         
          <div class="prodct-section">
@@ -50,7 +50,7 @@
               </div>
            </div>
 
-           <div class="txt-center" *ngIf="ads && ads.length == 0"> You do not bookmarked any ad.</div>
+           <div class="txt-center" *ngIf="ads && ads.length == 0">{{'notBookmark' | translate}}</div>
         
         </div>
         <div class="propagination">
@@ -64,14 +64,14 @@
 
 <ng-template #confirm>
    <div class="modal-header">
-      <h4 class="modal-title pull-left">Confirmation</h4>
+      <h4 class="modal-title pull-left">{{'confirmation' | translate}}</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
       <span aria-hidden="true">&times;</span>
       </button>
    </div>
    <div class="modal-body">
-     <p>Are You sure you want to delete this faviourite ad?</p>
-     <button _ngcontent-c4="" class="btn btn-success"  type="button" (click) = "deleteAd()">Yes</button>
-     <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px" type="button" (click)="modal.hide()">No</button>
+     <p>{{'deleteAd' | translate}}</p>
+     <button _ngcontent-c4="" class="btn btn-success"  type="button" (click) = "deleteAd()">{{'yes' | translate}}</button>
+     <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px" type="button" (click)="modal.hide()">{{'no' | translate}}</button>
    </div>
  </ng-template>

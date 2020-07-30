@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router,ActivatedRoute } from "@angular/router";
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { WINDOW } from '@ng-toolkit/universal';
+import {TranslateService} from '@ngx-translate/core';
 declare var $ :any;
 @Component({
   selector: 'app-messages',
@@ -31,7 +32,7 @@ export class MessagesComponent implements OnInit {
   loggedInDetails:any;
   selectedIndex: any;
   selectMessage:any;
-  constructor(@Inject(WINDOW) private window: Window, private modalService: BsModalService,private loginService: LoginService,private formBuilder: FormBuilder,private router : Router, private ngxService: NgxUiLoaderService,private toastr: ToastrService,private activatedRoute: ActivatedRoute) {}
+  constructor(@Inject(WINDOW) private window: Window, private modalService: BsModalService,private loginService: LoginService,private formBuilder: FormBuilder,private router : Router, private ngxService: NgxUiLoaderService,private toastr: ToastrService,private activatedRoute: ActivatedRoute,private translate: TranslateService) {}
 
   ngOnInit() {
 
@@ -90,7 +91,8 @@ export class MessagesComponent implements OnInit {
     )
   }
   else{
-    this.selectMessage = "Please select user to see messages."
+    let message = this.translate.get('seeMsg')['value'];
+    this.selectMessage = message;
   }
   }
   
@@ -179,7 +181,8 @@ sendMessage(){
   console.log(this.selectedIndex)
   this.submittedMessage = true;
   if (this.messageData.description == "" || this.messageData.description == null) {
-    this.toastr.error('Please provide the required information.');
+    let message = this.translate.get('req')['value'];
+    this.toastr.error(message);
        return;
   }
   this.ngxService.start();
@@ -194,7 +197,8 @@ sendMessage(){
  
   this.loginService.sendMessage(this.messageData).subscribe((result) => {
    
-    this.toastr.success('Message sent succesfully.');
+    let message = this.translate.get('msg')['value'];
+    this.toastr.success(message);
     this.ngxService.stop();
     this.messageData.description = "";
     
@@ -213,7 +217,8 @@ sendMessage(){
     )
   },
   err => {
-    this.toastr.error('Internal Server Error.');
+    let message = this.translate.get('networkerr')['value'];
+    this.toastr.error(message);
   this.ngxService.stop();
 
     

@@ -5,6 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MustMatch } from './../helpers/must-match.validator';
 import { LoginService } from "./../services/login.service";
 import { Router,ActivatedRoute } from "@angular/router";
+import {TranslateService} from '@ngx-translate/core';
 //import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {
   AuthService,
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   //modal: BsModalRef | null;
   referalCode : any;
  countryObj:any
-  constructor(private socialAuthService: AuthService,private route: ActivatedRoute,private router : Router,private loginService: LoginService,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private socialAuthService: AuthService,private route: ActivatedRoute,private router : Router,private loginService: LoginService,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
 
   ngOnInit() {
     this.referalCode =this.route.snapshot.queryParams['code']
@@ -51,11 +52,11 @@ export class RegisterComponent implements OnInit {
   }
 
   addUser(){
-
+    let message = this.translate.get('req')['value'];
     this.submitted = true;
     if (this.addUserForm.invalid) {
-      console.log("dsadsa")
-      this.toastr.error("Please fill the required information.")
+
+      this.toastr.error(message)
         return;
     }
     if(this.referalCode){
@@ -64,11 +65,13 @@ export class RegisterComponent implements OnInit {
     this.addUserForm.value.countryObj = this.countryObj
     this.ngxService.start();
      this.loginService.registerUser(this.addUserForm.value).subscribe((result) => {
-      this.toastr.success('Email Verification link has been sent to your email id');
+      let message = this.translate.get('emailVerification')['value'];
+      this.toastr.success(message);
       this.ngxService.stop();
       this.router.navigateByUrl("/login")
      }, (err) => {
-      this.toastr.error('Email already exists.', 'Error');
+      let message = this.translate.get('alredyEx')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
   }
@@ -118,8 +121,8 @@ export class RegisterComponent implements OnInit {
           
           },
           err => {
-          console.log(err)
-          this.toastr.error('You already registerd with PAT.'); 
+            let message = this.translate.get('alreadyRegisterd')['value'];
+          this.toastr.error(message); 
           this.ngxService.stop();
           }
         );
@@ -131,7 +134,9 @@ export class RegisterComponent implements OnInit {
   getCountries(){
     this.ngxService.start();
     this.loginService.countries().subscribe((result:any) => {
-      this.countries = result['message']
+      this.countries = result['message'];
+      this.loginService.setCountries(this.countries)
+
       this.ngxService.stop();
     
       },(err) => {

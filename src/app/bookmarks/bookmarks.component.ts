@@ -5,7 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-bookmarks',
   templateUrl: './bookmarks.component.html',
@@ -19,7 +19,7 @@ export class BookmarksComponent implements OnInit {
   currentRow:any;
   isLogin:any;
   modal: BsModalRef | null;
-  constructor(private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
 
   ngOnInit() {
     this.listData()
@@ -33,7 +33,8 @@ export class BookmarksComponent implements OnInit {
       Date(val1.created_at)})
       this.ngxService.stop();
      }, (err) => {
-      this.toastr.error('Network Error Occured');
+      let message = this.translate.get('networkerr')['value'];
+      this.toastr.error(message);
       this.ngxService.stop();
      });
   }
@@ -44,7 +45,8 @@ export class BookmarksComponent implements OnInit {
   deleteAd(){
     this.ngxService.start()
     this.loginService.deleteBookmark(this.currentRow).subscribe((result:any) => {
-      this.toastr.success("List removed succesfully.")
+      let message = this.translate.get('remove')['value'];
+      this.toastr.success(message);
   
      this.modal.hide()
       this.listData()

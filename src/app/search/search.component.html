@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
           <div class="col-lg-12">
-             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> {{'back' | translate}}</a>
           </div>
        </div>
     </div>
@@ -17,13 +17,13 @@
           <div class="sidebarmenu">
              <ul class="list-unstyled components">
                 <li class="active">
-                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family:inherit">Specifications & Location</a>
+                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family:inherit">{{'spec' | translate}}</a>
                    <ul class="collapse list-unstyled show" id="homeSubmenu">
                      <li *ngIf="adType == 'truck'">
                         <div class="form-group">
                            <label>Category</label>
                            <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
-                              <option value="">Category</option>
+                              <option value="">{{'cate' | translate}}</option>
                               <option value = "rigid" >Rigid Trucks</option>
                               <option value = "tractor" >Tractor Units</option>
                               <option value = "trailer" >Trailers</option>
@@ -33,25 +33,25 @@
 
                       <li>
                          <div class="form-group">
-                            <label>Make</label>
+                            <label>{{'make1' | translate}}</label>
                             <select class="form-control" formControlName="make" id="sel1"(change)="getModels()">
-                              <option value="">Select Make</option>
+                              <option value="">{{'selectMake' | translate}}</option>
                               <option value = "{{make.make}}" *ngFor="let make of makes">{{make.make}}</option>
                             </select>
                          </div>
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Model</label>
+                            <label>{{'model' | translate}}</label>
                             <select class="form-control" formControlName="model" (change) = "searchDetailsModel()" id="sel1">
-                              <option value="">Select Model</option>
+                              <option value="">{{'selectModel' | translate}}</option>
                               <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                             </select>
                          </div>
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Variant</label>
+                            <label>{{'variant' | translate}}</label>
                             <input type="text"  class="form-control"  formControlName="variant" (change) = "variant()" placeholder="eg GTI"  >
                          </div>
                       </li>
@@ -62,9 +62,9 @@
                       </li> -->
                       <li *ngIf="adType == 'car'">
                          <div class="form-group">
-                            <label>Body type</label>
+                            <label>{{'body' | translate}}</label>
                             <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
-                            <option value="">Select Body Type</option>
+                            <option value="">{{'bodytype' | translate}}</option>
                             <option value="{{x.name}}" *ngFor="let x of bodyTypes">{{x.name}}</option>
                             </select>
                          </div>
@@ -72,18 +72,18 @@
 
                       <li *ngIf="adType == 'bike'">
                         <div class="form-group">
-                           <label>Body type</label>
+                           <label>{{'body' | translate}}</label>
                            <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
-                           <option value="">Select Body Type</option>
+                           <option value="">{{'bodytype' | translate}}</option>
                            <option value="{{x.name}}" *ngFor="let x of bodyTypesBikes">{{x.name}}</option>
                            </select>
                         </div>
                      </li>
                      <li *ngIf="adType == 'truck'">
                         <div class="form-group">
-                           <label>Body type</label>
+                           <label>{{'body' | translate}}</label>
                            <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
-                           <option value="">Select Body Type</option>
+                           <option value="">{{'bodytype' | translate}}</option>
                            <option value="{{x.name}}" *ngFor="let x of bodyTypesTrucks">{{x.name}}</option>
                            </select>
                         </div>
@@ -91,9 +91,9 @@
 
                      <li *ngIf="adType == 'van'">
                         <div class="form-group">
-                           <label>Body type</label>
+                           <label>{{'body' | translate}}</label>
                            <select class="form-control" (change) = "bodyType()"  formControlName="bodyType" id="sel1"   >
-                           <option value="">Select Body Type</option>
+                           <option value="">{{'bodytype' | translate}}</option>
                            <option value="{{x.name}}" *ngFor="let x of bodyTypesVans">{{x.name}}</option>
                            </select>
                         </div>
@@ -101,9 +101,9 @@
 
                       <li>
                          <div class="form-group">
-                            <label>First registration</label>
+                            <label>{{'first' | translate}}</label>
                             <select class="form-control" (change) = "firstRegistration()"  formControlName="firstRegistration" id="sel1">
-                              <option value="">Please Select</option>
+                              <option value="">{{'select' | translate}}</option>
                               <option value="{{year}}" *ngFor="let year of years">{{year}}</option>
                             </select>
                          </div>
@@ -111,31 +111,33 @@
                       <li >
                         <div class="form-group">
                            <select class="form-control" (change)="price()" formControlName="priceFrom" id="sel1">
-                              <option value="">Price From</option>
-                              <option value="500" >£500</option>
-                              <option value="1000" >£1000</option>
-                              <option value="1500" >£1500</option>
-                              <option value="2000" >£2000</option>
-                              <option value="2500" >£2500</option>
-                              <option value="3000" >£3000</option>
-                              <option value="4000" >£4000</option>
-                              <option value="5000" >£5000</option>
-                              <option value="6000" >£6000</option>
-                              <option value="7000" >£7000</option>
-                              <option value="8000" >£8000</option>
+                              <option value="">{{'priceFrom' | translate}}</option>
+                              <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
                              
-                              <option value="9000" >£9000</option>
-                              <option value="10000" >£10000</option>
-                              <option value="12500" >£12500</option>
-                              <option value="17500" >£17500</option>
-                              <option value="20000" >£20000</option>
-                              <option value="25000" >£25000</option>
-                              <option value="30000" >£30000</option>
-                              <option value="40000" >£40000</option>
-                              <option value="50000" >£50000</option>
-                              <option value="75000" >£75000</option>
-                              <option value="100000" >£100000</option>
-                           </select>
+                              <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                              <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                              <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
+                          
+                       </select>
+                          
 
                         
                           
@@ -144,51 +146,53 @@
                       <li >
                         <div class="form-group">
                            <select class="form-control" (change)="priceTo()" formControlName="priceTo" id="sel1">
-                              <option value="">Price to</option>
-                              <option value="500" >£500</option>
-                                 <option value="1000" >£1000</option>
-                                 <option value="1500" >£1500</option>
-                                 <option value="2000" >£2000</option>
-                                 <option value="2500" >£2500</option>
-                                 <option value="3000" >£3000</option>
-                                 <option value="4000" >£4000</option>
-                                 <option value="5000" >£5000</option>
-                                 <option value="6000" >£6000</option>
-                                 <option value="7000" >£7000</option>
-                                 <option value="8000" >£8000</option>
-                                
-                                 <option value="9000" >£9000</option>
-                                 <option value="10000" >£10000</option>
-                                 <option value="12500" >£12500</option>
-                                 <option value="17500" >£17500</option>
-                                 <option value="20000" >£20000</option>
-                                 <option value="25000" >£25000</option>
-                                 <option value="30000" >£30000</option>
-                                 <option value="40000" >£40000</option>
-                                 <option value="50000" >£50000</option>
-                                 <option value="75000" >£75000</option>
-                                 <option value="100000" >£100000</option>
+                              <option value="">{{'priceTo' | translate}}</option>
+                              <option value="{{ 500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{ 1000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{ 1000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{1500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{1500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{2000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{2500 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{2500 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{3000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{3000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{4000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{4000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{5000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{5000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{6000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{6000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{7000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{7000 * conversion.toFixed(0) | number}}</option>
+                              <option value="{{8000 * conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{8000 * conversion.toFixed(0) | number}}</option>
+                             
+                              <option value="{{9000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{9000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{10000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{10000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{12500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{12500* conversion.toFixed(0) | number}}</option>
+                              <option value="{{17500* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{17500* conversion.toFixed(0) | number}}</option>
+                              <option value="{{20000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{20000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{25000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{25000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{30000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{30000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{40000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{40000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{50000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{50000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{75000* conversion.toFixed(0) | number}}" >{{countryObj.symbol}} {{75000* conversion.toFixed(0) | number}}</option>
+                              <option value="{{100000* conversion.toFixed(0) | number}" >{{countryObj.symbol}} {{100000* conversion.toFixed(0) | number}}</option>
+                          
+                       </select>
                               
-                           </select>
+                         
 
                            
                             
                           </div>
                      </li>
-                      <!-- <li>
-                         <div class="form-group">
-                            <label>Countries <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                            </label>
-                            <select class="form-control" id="sel1">
-                               <option>UK</option>
-                              
-                            </select>
-                         </div>
-                      </li> -->
                       <li>
                          <div class="form-group">
-                            <label>City</label>
-                            <input type="text" class="form-control" (change) = "city()" formControlName="city" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City">
+                            <label>{{'countries' | translate}} <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            </label>
+                            <select class="form-control" id="sel1"  (change)="changeCountry()" formControlName =  "countryName">
+                              <option value="{{x.country}}" *ngFor="let x of countries">{{x.country}}</option>
+                             
+                           </select>
+                         </div>
+                      </li>
+                      <li>
+                         <div class="form-group">
+                            <label>{{'city' | translate}}</label>
+                            <input type="text" class="form-control" (change) = "city()" formControlName="city" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="{{'city' | translate}}">
                             <!-- <select class="form-control" id="sel1">
                                <option>City/zip code</option>
                                <option>BMW</option>
@@ -224,9 +228,9 @@
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Fuel type</label>
+                            <label>{{'ftype' | translate}}</label>
                             <select class="form-control" id="sel1" formControlName="fuelType" (change)="fuelType()">
-                              <option value="">Please Select</option>
+                              <option value="">{{'select' | translate}}</option>
                               <option value="{{x.name}}" *ngFor="let x of diesalTypes">{{x.name}}</option>
                            </select>
                            
@@ -234,9 +238,9 @@
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Mileage From</label>
+                            <label>{{'mileageF' | translate}}</label>
                             <select class="form-control" (change) = "mileage()" formControlName="mileageFrom" id="sel1">
-                              <option value="">Mileage From</option>
+                              <option value="">{{'mileageF' | translate}}</option>
                               <option value="2500">2500 miles</option>
                               <option value="5000">5000 miles</option>
                               <option value="10000">10000 miles</option>
@@ -267,9 +271,9 @@
                       </li>
                       <li>
                         <div class="form-group">
-                           <label>Mileage To</label>
+                           <label>{{'mileageT' | translate}}</label>
                            <select class="form-control" (change) = "mileageTo()" formControlName="mileageTo" id="sel1">
-                             <option value="">Mileage To</option>
+                             <option value="">{{'mileageT' | translate}}</option>
                              <option value="2500">2500 miles</option>
                              <option value="5000">5000 miles</option>
                              <option value="10000">10000 miles</option>
@@ -319,15 +323,15 @@
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Gear</label>
+                            <label>{{'gear' | translate}}</label>
                             <select class="form-control" id="sel1" (change) = "gear()" formControlName="gear">
-                              <option value="">Select Gear</option> 
+                              <option value="">{{'select' | translate}} {{'gear' | translate}}</option> 
                               <option value="{{x.name}}" *ngFor="let x of gearTypes">{{x.name}}</option>
                             </select>
                          </div>
                       </li>
                       <li class="doornumbers" *ngIf="vehicleType == 'car'">
-                         <label>No. of Doors</label>
+                         <label>{{'nDoors' | translate}}</label>
                          <ul>
                            <!-- <li [ngClass]="{'active': doors == 'all'}" (click) = "getDoors('all')">All</li> -->
                            <li [ngClass]="{'active': doors == 2}" (click) = "getDoors('2')">2/3</li>
@@ -337,9 +341,9 @@
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>No. of Seats</label>
+                            <label>{{'nSeats' | translate}}</label>
                             <select class="form-control" id="sel1" (change) = "seats()" formControlName="seats">
-                              <option value="">Select Seats</option>
+                              <option value="">{{'selectSeats' | translate}}</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -355,9 +359,9 @@
                          </div>
                       </li>
                       <li *ngIf="vehicleType == 'car'">  <div class="form-group">
-                        <label>Engine Size</label>
+                        <label>{{'engine' | translate}}</label>
                         <select class="form-control" id="sel1"  formControlName="engineSize" >
-                          <option value="">Select Engine Size</option>
+                          <option value="">{{'onlySelect' | translate}} {{'engine' | translate}}</option>
                           <option value="1.2">1.2</option>
                           <option value="1.4">1.4</option>
                           <option value="1.6">1.6</option>
@@ -374,9 +378,9 @@
                      
                   </div></li>
                       <li *ngIf="vehicleType == 'car'"> <div class="form-group">
-                        <label>Accelration</label>
+                        <label>{{'acc' | translate}}</label>
                         <select class="form-control" id="sel1"  formControlName="accleration" >
-                          <option value="">Select Accelration</option>
+                          <option value="">{{'onlySelect' | translate}} {{'acc' | translate}</option>
                           <option value="0-5s (0-60mph) ">0-5s (0-60mph) </option>
                           <option value="0-8s (0-60mph) ">0-8s (0-60mph) </option>
                           <option value="8-12s (0-60mph) ">8-12s (0-60mph) </option>
@@ -386,9 +390,9 @@
                      
                   </div></li>
                       <li *ngIf="vehicleType == 'car'">  <div class="form-group">
-                        <label>Annual Tax</label>
+                        <label>{{'tax' | translate}}</label>
                         <select class="form-control" id="sel1"  formControlName="annualTax" >
-                          <option value="">Select Annual Tax</option>
+                          <option value="">{{'onlySelect' | translate}} {{'tax' | translate}}</option>
                           <option value="£0) ">£0</option>
                           <option value="Up to £20  ">Up to £20 </option>
                           <option value="Up to £30  ">Up to £30 </option>
@@ -404,9 +408,9 @@
                      
                   </div></li>
                       <li *ngIf="vehicleType == 'car'"> <div class="form-group">
-                        <label>Fuel Consumpation</label>
+                        <label>{{'fc' | translate}}</label>
                         <select class="form-control" id="sel1" formControlName="fuelConsumpation" >
-                          <option value="">Select Fuel Consumpation</option>
+                          <option value="">{{'onlySelect' | translate}} {{'fc' | translate}}</option>
                          
                           <option value="30+ mpg">30+ mpg </option>
                           <option value="40+ mpg">40+ mpg </option>
@@ -428,7 +432,7 @@
                          </ul>
                       </li> -->
                       <li class="sidebar search-mask">
-                         <h6>Vehicle condition</h6>
+                         <h6>{{'vc' | translate}}</h6>
                          <ul>
                            <li>
                              
@@ -457,7 +461,7 @@
                    </ul>
                 </li>
                 <li>
-                   <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Equipment</a>
+                   <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'eqp' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu2">
                       <li class="sidebar search-mask" *ngFor ="let eqp of equpments">
                         <div class="offertype mr-t-10">
@@ -473,9 +477,9 @@
                    </ul>
                 </li>
                 <li>
-                   <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exterior</a>
+                   <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'ext' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu3">
-                      <li> <span>Body Color</span></li>
+                      <li> <span>{{'bc' | translate}}</span></li>
                       <li class="sidebar search-mask ex-color" *ngFor = "let code of color"> 
                         <div class="offertype mr-t-10">
                                   <span>
@@ -487,7 +491,7 @@
                                </div>
                       </li>
             
-                      <li> <span>Paintwork</span></li>
+                      <li> <span>{{'pw' | translate}}</span></li>
                       <li class="sidebar search-mask">
                         <div class="offertype mr-t-10">
                                   <span>
@@ -503,9 +507,9 @@
                    </ul>
                 </li>
                 <li *ngIf="vehicleType == 'car'">
-                   <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Interior</a>
+                   <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'int' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu4">
-                      <li> <span>Interior Color</span></li>
+                      <li> <span>{{'intcol' | translate}}</span></li>
                       <li class="sidebar search-mask ex-color" *ngFor = "let code of color">
                         <div class="offertype mr-t-10">
                                   <span>
@@ -517,7 +521,7 @@
                                </div>
                       </li>
                     
-                      <li class="sidebar search-mask"> <span>Upholstery</span></li>
+                      <li class="sidebar search-mask"> <span>{{'up' | translate}}</span></li>
                       <li class="sidebar search-mask" *ngFor ="let hole of upholsetry">
                         <div class="offertype mr-t-10">
                                   <span>
@@ -531,10 +535,10 @@
                    </ul>
                 </li>
                 <li>
-                   <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle condition</a>
+                   <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'vc' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu5">
                       <li class="doornumbers">
-                         <label>Previous Owners</label>
+                         <label>{{'po' | translate}}</label>
                          <ul>
                            <li  [ngClass]="{'active': owners == '1'}" (click) = "getOwner('1')">1</li>
                            <li [ngClass]="{'active': owners == '2'}" (click) = "getOwner('2')">2</li>
@@ -544,9 +548,9 @@
                       </li>
                       <li>
                          <div class="form-group">
-                            <label>Had Accident</label>
+                            <label>{{'ha' | translate}}</label>
                             <select class="form-control" id="sel1" formControlName="accident" (change) = "accident()">
-                              <option value="">Select </option> 
+                              <option value=""> {{'select' | translate}}</option> 
                               <option value="Category A">Category A</option>
                               <option value="Category B">Category B</option>
                               <option value="Category C">Category C</option>
@@ -569,14 +573,14 @@
                    </ul>
                 </li>
                 <li>
-                   <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Environment</a>
+                   <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'env' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu6">
 
                      <li>
                         <div class="form-group">
-                 <label>Euro Emission Class (at least)</label>
+                 <label>{{'euro' | translate}} </label>
                  <select class="form-control" id="sel1" formControlName = "emmison"  required>
-                   <option value="">Please Select</option>
+                   <option value="">{{'select' | translate}} </option>
                     <option value="Euro 1">Euro 1</option>
                     <option value="Euro 2">Euro 2</option>
                     <option value="Euro 3">Euro 3</option>
@@ -591,9 +595,9 @@
             </li>
                      <li *ngIf="vehicleType == 'car'">
                          <div class="form-group">
-                            <label>CO2 Emission</label>
+                            <label>{{'c02' | translate}}</label>
                             <select class="form-control" id="sel1" formControlName = "co2" >
-                              <option value="">Please Select</option>
+                              <option value="">{{'select' | translate}}</option>
                              <option value="Up to 140 g / miles CO2">Up to 140 g / miles CO2 </option>
                              <option value="Up to 150 g / miles CO2">Up to 150 g / miles CO2 </option>
                              <option value="Up to 165 g / miles CO2">Up to 165 g / miles CO2 </option>
@@ -607,7 +611,7 @@
                          </div>
                       </li>
                       <li class="doornumbers" *ngIf="vehicleType == 'car'">
-                         <label>Emission Label (at least)</label>
+                         <label> {{'emisLa' | translate}} </label>
                          <ul>
                            <li [ngClass]="{'active': emmison == '1'}" (click) = "getEmmisonLabel('1')"><span>1</span></li>
                            <li [ngClass]="{'active': emmison == '2'}" (click) = "getEmmisonLabel('2')"><span>2</span></li>
@@ -620,7 +624,7 @@
                                      <span>
                                         <div class="form-group">
                                            <input type="checkbox" id="98" formControlName="filter" (change) = "filter()">
-                                           <label for="98">Particulate filter</label>
+                                           <label for="98">{{'pf' | translate}}</label>
                                         </div>
                                      </span>
                                   </div>
@@ -628,14 +632,14 @@
                    </ul>
                 </li>
                 <li>
-                   <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Offer details</a>
+                   <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'offer' | translate}}</a>
                    <ul class="collapse list-unstyled" id="pageSubmenu7">
                      <li class="search-mask">
                                   <div class="offertype mr-t-10">
                                      <span>
                                         <div class="form-group">
                                            <input type="checkbox"  formControlName="vat" (change) = "vat()" id="99">
-                                           <label for="99">VAT deductible</label>
+                                           <label for="99">{{'vat' | translate}} </label>
                                         </div>
                                      </span>
                                   </div>
@@ -656,23 +660,23 @@
 
        <div class="col-md-12 col-lg-9">
           <div class="cl-listingsummery">
-             <h4 *ngIf="ads">{{ads.length}} Offers <span>for your search</span></h4>
+             <h4 *ngIf="ads">{{ads.length}} {{'Offers'| translate}} <span> {{'searchResults' | translate}} </span></h4>
              <div class="sort-pricing">
                 <li  data-toggle="collapse" data-target="#products" class="collapsed active">
                    <a href="javascript:void(true)"><span>Sort :</span> {{filterSelction}} <i class="fa fa-angle-down" aria-hidden="true"></i>
                    <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products"(click) ="$event.stopPropagation()"> 
-                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateAsc',$event.stopPropagation())">Date Ascending</a></li>
-                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateDesc',$event.stopPropagation())">Date Descending</a></li>
-                   <li class="active"><a href="javascript:void(true)" (click) = "sortArray('priceAsc',$event.stopPropagation())">Price Ascending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('priceDesc',$event.stopPropagation())">Price Descending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('mileAsc',$event.stopPropagation())">Mile Ascending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('mileDesc',$event.stopPropagation())">Mile Descending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('powerAsc',$event.stopPropagation())">Power Ascending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('powerDesc',$event.stopPropagation())">Power Descending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegAsc',$event.stopPropagation())">First Registration Ascending</a></li>
-                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegDesc',$event.stopPropagation())">First Registration Descending</a></li>
+                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateAsc',$event.stopPropagation())">{{'dateAsc' | translate}}</a></li>
+                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateDesc',$event.stopPropagation())">{{'dateDsc' | translate}}</a></li>
+                   <li class="active"><a href="javascript:void(true)" (click) = "sortArray('priceAsc',$event.stopPropagation())">{{'priceAsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('priceDesc',$event.stopPropagation())">{{'priceDsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('mileAsc',$event.stopPropagation())">{{'mileAsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('mileDesc',$event.stopPropagation())">{{'mileDsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('powerAsc',$event.stopPropagation())">{{'powerAsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('powerDesc',$event.stopPropagation())">{{'powerDsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegAsc',$event.stopPropagation())">{{'firstRegAsc' | translate}}</a></li>
+                   <li><a href="javascript:void(true)" (click) = "sortArray('firstRegDesc',$event.stopPropagation())">{{'firstRegDsc' | translate}}</a></li>
 
                 </ul>
              </div>
@@ -694,8 +698,8 @@
                 <div class="pro-header" >
                    <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
                    <div class="actionbutton">
-                      <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>Add to list</a>
-                      <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>Share</a>
+                      <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>{{'addList' | translate}}</a>
+                      <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>{{'share' | translate}}</a>
                    </div>
                 </div>
                 <div class="product-data">
@@ -757,7 +761,7 @@
 </ul> -->
           </div>
           <div class="content">
-      <p class="referText"> {{cmsData.searchText}}</p>
+      <p class="referText"> {{'footerText' | translate}}</p>
     </div>
        </div>
     </div>
@@ -767,7 +771,7 @@
 
  <ng-template #share>
    <div class="modal-header">
-         <h4 class="modal-title pull-left">Share</h4>
+         <h4 class="modal-title pull-left">{{'share' | translate}}</h4>
      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
        <span aria-hidden="true">&times;</span>
      </button>
@@ -775,12 +779,12 @@
    <div class="modal-body">
 
          <form>
-               <label>Share the post with the world</label>
+               <label>{{'sharePost' | translate}}</label>
                  <div class="form-group">
-                     <share-button text="Share" [showText]="true" button="facebook"  [url]=urlShare></share-button>
-                     <share-button button="linkedin" text="linkedin"  [showText]="true"   [url]=urlShare></share-button>
-                     <share-button button="twitter" text="Tweet" [showText]="true"   [url]=urlShare></share-button>
-                     <share-button button="whatsapp" text="Whatsapp" [showText]="true"   [url]=urlShare></share-button>
+                     <share-button text="{{'share' | translate}}" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+                     <share-button button="linkedin" text="{{'linkedin' | translate}}"  [showText]="true"   [url]=urlShare></share-button>
+                     <share-button button="twitter" text="{{'Tweet' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+                     <share-button button="whatsapp"  text="{{'Whatsapp' | translate}}" [showText]="true"   [url]=urlShare></share-button>
                  </div>
               
                 

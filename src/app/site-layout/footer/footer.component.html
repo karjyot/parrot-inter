@@ -4,9 +4,9 @@
       <div class="col-sm-5 mx-auto">
         <form action="" method="post">	
           <div class="input-group">
-              <input type="email" class="form-control" [(ngModel)] = "email"  [ngModelOptions]="{standalone: true}" placeholder="Enter your email" required="required">
+              <input type="email" class="form-control" [(ngModel)] = "email"  [ngModelOptions]="{standalone: true}" placeholder="{{'enterEmail' | translate}}" required="required">
               <div class="input-group-append">
-                <input type="button" (click)="subscribe()" class="btn btn-primary" value="Subscribe">
+                <input type="button" (click)="subscribe()" class="btn btn-primary" value="{{'subscribe' | translate}}">
               </div>
           </div>
         </form>
@@ -20,10 +20,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-12">
-        <p>We lead and others follow</p>
+        <p>{{'lead' | translate}}</p>
       </div>
       <div class="col-md-8 col-sm-12">
-        <h5>Parrot Auto Trader <span>: A UK and Northern Ireland automotive classified leader.</span></h5>
+        <h5>{{'parrot' | translate}} <span>: {{'lowerLead' | translate}}</span></h5>
       </div>
 
   </div>
@@ -36,13 +36,13 @@
     <div class="col-md-4 col-lg-4 d-flex">
       <div class="footer-links">
         <ul>
-          <li><a routerLink="/about-us">About PAT</a></li>
-          <li><a  routerLink="/contact-us">Contact us</a></li>
-          <li><a routerLink="/terms">Terms and Conditions</a></li>
-          <li><a routerLink="/data-protection">Data Protection Information</a></li>
-          <li><a routerLink="/carriers">Careers</a></li>
-            <li><a routerLink="/blog">Blog</a></li>
-            <li><a routerLink="/vehicle-check">Vehicle Check</a></li>
+          <li><a routerLink="/about-us">{{'about' | translate}}</a></li>
+          <li><a  routerLink="/contact-us">{{'Contact' | translate}}</a></li>
+          <li><a routerLink="/terms">{{'terms' | translate}}</a></li>
+          <li><a routerLink="/data-protection">{{'data' | translate}}</a></li>
+          <li><a routerLink="/carriers">{{'carriers' | translate}}</a></li>
+            <li><a routerLink="/blog">{{'blog' | translate}}</a></li>
+            <!-- <li><a routerLink="/vehicle-check">Vehicle Check</a></li> -->
         </ul>
       </div>
     </div>
@@ -50,12 +50,12 @@
       <div class="footer-links">
         <ul>
           <!-- <li><a routerLink="/vehicle-valuation">Vehicle Valuation</a></li> -->
-          <li><a routerLink="/buy-car">Buy Car</a></li>
-          <li><a  routerLink="/buy-bike">Buy Bike</a></li>
-          <li><a routerLink="/buy-truck">Buy Trucks</a></li>
-          <li><a routerLink="/buy-vehicle">Buy Vehicle</a></li>
-          <li><a routerLink="/faq">FAQ</a></li>
-          <li><a routerLink="/how-it-works">How it Works</a></li>
+          <li><a routerLink="/buy-car">{{'buyCar' | translate}}</a></li>
+          <li><a  routerLink="/buy-bike">{{'buyBike' | translate}}</a></li>
+          <li><a routerLink="/buy-truck">{{'buyTruck' | translate}}</a></li>
+          <li><a routerLink="/buy-vehicle">{{'buyVehicle' | translate}}</a></li>
+          <li><a routerLink="/faq">{{'faq' | translate}}</a></li>
+          <li><a routerLink="/how-it-works">{{'works' | translate}}</a></li>
         </ul>
       </div>
     </div>
@@ -66,8 +66,8 @@
       <div class="app-link">
         <ul>
           <li><a href="JavaScript:void(0)"><i class="fa fa-apple" aria-hidden="true"></i>
-        Parrot Auto Trader for iOS</a></li>
-          <li><a href="JavaScript:void(0)"><i class="fa fa-android" aria-hidden="true"></i>  Parrot Auto Trader for Android</a></li>
+            {{'ios' | translate}}</a></li>
+          <li><a href="JavaScript:void(0)"><i class="fa fa-android" aria-hidden="true"></i>   {{'andriod' | translate}}</a></li>
         </ul>
       </div>
     </div>
@@ -78,10 +78,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-12">
-        <p style="font-weight: bold;">Registered in UK. Registration No.12692582</p>
+        <p style="font-weight: bold;">{{'register' | translate}}</p>
       </div>
       <div class="col-md-8 col-sm-12">
-        <p style="font-weight: bold;">   ©Copyright 2020 by parrot auto trader. All Rights reserved</p>
+        <p style="font-weight: bold;">{{'copy' | translate}}</p>
       </div>
 
   </div>

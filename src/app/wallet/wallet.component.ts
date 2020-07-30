@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
 import { Router } from "@angular/router";
+import {TranslateService} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-wallet',
@@ -17,7 +19,7 @@ export class WalletComponent implements OnInit {
   remaining:any
   userDetails:any
   conversion:any
-  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
+  constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
 
   ngOnInit() {
     this.ngxService.start();
@@ -55,13 +57,15 @@ export class WalletComponent implements OnInit {
   }
   withdrawRequest(remaining){
     if(!this.loginService.getUserDetails().account){
-      this.toastr.error("Plase add your account number.");
+      let message = this.translate.get('addAvvont')['value'];
+      this.toastr.error(message);
       return;
     }
     if(remaining > 0){
       this.ngxService.start();
     this.loginService.withdrawRequest(this.loginService.getUserDetails().id,{amount:remaining}).subscribe((result:any) => {
-      this.toastr.success("Your payment request has been submtted successfully.");
+      let message = this.translate.get('pay')['value'];
+      this.toastr.success(message);
       this.router.navigateByUrl('/payments-requests')
       this.ngxService.stop();
       },(err) => {
@@ -75,7 +79,8 @@ export class WalletComponent implements OnInit {
        })
 
     }else{
-      this.toastr.error("Your wallet doest not have sufficient amount.");
+      let message = this.translate.get('insuf')['value'];
+      this.toastr.error(message);
        
     }
     

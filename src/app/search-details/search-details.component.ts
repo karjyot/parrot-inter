@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { WINDOW } from '@ng-toolkit/universal';
 import { Title, Meta } from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-search-details',
   templateUrl: './search-details.component.html',
@@ -28,7 +29,7 @@ export class SearchDetailsComponent implements OnInit {
   selectAdDetails:any
   modalRefReport:BsModalRef | null;
   constructor(@Inject(WINDOW) private window: Window, private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private titleService: Title,
-  private meta: Meta) {}
+  private meta: Meta,private translate: TranslateService) {}
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -168,13 +169,15 @@ openShare(template: any,event,ad,id){
   this.selectAdDetails =ad
   if(this.loginService.getUserDetails()){
     if(this.loginService.getUserDetails().id == this.selectAdDetails.user_id){
-      this.toastr.error("You cannot send message yourself.")
+      let message = this.translate.get('cant')['value'];
+      this.toastr.error(message)
       return
      
     }
     this.modalRefMessage = this.modalService.show(template);
   }else{
-    this.toastr.error("Please login to send the message.")
+    let message = this.translate.get('msgVal')['value'];
+    this.toastr.error(message)
   }
 
  }
@@ -183,13 +186,16 @@ openShare(template: any,event,ad,id){
   this.selectAdDetails =ad
   if(this.loginService.getUserDetails()){
     if(this.loginService.getUserDetails().id == this.selectAdDetails.user_id){
-      this.toastr.error("You cannot send report yourself.")
+      let message = this.translate.get('repVal')['value'];
+    this.toastr.error(message)
       return
      
     }
     this.modalRefReport = this.modalService.show(template);
   }else{
-    this.toastr.error("Please login to send the report.")
+    let message = this.translate.get('rptAd')['value'];
+    this.toastr.error(message)
+
   }
 
  }
@@ -202,7 +208,8 @@ openShare(template: any,event,ad,id){
       userID: this.loginService.getUserDetails().id
     };
     this.loginService.bookmark(data).subscribe((result) => {
-      this.toastr.success("List added succesfully.")
+      let message = this.translate.get('added')['value'];
+      this.toastr.success(message)
       this.adDetails.isBookMark = true;
       this.ngxService.stop();
      }, (err) => {
@@ -211,7 +218,8 @@ openShare(template: any,event,ad,id){
       this.ngxService.stop();
      });
   }else{
-    this.toastr.error("Please login to bookmark this ad.")
+    let message = this.translate.get('bkm')['value'];
+    this.toastr.error(message)
   }
  }
 
@@ -223,13 +231,15 @@ createContact(){
  this.contactForm.value.adID=  this.creatorID
   this.submitted = true
   if(this.contactForm.invalid){
-    this.toastr.error("Please add valid fields")
+    let message = this.translate.get('req')['value'];
+    this.toastr.error(message)
     return
   }
     this.ngxService.start();
    
     this.loginService.sellerContact(this.contactForm.value).subscribe((result) => {
-      this.toastr.success("Message sent succesfully.")
+      let message = this.translate.get('msg')['value'];
+      this.toastr.success(message)
       this.contactForm.reset()
       this.ngxService.stop();
      }, (err) => {
@@ -252,12 +262,14 @@ sendMessage(){
   }
   this.submitted = true
   if(this.messageForm.invalid){
-    this.toastr.error("Please add valid fields")
+    let message = this.translate.get('req')['value'];
+    this.toastr.error(message)
     return
   }
   this.ngxService.start()
   this.loginService.messageUser(data).subscribe((result) => {
-    this.toastr.success("Message sent succesfully.")
+    let message = this.translate.get('msg')['value'];
+    this.toastr.success(message)
     this.ngxService.stop();
     this.modalRefMessage.hide();
    }, (err) => {
@@ -269,7 +281,8 @@ sendMessage(){
 sendReport(){
   this.submitted = true
   if(this.ReportForm.invalid){
-    this.toastr.error("Please add valid fields")
+    let message = this.translate.get('req')['value'];
+    this.toastr.error(message)
     return
   }
   this.ngxService.start()

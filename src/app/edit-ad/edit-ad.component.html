@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
           <div class="col-lg-12 col-md-12">
-             <h1 class="text-center">Edit Ad</h1>
+             <h1 class="text-center">{{'editAd' | translate}}</h1>
           </div>
           <!-- <div class="col-lg-6 col-md-6"><button>Remove all filters</button></div> -->
        </div>
@@ -18,21 +18,21 @@
                <div class="custom-radios" style="float: left;
                margin-bottom: 15px;">
                    <div>
-                       Car <input type="radio" (click) = "setTypeVeh('car')"  disabled formControlName="type" name= "type" value="car" id="color-1"  checked>
+                     {{'car'|translate }} <input type="radio" (click) = "setTypeVeh('car')"  disabled formControlName="type" name= "type" value="car" id="color-1"  checked>
                        <label for="color-1">
                          <span>
                          </span>
                        </label>
                      </div>
                      <div>
-                        Van <input type="radio" id="color-4" (click) = "setTypeVeh('van')"  formControlName="type" name= "type" value="van" >
+                        {{'van'|translate }} <input type="radio" id="color-4" (click) = "setTypeVeh('van')"  formControlName="type" name= "type" value="van" >
                         <label for="color-4">
                           <span>
                           </span>
                         </label>
                       </div>
                       <div>
-                        Truck <input type="radio" id="color-3" (click) = "setTypeVeh('truck')"  formControlName="type" name= "type" value="truck" >
+                        {{'truck'|translate }} <input type="radio" id="color-3" (click) = "setTypeVeh('truck')"  formControlName="type" name= "type" value="truck" >
                         <label for="color-3">
                           <span>
                           </span>
@@ -40,7 +40,7 @@
                       </div>
                      
                      <div>
-                       Bike <input type="radio" id="color-2" (click) = "setTypeVeh('bike')" disabled formControlName="type" name= "type" value="bike" >
+                        {{'bike'|translate }} <input type="radio" id="color-2" (click) = "setTypeVeh('bike')" disabled formControlName="type" name= "type" value="bike" >
                        <label for="color-2">
                          <span>
                          </span>
@@ -56,15 +56,15 @@
 
                 <ul class="list-unstyled components">
                    <li class="active">
-                      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Specifications & Location</a>
+                      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'spec' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="homeSubmenu">
                          <li>
                             <div class="row">
                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'truck'">
                                  <div class="form-group">
-                                    <label>Category</label>
+                                    <label>{{'cate' | translate}}</label>
                                     <select class="form-control" (change)="getMakesTrucks()" formControlName="category" id="sel1">
-                                       <option value="">Category</option>
+                                       <option value="">{{'cate' | translate}}</option>
                                        <option value = "rigid" >Rigid Trucks</option>
                                        <option value = "tractor" >Tractor Units</option>
                                        <option value = "trailer" >Trailers</option>
@@ -73,9 +73,9 @@
                               </div>
                                <div class="col-lg-4 col-md-12">
                                   <div class="form-group">
-                                     <label>Make</label>
+                                     <label>{{'make1' | translate}}</label>
                                      <select [ngClass]="{ 'is-invalid': submitted && f.make.errors }" formControlName="make"  class="form-control" id="sel1" (change)="getModels('test')" required>
-                                       <option value="">Select Make</option>
+                                       <option value="">{{'selectMake' | translate}}</option>
                                        <option value = "{{make.make}}" *ngFor="let make of makes ">{{make.make}}</option>
                                        
                                      </select>
@@ -83,9 +83,9 @@
                                </div>
                                <div class="col-lg-4 col-md-12">
                                   <div class="form-group">
-                                     <label>Model</label>
+                                     <label>{{'labelModel' | translate}}</label>
                                      <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.model.errors }" formControlName="model" required>
-                                       <option value="">Select Model</option>
+                                       <option value="">{{'selectModel' | translate}}</option>
                                        <option   value = "{{model.model}}" *ngFor="let model of models">{{model.model}}</option>
                                         
                                      </select>
@@ -99,15 +99,15 @@
                             <div class="row">
                               <div class="col-lg-4 col-md-12">
                                  <div class="form-group">
-                                    <label>Variant</label>
+                                    <label>{{'variant' | translate}}</label>
                                     <input type="text"  class="form-control" placeholder="eg GTI" [ngClass]="{ 'is-invalid': submitted && f.variant.errors }" formControlName="variant" required>
                                  </div>
                               </div>
                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'car'">
                                  <div class="form-group">
-                                    <label>Body type</label>
+                                    <label>{{'body' | translate}}</label>
                                     <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
-                                      <option value="">Select Body Type</option>
+                                      <option value="">{{'bodytype' | translate}}</option>
                                       <option value="{{x.name}}" *ngFor="let x of bodyTypes">{{x.name}}</option>
                                       
                                     </select>
@@ -115,9 +115,9 @@
                               </div>
                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'van'">
                                  <div class="form-group">
-                                    <label>Body type</label>
+                                    <label>{{'body' | translate}}</label>
                                     <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
-                                      <option value="">Select Body Type</option>
+                                      <option value="">{{'bodytype' | translate}}</option>
                                       <option value="{{x.name}}" *ngFor="let x of bodyTypesVans">{{x.name}}</option>
                                       
                                     </select>
@@ -127,9 +127,9 @@
 
                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'bike'">
                                 <div class="form-group">
-                                   <label>Body type</label>
+                                   <label>{{'body' | translate}}</label>
                                    <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
-                                     <option value="">Select Body Type</option>
+                                     <option value="">{{'bodytype' | translate}}</option>
                                      <option value="{{x.name}}" *ngFor="let x of bodyTypesBikes">{{x.name}}</option>
                                      
                                    </select>
@@ -138,9 +138,9 @@
 
                              <div class="col-lg-4 col-md-12" *ngIf="adType == 'truck'">
                               <div class="form-group">
-                                 <label>Body type</label>
+                                 <label>{{'body' | translate}}</label>
                                  <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.bodyType.errors }" formControlName="bodyType" required>
-                                   <option value="">Select Body Type</option>
+                                   <option value="">{{'bodytype' | translate}}</option>
                                    <option value="{{x.name}}" *ngFor="let x of bodyTypesTrucks">{{x.name}}</option>
                                    
                                  </select>
@@ -149,9 +149,9 @@
                                <div class="col-lg-4 col-md-12">
                                  
                                      <div class="form-group">
-                                        <label>First registration</label>
+                                        <label>{{'first' | translate}}</label>
                                         <select class="form-control" id="sel1" formControlName="registration" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" required>
-                                          <option value="">Please Select</option>
+                                          <option value="">{{'select' | translate}}</option>
                                           <option value="{{x}}" *ngFor="let x of years">{{x}}</option>
                                         </select>
                                         
@@ -165,15 +165,15 @@
                             <div class="row">
                               <div class="col-lg-4 col-md-12">
                                  <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" numbersOnly class="form-control" placeholder="Price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price" required>
+                                    <label>{{'price' | translate}}</label>
+                                    <input type="text" numbersOnly class="form-control" placeholder="{{'price' | translate}}" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" formControlName="price" required>
                               </div>
                            </div>
                               <div class="col-lg-4 col-md-12">
                                  <!-- <div class="two-select"> -->
                                     <div class="form-group">
-                                       <label>Mileage</label>
-                                       <input type="text" class="form-control" placeholder="Mileage" [ngClass]="{ 'is-invalid': submitted && f.mileage.errors }"  numbersOnly formControlName="mileage" >
+                                       <label>{{'mileage' | translate}}</label>
+                                       <input type="text" class="form-control" placeholder="{{'mileage' | translate}}" [ngClass]="{ 'is-invalid': submitted && f.mileage.errors }"  numbersOnly formControlName="mileage" >
                                        
                                  </div>
                               </div>
@@ -188,8 +188,8 @@
                                </div> -->
                                <div class="col-lg-4 col-md-12">
                                   <div class="form-group">
-                                     <label>City</label>
-                                     <input type="text" class="form-control" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" formControlName="city" >
+                                     <label>{{'city' | translate}}</label>
+                                     <input type="text" class="form-control" (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" placeholder="{{'city' | translate}}" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" formControlName="city" >
                                   </div>
                                </div>
                          
@@ -202,9 +202,9 @@
                              
                               <div class="col-lg-4 col-md-12">
                                  <div class="form-group">
-                                    <label>Fuel type</label>
+                                    <label>{{'ftype' | translate}}</label>
                                     <select class="form-control" formControlName = "fuelType"  [ngClass]="{ 'is-invalid': submitted && f.fuelType.errors }" id="sel1" required>
-                                     <option value="">Please Select</option>
+                                     <option value="">{{'select' | translate}}</option>
                                      <option value="{{x.name}}" *ngFor="let x of diesalTypes">{{x.name}}</option>
                                     </select>
                                  </div>
@@ -232,9 +232,9 @@
                                </div> -->
                                <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
-                                   <label>Gear</label>
+                                   <label>{{'gear' | translate}}</label>
                                    <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.gear.errors }" formControlName="gear">
-                                    <option value="">Select Gear</option> 
+                                    <option value="">{{'select' | translate}}</option> 
                                     <option value="{{x.name}}" *ngFor="let x of gearTypes">{{x.name}}</option>
                                       
                                    </select>
@@ -243,8 +243,8 @@
 
                                   <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
-                                   <label>Total Gears</label>
-                                   <input type="text" [ngClass]="{ 'is-invalid': submitted && f.totalGears.errors }" placeholder="Total Gears" class="form-control" formControlName = "totalGears" required>
+                                   <label>{{'totalGear' | translate}}</label>
+                                   <input type="text" [ngClass]="{ 'is-invalid': submitted && f.totalGears.errors }" placeholder="{{'totalGear' | translate}}" class="form-control" formControlName = "totalGears" required>
                                       
                                
                                 </div>
@@ -270,8 +270,8 @@
 
                            <div class="col-lg-4 col-md-12">
                               <div class="form-group">
-                                 <label>Cylinder</label>
-                                 <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cylinder.errors }"  placeholder="Cylinders" formControlName = "cylinder" required>
+                                 <label>{{'cy' | translate}}</label>
+                                 <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cylinder.errors }"  placeholder="{{'cy' | translate}}" formControlName = "cylinder" required>
                                     
                                
                               </div>
@@ -285,7 +285,7 @@
                          
                                <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                   <div class="doornumbers">
-                                     <label>No. of Doors</label>
+                                     <label>{{'nDoors' | translate}}</label>
                                      <ul>
                                         <!-- <li [ngClass]="{'active': doors == 'all'}" (click) = "getDoors('all')">All</li> -->
                                         <li [ngClass]="{'active': doors == 2}" (click) = "getDoors('2')">2/3</li>
@@ -297,9 +297,9 @@
                                <div class="col-lg-4 col-md-12">
                                 
                                      <div class="form-group">
-                                        <label>No. of Seats</label>
+                                        <label>{{'nSeats' | translate}}</label>
                                         <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.seats.errors }" formControlName="seats" required>
-                                          <option value="">Select Seats</option>
+                                          <option value="">{{'select' | translate}}</option>
                                           <option value="1">1</option>
                                           <option value="2">2</option>
                                           <option value="3">3</option>
@@ -319,9 +319,9 @@
                                <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                 
                                  <div class="form-group">
-                                    <label>Engine Size</label>
+                                    <label>{{'engine' | translate}}</label>
                                     <select class="form-control" id="sel1"  formControlName="engineSize">
-                                      <option value="">Select Engine Size</option>
+                                      <option value="">{{'select' | translate}}</option>
                                       <option value="1.2">1.2</option>
                                       <option value="1.4">1.4</option>
                                       <option value="1.6">1.6</option>
@@ -341,9 +341,9 @@
                            <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                 
                               <div class="form-group">
-                                 <label>Accelration</label>
+                                 <label>{{'acc' | translate}}</label>
                                  <select class="form-control" id="sel1" formControlName="accleration">
-                                   <option value="">Select Accelration</option>
+                                   <option value="">{{'select' | translate}}</option>
                                    <option value="0-5s (0-60mph)">0-5s (0-60mph) </option>
                                    <option value="0-8s (0-60mph)">0-8s (0-60mph) </option>
                                    <option value="8-12s (0-60mph)">8-12s (0-60mph) </option>
@@ -357,9 +357,9 @@
                         <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                 
                            <div class="form-group">
-                              <label>Annual Tax</label>
+                              <label>{{'tax' | translate}}</label>
                               <select class="form-control" id="sel1" formControlName="annualTax">
-                                <option value="">Select Annual Tax</option>
+                                <option value="">{{'select' | translate}}</option>
                                 <option value="£0">£0</option>
                                 <option value="Up to £20">Up to £20 </option>
                                 <option value="Up to £30">Up to £30 </option>
@@ -379,9 +379,9 @@
                      <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                 
                         <div class="form-group">
-                           <label>Fuel Consumpation</label>
+                           <label>{{'fc' | translate}}</label>
                            <select class="form-control" id="sel1"formControlName="fuelConsumpation">
-                             <option value="">Select Fuel Consumpation</option>
+                             <option value="">{{'select' | translate}}</option>
                             
                              <option value="30+ mpg">30+ mpg </option>
                              <option value="40+ mpg">40+ mpg </option>
@@ -399,18 +399,18 @@
                             <div class="row">
                                <div class="col-lg-4 col-md-12">
                                   <div class="doornumbers">
-                                     <label>Seller</label>
+                                     <label>{{'seller' | translate}}</label>
                                      <ul>
                                         <!-- <li [ngClass]="{'active': seller == 'all'}" (click) = "getSeller('all')">All</li> -->
-                                        <li [ngClass]="{'active': seller == 'dealer'}" (click) = "getSeller('dealer')">Dealer</li>
-                                        <li [ngClass]="{'active': seller == 'private'}" (click) = "getSeller('private')">Private</li>
+                                        <li [ngClass]="{'active': seller == 'dealer'}" (click) = "getSeller('dealer')">{{'dealer' | translate}}</li>
+                                        <li [ngClass]="{'active': seller == 'private'}" (click) = "getSeller('private')">{{'private' | translate}}</li>
                                      </ul>
                                   </div>
                                </div>
                             </div>
                          </li>
                          <li class="sidebar search-mask">
-                            <h6>Vehicle condition</h6>
+                            <h6>{{'vc' | translate}}</h6>
                             <ul>
                                <li>
                                  <div class="row">
@@ -443,8 +443,8 @@
                       </ul>
                    </li>
                    <li>
-                      <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Equipment</a>
-                     <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">Comfort & Convenience</span>
+                      <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'eqp' | translate}}</a>
+                     <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">{{'cnc' | translate}}</span>
                       <ul class="collapse list-unstyled show" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'" id="pageSubmenu2">
                          <li>
                             <div class="row">
@@ -465,7 +465,7 @@
                          </li>
                       </ul>
 
-                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">Entertainment & Media</span>
+                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">{{'enter' | translate}}</span>
                       <ul class="collapse list-unstyled show" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'" id="pageSubmenu2">
                          <li>
                             <div class="row">
@@ -486,7 +486,7 @@
                          </li>
                       </ul>
 
-                      <span style="font-weight: 800;" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'">Extras</span>
+                      <span style="font-weight: 800;" *ngIf="adType == 'car'|| adType == 'truck' || adType == 'van'">{{'extra' | translate}}</span>
                       <ul class="collapse list-unstyled show" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'" id="pageSubmenu2">
                          <li>
                             <div class="row">
@@ -507,7 +507,7 @@
                          </li>
                       </ul>
 
-                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">Safety & Security</span>
+                      <span style="font-weight: 800;" *ngIf="adType == 'car' || adType == 'truck' || adType == 'van'">{{'saftey' | translate}}</span>
                       <ul class="collapse list-unstyled show" *ngIf="adType == 'car ' || adType == 'van' || adType == 'truck'" id="pageSubmenu2">
                          <li>
                             <div class="row">
@@ -551,9 +551,9 @@
 
 
                    <li>
-                      <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exterior</a>
+                      <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'ext' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="pageSubmenu3">
-                         <li> <span>Body Color</span></li>
+                         <li> <span>{{'bc' | translate}}</span></li>
                          <li class="sidebar search-mask ex-color" *ngFor = "let code of color">
                             <div class="offertype mr-t-10">
                                <span>
@@ -565,13 +565,13 @@
                             </div>
                          </li>
                         
-                         <li> <span class="sidebarmenu list-unstyled a" style="padding:14px 0px;">Paintwork</span></li>
+                         <li> <span class="sidebarmenu list-unstyled a" style="padding:14px 0px;">{{'pw' | translate}}</span></li>
                          <li class="sidebar search-mask">
                             <div class="offertype mr-t-10">
                                <span>
                                   <div class="form-group">
                                      <input type="checkbox" id="75"  formControlName = "metalic">
-                                     <label for="75">Metallic</label>
+                                     <label for="75">{{'metalic' | translate}}</label>
                                   </div>
                                </span>
                             </div>
@@ -579,9 +579,9 @@
                       </ul>
                    </li>
                    <li *ngIf="adType == 'car'  || adType == 'van' || adType == 'truck'">
-                      <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Interior</a>
+                      <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'int' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="pageSubmenu4">
-                         <li> <span>Interior Color</span></li>
+                         <li> <span>{{'intcol' | translate}}</span></li>
                          <li class="sidebar search-mask ex-color" *ngFor = "let code of colorExter">
                            <div class="offertype mr-t-10">
                               <span>
@@ -592,7 +592,7 @@
                               </span>
                            </div>
                         </li>
-                         <li class="sidebar search-mask"> <span class="holstery">Upholstery</span></li>
+                         <li class="sidebar search-mask"> <span class="holstery">{{'up' | translate}}</span></li>
                          <li class="sidebar search-mask ex-color" *ngFor ="let hole of upholsetry">
                             <div class="offertype mr-t-10">
                                <span>
@@ -607,13 +607,13 @@
                       </ul>
                    </li>
                    <li>
-                      <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle condition</a>
+                      <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'vc' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="pageSubmenu5">
                          <li>
                             <div class="row">
                                <div class="col-lg-4 col-md-12">
                                   <div class="doornumbers">
-                            <label>Previous Owners</label>
+                            <label>{{'po' | translate}}</label>
                             <ul>
                                <!-- <li class="active">All</li> -->
                                <li  [ngClass]="{'active': owners == '1'}" (click) = "getOwner('1')">1</li>
@@ -626,12 +626,13 @@
 
                                 <div class="col-lg-4 col-md-12">
                                    <div class="form-group">
-                               <label>Had Accident</label>
+                               <label>{{'ha' | translate}}</label>
                                <select class="form-control" id="sel1" formControlName = "hadAccident">
-                                 <option value="">Select </option> 
-                                 <option value="Don't Show">Don't Show</option>
-                                 <option value="Show also">Show also</option>
-                                 <option value="Show only">Show only</option>
+                                 <option value="">{{'select' | translate}} </option> 
+                                 <option value="Category A">Category A</option>
+                                 <option value="Category B">Category B</option>
+                                 <option value="Category C">Category C</option>
+                                 <option value="Category D">Category D</option>
                                   
                                </select>
                             </div>
@@ -655,15 +656,15 @@
                       </ul>
                    </li>
                    <li>
-                      <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Environment</a>
+                      <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'env' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="pageSubmenu6">
                          <li>
                             <div class="row">
                                <div class="col-lg-4 col-md-12" >
                                       <div class="form-group">
-                               <label>Euro Emission Class (at least)</label>
+                               <label>{{'euro' | translate}}</label>
                                <select class="form-control" id="sel1" formControlName = "emmison" [ngClass]="{ 'is-invalid': submitted && f.emmison.errors }" required>
-                                 <option value="">Please Select</option>
+                                 <option value="">{{'select' | translate}}</option>
                                   <option value="Euro 1">Euro 1</option>
                                   <option value="Euro 2">Euro 2</option>
                                   <option value="Euro 3">Euro 3</option>
@@ -679,9 +680,9 @@
 
                                <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                  <div class="form-group">
-                          <label>CO2 Emission </label>
+                          <label>{{'c02' | translate}} </label>
                           <select class="form-control" id="sel1" formControlName = "co2" >
-                            <option value="">Please Select</option>
+                            <option value="">{{'select' | translate}}</option>
                              <option value="Up to 140 g / miles CO2">Up to 140 g / miles CO2 </option>
                              <option value="Up to 150 g / miles CO2">Up to 150 g / miles CO2 </option>
                              <option value="Up to 165 g / miles CO2">Up to 165 g / miles CO2 </option>
@@ -698,7 +699,7 @@
                                
                                <div class="col-lg-4 col-md-12"  *ngIf="adType == 'car'">
                                   <div class="doornumbers">
-                            <label>Emission Label (at least)</label>
+                            <label>{{'emisLa' | translate}}</label>
                             <ul>
                               
                                <li [ngClass]="{'active': emmison == '1'}" (click) = "getEmmisonLabel('1')"><span>1</span></li>
@@ -719,7 +720,7 @@
                                <span>
                                   <div class="form-group">
                                      <input type="checkbox" id="98" formControlName="filter">
-                                     <label for="98">Particulate filter</label>
+                                     <label for="98">{{'pf' | translate}}</label>
                                   </div>
                                </span>
                             </div>
@@ -727,14 +728,14 @@
                       </ul>
                    </li>
                    <li>
-                      <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Offer details</a>
+                      <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'offer' | translate}}</a>
                       <ul class="collapse list-unstyled show" id="pageSubmenu7">
                          <li class="search-mask">
                             <div class="offertype mr-t-10">
                                <span>
                                   <div class="form-group">
                                      <input type="checkbox" id="99" formControlName="vat"> 
-                                     <label for="99">VAT deductible</label>
+                                     <label for="99">{{'vat' | translate}}</label>
                                   </div>
                                </span>
                             </div>
@@ -747,7 +748,7 @@
                    </li>
 
                    <li>
-                     <a href="#pageSubmenu8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Description</a>
+                     <a href="#pageSubmenu8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'description' | translate}}</a>
                      <ul class="collapse list-unstyled show" id="pageSubmenu8">
                         <li class="search-mask">
                            <div class="row">
@@ -765,7 +766,7 @@
                      </ul>
                   </li>
                    <li>
-                     <a href="#pageSubmenu9" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Car Images
+                     <a href="#pageSubmenu9" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'carImg' | translate}}
                         <span style="font-size: 12px;"> </span>
 
                      </a>
@@ -787,10 +788,10 @@
                             </div>
                            <div class="col-md-4" style="padding:0px;">
                               <div class="form-group">
-                                 <label for="email_id" class="control-label">Upload Image</label>
+                                 <label for="email_id" class="control-label">{{'upload' | translate}}</label>
                                  <div class="custom-file">
                                    <input type="file" class="custom-file-input" id="customFile"  (change)="onSelectFile($event)" multiple accept="image/*">
-                                   <label class="custom-file-label" for="customFile">Choose file</label>
+                                   <label class="custom-file-label" for="customFile">{{'choose' | translate}}</label>
                                  </div>
                               </div>
                             </div>
@@ -809,7 +810,7 @@
 
                 </ul>
 
-                <button type="submit" class="btn btn-primary orange-cls mb-4">Update</button>
+                <button type="submit" class="btn btn-primary orange-cls mb-4">{{'update' | translate}}</button>
              </div>
             </form>
           </div>

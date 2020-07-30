@@ -5,6 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from "./../services/login.service";
 import { WINDOW } from '@ng-toolkit/universal';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
@@ -12,7 +13,7 @@ import { WINDOW } from '@ng-toolkit/universal';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor(@Inject(WINDOW) private window: Window, private toastr: ToastrService,private router : Router, private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder,private loginService: LoginService) { }
+  constructor(@Inject(WINDOW) private window: Window, private toastr: ToastrService,private router : Router, private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder,private loginService: LoginService,private translate: TranslateService) { }
   submitted = false;
   contactForm: FormGroup;
   ngOnInit() {
@@ -32,12 +33,15 @@ export class ContactUsComponent implements OnInit {
    
     this.submitted = true;
     if (this.contactForm.invalid) {
-         this.toastr.error('Please provide the required information.');
+      let message = this.translate.get('req')['value'];
+ 
+         this.toastr.error(message);
             return;
       }
       this.ngxService.start();
       this.loginService.contact(this.contactForm.value).subscribe((result) => {
-        this.toastr.success("Your message sent successfully.");
+        let message = this.translate.get('msg')['value'];
+        this.toastr.success(message);
         this.contactForm.reset();
         this.ngxService.stop();  
          }, (err) => {

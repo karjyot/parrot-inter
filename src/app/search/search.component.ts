@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -7,8 +7,10 @@ import { Router,ActivatedRoute} from "@angular/router";
 import {CookieService} from 'angular2-cookie/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Location } from '@angular/common';
+import { GooglePlaceModule,GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { Title, Meta } from '@angular/platform-browser';
 declare var $ :any;
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
@@ -16,10 +18,12 @@ declare var $ :any;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @ViewChild('placesRef',{static: false}) placesRef: GooglePlaceDirective;
   vehicalConditon:any
   constructor(private location: Location,private route: ActivatedRoute,private _cookieService:CookieService,private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private titleService: Title,
-    private meta: Meta) {}
+    private meta: Meta,private translate: TranslateService) {}
   resultMakes:any;
+  countryObj:any
   eqps:any;
   doors:any = 2;
   seller = '';
@@ -29,11 +33,13 @@ export class SearchComponent implements OnInit {
   condition:any;
   vehicleCond = '';
   lat:any
+  countries:any
   long:any
   truckMakes:any;
   makes:any
   models:any;
   equpments:any;
+  conversion:any
   bikeEqps:any;
   bikeMakes:any;
   makescpy:any;
@@ -248,9 +254,15 @@ export class SearchComponent implements OnInit {
   urlShare:any;
   modalRefShare:BsModalRef | null;
   searchTags:any;
-  filterSelction = "Date Descending";
+  filterSelction =  this.translate.get('dateAsc')['value'];
   searchForm : FormGroup
   ngOnInit() {
+    let countrycode = this.loginService.getUserLocation().countryCode;
+    this.options = {
+    types: ['(cities)'],
+    componentRestrictions: { country: countrycode }
+    }
+    this.getCountryCurrency( this.loginService.getUserLocation().country)
     this.cmsData = this.loginService.getCms();
     this.userDetails = this.loginService.getUserDetails()
     let id =  this.route.snapshot.params.id;
@@ -292,6 +304,7 @@ export class SearchComponent implements OnInit {
 
     let tags = [];
     let searchTags = this.loginService.getSearchData();
+    console.log(searchTags)
     this.vehicleType =  this.loginService.getSearchData().type
     if(searchTags.make){
       this.searchForm.controls['make'].setValue(searchTags.make);
@@ -364,8 +377,9 @@ export class SearchComponent implements OnInit {
     }
    this.searchTags = tags
    console.log(this.searchTags)
-
+this.getCountries()
     this.getAds();
+
   }
 
   deleteTag(type){
@@ -457,7 +471,9 @@ export class SearchComponent implements OnInit {
         this.ngxService.stop();
        });
     }else{
-      this.toastr.error("Please login to bookmark this ad.")
+      let message = this.translate.get('bkm')['value'];
+      this.toastr.error(message)
+   
     }
     
 
@@ -469,45 +485,55 @@ export class SearchComponent implements OnInit {
   sortArray(type,event){
     if(type == 'priceAsc'){
       this.ads.sort((val1, val2)=> {return <any> (val2.price) - <any> (val1.price)});
-      this.filterSelction = "Price Ascending";
+      let message = this.translate.get('priceAsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'priceDesc'){
       this.ads.sort((val1, val2)=> {return <any> (val1.price) - <any> (val2.php )})
-      this.filterSelction = "Price Descending";
+      let message = this.translate.get('priceDsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'mileAsc'){
       this.ads.sort((val1, val2)=> {return <any> (val2.mileage) - <any> (val1.mileage)})
-      this.filterSelction = "Mile Ascending";
+      let message = this.translate.get('mileAsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'mileDesc'){
       this.ads.sort((val1, val2)=> {return <any> (val1.mileage) - <any> (val2.mileage)})
-      this.filterSelction = "Mile Descending";
+      let message = this.translate.get('mileDsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'powerAsc'){
       this.ads.sort((val1, val2)=> {return <any> (val2.power) - <any> (val1.power)})
-      this.filterSelction = "Power Ascending";
+      let message = this.translate.get('powerAsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'powerDesc'){
       this.ads.sort((val1, val2)=> {return <any> (val1.power) - <any> (val2.power)})
-      this.filterSelction = "Power Descending";
+      let message = this.translate.get('powerDsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'firstRegAsc'){
       this.ads.sort((val1, val2)=> {return <any> (val2.registration) - <any> (val1.registration)})
-      this.filterSelction = "Registration Ascending";
+      let message = this.translate.get('firstRegAsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'firstRegDesc'){
       this.ads.sort((val1, val2)=> {return <any> (val1.registration) - <any> (val2.registration)})
-      this.filterSelction = "Registration Descending";
+      let message = this.translate.get('firstRegDsc')['value'];
+      this.filterSelction = message;
     }
     if(type == 'dateAsc'){
       this.ads.sort((val1, val2)=> {return <any> new Date(val1.created_at) - <any> new 
         Date(val2.created_at)})
-      this.filterSelction = "Date Ascending";
+        let message = this.translate.get('dateAsc')['value'];
+        this.filterSelction = message;
     }
     if(type == 'dateDesc'){
       this.ads.sort((val1, val2)=> {return <any> new Date(val2.created_at) - <any> new 
         Date(val1.created_at)})
-      this.filterSelction = "Date Descending";
+        let message = this.translate.get('dateDsc')['value'];
+        this.filterSelction = message;
     }
     $("#products").addClass("hide");
     $("#products").removeClass("show");
@@ -1322,6 +1348,93 @@ saveSearch(){
     this.toastr.error('Network error occured.');
     this.ngxService.stop();
    });
+}
+
+getCountryCurrency(userCurrentCounry){
+  let countries = this.loginService.getCountries();
+  let currncies = this.loginService.getCurrncies();
+
+  
+  let countryObj;
+  for(var i=0;i<countries.length; i++){
+    if(countries[i].country == userCurrentCounry){
+      this.countryObj = countries[i];
+      break;
+    }
+  }
+  this.conversion =  this.loginService.checkUserCurrency(this.countryObj.code,currncies);
+  console.log( this.conversion)
+
+  //let countryCode = userCurrentCounry.countryCode
+  //this.conversion =  this.loginService.checkUserCurrency(countryCode,currncies);
+}
+
+getCountries(){
+  this.ngxService.start();
+  this.loginService.countries().subscribe((result:any) => {
+    this.countries = result['message'];
+
+    let searchTags = this.loginService.getSearchData();
+    if(searchTags.countryName){
+      this.searchForm.controls['countryName'].setValue(searchTags.countryName);
+    }
+
+    let code = this.getcountrycode().country_code
+    console.log(code)
+    this.options.componentRestrictions.country = code;
+    this.getCountryCurrency( this.searchForm.value.countryName)
+
+   
+    this.placesRef.reset()
+    this.ngxService.stop();
+   
+    },(err) => {
+
+      this.ngxService.stop();
+     })
+}
+
+changeCountry(){
+
+  let value = this.searchForm.value.countryName;
+  let unique = true;
+  if(value){
+    for(var i=0; i<this.searchTags.length; i++){
+      if(this.searchTags[i] == value){
+        unique = false;
+      }
+    }
+    if(unique == true){
+      this.searchTags.push(value)
+    }
+    
+  }
+    let code = this.getcountrycode().country_code
+    console.log(code)
+    this.options.componentRestrictions.country = code;
+    this.getCountryCurrency( this.searchForm.value.countryName)
+
+    let data = this.loginService.getSearchData();
+    data.countryName = value;
+    this.loginService.setSearchData(data);
+    this.getAds();
+    this.placesRef.reset()
+  // let code = this.getcountrycode().country_code
+  // this.options.componentRestrictions.country = code;
+  // this.getCountryCurrency( this.searchForm.value.countryName)
+  // this.placesRef.reset()
+  // this.placesRef1.reset()
+  // this.placesRef2.reset()
+  // this.placesRef3.reset()
+  // this.searchDetails();
+}
+getcountrycode(){
+  for(var i=0; i<this.countries.length; i++){
+    if(this.countries[i].country == this.searchForm.value.countryName){
+
+      return this.countries[i]
+    }
+  }
 }
 
 }

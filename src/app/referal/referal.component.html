@@ -3,7 +3,7 @@
    <div class="main-div" style="max-width: 80%;">
       <div class="row align-items-center">
          <div class="col-md-10">
-            <b> My Referral Link:</b> {{referalLink}} 
+            <b> {{'referalLink' | translate}}:</b> {{referalLink}} 
          </div>
          <div  class="col-md-2">
             <button type="button" (click) = "copyText()" ngxClipboard [cbContent]="referalLink" class="btn btn-primary">Copy</button>
@@ -18,15 +18,15 @@
 <div class="login-form">
     <div class="main-div" style="max-width: 50%;">
        <div class="panel">
-          <h2>Referral</h2>
+          <h2>{{'Referral' | translate}}</h2>
          
        </div>
        <form [formGroup]="referalForm" autocomplete="off" novalidate (ngSubmit)="forgot()">
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" required>
+            <input type="email" class="form-control" placeholder="{{'email' | translate}}" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" required>
           </div>
          
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">{{'submit' | translate}}</button>
        </form>
     </div>
 
@@ -34,13 +34,13 @@
 
  <div class="login-form">
    <div class="main-div" style="max-width: 80%;">
-      <h2> Referred Users</h2>
+      <h2> {{'referedUser' | translate}}</h2>
     <table class="table table-hover">
       <thead>
           <tr>
-              <th styke="width:50px">No.</th>
-              <th>Email</th>
-              <th class="text-center">image</th>
+              <th styke="width:50px">{{"num" | translate}}</th>
+              <th>{{'email' | translate}}</th>
+              <th class="text-center">{{"image" | translate}}</th>
              
           </tr>
       </thead>

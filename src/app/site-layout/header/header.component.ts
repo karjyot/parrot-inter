@@ -8,6 +8,8 @@ import {CookieService} from 'angular2-cookie/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Location } from '@angular/common';
 import {filter} from 'rxjs/operators';
+
+import { TranslateService } from '@ngx-translate/core'; 
 declare var $ :any;
 @Component({
   selector: 'app-header',
@@ -34,9 +36,18 @@ export class HeaderComponent implements OnInit {
   showNotifications = false
   live:any;
   cmsData:any;
-  constructor( private location: Location,private _cookieService:CookieService,private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private toastr: ToastrService) {
+  constructor(public translate: TranslateService, private location: Location,private _cookieService:CookieService,private modalService: BsModalService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private toastr: ToastrService) {
     this.subscribeRouterEvents(); 
+    
     let userDetails = this.loginService.getUserDetails();
+    translate.addLangs(['en', 'fr','gr','sp']);  
+    if (localStorage.getItem('locale')) {  
+      const browserLang = localStorage.getItem('locale');  
+      translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');  
+    } else {  
+      localStorage.setItem('locale', 'en');  
+      translate.setDefaultLang('en');  
+    }  
     // if(userDetails){
     //   this.intervalId = setInterval(() => {
     //     this.getUnreadMessage(userDetails.id);
@@ -44,6 +55,10 @@ export class HeaderComponent implements OnInit {
     //   }, 5000);
     // }
   }
+  changeLang(language: string) {  
+    localStorage.setItem('locale', language);  
+    this.translate.use(language);  
+  }  
   subscribeRouterEvents = () => {
     this.router.events.pipe(
       filter(e => e instanceof NavigationEnd)

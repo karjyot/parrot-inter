@@ -2,7 +2,7 @@
 <div class="login-form">
     <div class="main-div" style="max-width: 100%;">
        <div class="panel">
-          <h2>Payment Requests</h2>
+          <h2>{{'payRequests' | translate}}</h2>
          
        </div>
        <div class="row">
@@ -13,9 +13,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="width_33">No.</th>
-                            <th class="width_33">Amount</th>
-                            <th class="width_33">Status</th>
+                            <th class="width_33">{{'num' | translate}}</th>
+                            <th class="width_33">{{'amount' | translate}}</th>
+                            <th class="width_33">{{'status' | translate}}</th>
                            
                         </tr>
                     </thead>
@@ -30,7 +30,7 @@
                     </tbody>
                 </table>
             </div>
-            <p *ngIf="wallet && wallet.length == 0"> No request found.</p>
+            <p *ngIf="wallet && wallet.length == 0"> {{'noRequest' | translate}}</p>
 
         </div>
     </div>

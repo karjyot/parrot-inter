@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginService } from "./../services/login.service";
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { MustMatch } from './../helpers/must-match.validator';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-change-user-password',
   templateUrl: './change-user-password.component.html',
@@ -16,7 +16,7 @@ export class ChangeUserPasswordComponent implements OnInit {
   ForgetForm:FormGroup
   submitted = false;
   isLogin:any
-  constructor(private toastr: ToastrService,private router : Router, private activatedRoute: ActivatedRoute,private loginService: LoginService,private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder) { }
+  constructor(private toastr: ToastrService,private router : Router, private activatedRoute: ActivatedRoute,private loginService: LoginService,private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder,private translate: TranslateService) { }
 
   ngOnInit() {
     this.ForgetForm = this.formBuilder.group({
@@ -30,7 +30,8 @@ export class ChangeUserPasswordComponent implements OnInit {
     
     this.submitted = true;
     if (this.ForgetForm.invalid) {
-      this.toastr.error("Please fill the required information.")
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message)
               return;
         }
         this.ForgetForm.value.id = this.loginService.getUserDetails().id
@@ -44,7 +45,8 @@ export class ChangeUserPasswordComponent implements OnInit {
           },
           err => {  
             this.ngxService.stop()
-            this.toastr.error('something went wrong.', 'Error.');
+            let message = this.translate.get('networkerr')['value'];
+            this.toastr.error(message);
           }
         );        
   }

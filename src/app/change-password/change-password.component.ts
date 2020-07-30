@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import {TranslateService} from '@ngx-translate/core';
 import { LoginService } from "./../services/login.service";
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { MustMatch } from './../helpers/must-match.validator';
@@ -17,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
   ForgetForm:FormGroup
   submitted = false;
   token:any
-  constructor(private toastr: ToastrService,private router : Router, private activatedRoute: ActivatedRoute,private loginService: LoginService,private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder) { }
+  constructor(private toastr: ToastrService,private router : Router, private activatedRoute: ActivatedRoute,private loginService: LoginService,private ngxService: NgxUiLoaderService, private formBuilder:FormBuilder,private translate: TranslateService) { }
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id'); 
@@ -44,20 +44,23 @@ export class ChangePasswordComponent implements OnInit {
 
     this.submitted = true;
     if (this.ForgetForm.invalid) {
-      this.toastr.error("Please fill the required information.")
+      let message = this.translate.get('req')['value'];
+      this.toastr.error(message)
               return;
         }
         this.ngxService.start()
         this.ForgetForm.value.token = this.token
         this.loginService.confirmNewPassword(this.ForgetForm.value).subscribe(
           res => {
-            this.toastr.success('Password change succesfully..', 'Reset Password');
+            let message = this.translate.get('resetPwd')['value'];
+            this.toastr.success(message);
             this.ngxService.stop();
             this.router.navigateByUrl('/login');
           },
           err => {  
             this.ngxService.stop()
-            this.toastr.error('something went wrong.', 'Error.');
+            let message = this.translate.get('networkerr')['value'];
+            this.toastr.error(message);
           }
         );        
   }

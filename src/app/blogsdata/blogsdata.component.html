@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
           <div class="col-lg-12">
-             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> {{'Back' | translate}}</a>
           </div>
        </div>
     </div>
@@ -13,7 +13,8 @@
     <div class="row">
         <div class="col-sm-12">
             <h2 class="blog-title text-center">
-                Top categories
+                {{'topCt' | translate}}
+              
             </h2>
         </div>
     </div>
@@ -44,7 +45,7 @@
                     <div class="card-body" >
                         <div class="card-heading">
                             <div class="card-title">
-                                <h4>Blog</h4>                                
+                                <h4>{{'blogsh' | translate}}</h4>                                
                             </div>
                             <div class="card-desc">
                                 <h3>{{blog.title}}

@@ -573,6 +573,20 @@ getVehicleCheck(){
   let details = this.localStorage.getItem('setVehicleCheck');
   return JSON.parse(details);
 }
+
+
+setCountries(data:any){
+  this.localStorage.setItem('setCountries',  JSON.stringify(data));
+}
+
+getCountries(){
+  let details = this.localStorage.getItem('setCountries');
+  return JSON.parse(details);
+}
+
+
+
+
 checkUserCurrency(country,countryObj){
 console.log(country)
 console.log(countryObj)

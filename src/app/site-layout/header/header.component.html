@@ -16,32 +16,32 @@
                <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(true)" (click) = "usedCars()">Used Cars</a>
+                        <a class="nav-link" href="javascript:void(true)" (click) = "usedCars()">{{ 'header1' | translate}}</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(true)" (click) = "newCars()">New Cars</a>
+                        <a class="nav-link" href="javascript:void(true)" (click) = "newCars()">{{ 'header2' | translate}}</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(true)" (click) = "bike()" >Bikes</a>
+                        <a class="nav-link" href="javascript:void(true)" (click) = "bike()" >{{ 'header3' | translate}}</a>
                      </li>
                      <li class="nav-item" *ngIf="details && details.user_type=='seller'">
-                        <a class="nav-link" routerLink="/plans" >Sell my car</a>
+                        <a class="nav-link" routerLink="/plans" >{{ 'header4' | translate}}</a>
                      </li>
                      <li class="nav-item" *ngIf="!isLogin">
-                        <a class="nav-link" routerLink="/register" >Sell my car</a>
+                        <a class="nav-link" routerLink="/register" >{{ 'header4' | translate}}</a>
                      </li>
                      <li class="nav-item" *ngIf="cmsData && cmsData.phone">
-                        <a class="nav-link" >{{cmsData.phone}}</a>
+                        <a class="nav-link" > {{cmsData.phone}}</a>
+                        <!-- <a class="nav-link" > {{ 'phone' | translate: {value: cmsData.phone} }}</a> -->
                      </li>
                   </ul>
                </div>
             </nav>
          </div>
-         <div class="col-md-4 col-lg-3 d-flex loginresponsive" style="align-items: center;
-            justify-content: flex-end;">
+         <div class="col-md-4 col-lg-3 d-flex loginresponsive" style="justify-content: flex-end;">
             <div class="lgin-buttons" *ngIf= "!isLogin">
-               <a routerLink="/register">Signup</a>
-               <a  routerLink="/login">Signin</a>
+               <a routerLink="/register">{{ 'signup' | translate}}</a>
+               <a  routerLink="/login">{{ 'login' | translate}}</a>
             </div>
             <div class="header-top-main">	
             <div class=" head_icon  notlogin"  *ngIf= "isLogin">
@@ -54,7 +54,7 @@
             <div class="dropdown-menu-mg dropdown-menu-right mailbox animated bounceInDown"  id ="messages" aria-labelledby="2">
                <ul class="list-style-none">
                   <li *ngIf="getMessages">
-                     <div  *ngIf="getMessages.length != 0" class="drop-title border-bottom">You have {{getMessages.length}} messages</div>
+                     <div  *ngIf="getMessages.length != 0" class="drop-title border-bottom">{{'yoy' | translate}} {{getMessages.length}} {{'msgs' | translate}}</div>
                   </li>
                   <li *ngFor="let message of getMessages| slice:0:4;  let last = last;">
                      <div class="message-center message-body">
@@ -67,7 +67,7 @@
                         </a>
                      </div>
                   <li  *ngIf="getMessages">
-                     <a  *ngIf="getMessages.length == 0" class="nav-link text-center link text-dark"  href="javascript:void(0);"> <b>No Message Recieved</b>  </a>
+                     <a  *ngIf="getMessages.length == 0" class="nav-link text-center link text-dark"  href="javascript:void(0);"> <b>{{'noMessage' | translate}}</b>  </a>
                   </li>
                </ul>
             </div>
@@ -78,22 +78,28 @@
             {{details.name}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 12rem;">
-               <a class="dropdown-item" routerLink = "/my-ads" href="#" *ngIf="details.user_type=='seller'">My Ads</a>
-               <a class="dropdown-item" routerLink = "/profile" href="#">My Profile</a>
-               <a class="dropdown-item" routerLink = "/messages/custom" href="#">Messages</a>
+               <a class="dropdown-item" routerLink = "/my-ads" href="#" *ngIf="details.user_type=='seller'">{{'myAds' | translate}}</a>
+               <a class="dropdown-item" routerLink = "/profile" href="#">{{'profile' | translate}}</a>
+               <a class="dropdown-item" routerLink = "/messages/custom" href="#">{{'messages' | translate}}</a>
                <!-- <a class="dropdown-item" routerLink = "/my-plan" href="#">My Plan</a> -->
-               <a class="dropdown-item" routerLink = "/bookmarks" href="#">My Favourites</a>
-               <a class="dropdown-item" routerLink='/saved-searches' href="#" *ngIf="details.user_type=='buyer'">Saved Searches</a>
-               <a class="dropdown-item" routerLink='/referal'>Refer and Earn</a>
-               <a class="dropdown-item" routerLink='/wallet'>My Wallet</a>
-               <a class="dropdown-item" routerLink='/bank-info'>Bank Details</a>
-               <a class="dropdown-item" routerLink='/payments-requests'>Bank Transfers</a>
-               <a class="dropdown-item" routerLink = '/change-user-password'>Change Password</a>
-               <a class="dropdown-item" href="#" (click) = "logout()">logout</a>
+               <a class="dropdown-item" routerLink = "/bookmarks" href="#">{{'fav' | translate}}</a>
+               <a class="dropdown-item" routerLink='/saved-searches' href="#" *ngIf="details.user_type=='buyer'">{{'saved' | translate}}</a>
+               <a class="dropdown-item" routerLink='/referal'>{{'refer' | translate}}</a>
+               <a class="dropdown-item" routerLink='/wallet'>{{'wallet' | translate}}</a>
+               <a class="dropdown-item" routerLink='/bank-info'>{{'bank' | translate}}</a>
+               <a class="dropdown-item" routerLink='/payments-requests'>{{'transfers' | translate}}</a>
+               <a class="dropdown-item" routerLink = '/change-user-password'>{{'change' | translate}}</a>
+               <a class="dropdown-item" href="#" (click) = "logout()">{{'logout' | translate}}</a>
             </div>
          </div>
          </div>
+
+         
       </div>
    </div>
    </div>
+  
 </header>
+<select #langSelect (change)="changeLang(langSelect.value)" class="lang-dropdwn">  
+   <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>  
+</select> 
