@@ -24,7 +24,9 @@ export class ApiGuard implements CanActivate {
     
     this.ngxService.start();
    return this.commonService.getUserCurrentLocation().pipe(map(result => {
-    
+    result['country'] = result["country_name"]
+    result['countryCode'] = result["country_code"]
+
       this.commonService.setUserLocation(result)
       return true;
       

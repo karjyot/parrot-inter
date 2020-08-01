@@ -211,7 +211,8 @@ public messageData(data: any){
   }
 
   getUserCurrentLocation(){
-    return this.http.get(' http://ip-api.com/json');
+    return this.http.get('https://api.ipdata.co/?api-key=test');
+    //return this.http.get('https://ip-api.com/json');
    
   }
 
