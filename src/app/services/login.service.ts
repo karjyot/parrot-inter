@@ -195,6 +195,10 @@ public messageData(data: any){
     this.localStorage.setItem('setCurrncies',  JSON.stringify(data));
   }
 
+  deleteCurr() {
+    this.localStorage.removeItem('setCurrncies');
+  }
+
   setUserLocation(data){
     this.localStorage.setItem('setUserLocation',  JSON.stringify(data));
   }
@@ -211,7 +215,7 @@ public messageData(data: any){
   }
 
   getUserCurrentLocation(){
-    return this.http.get('https://api.ipdata.co/?api-key=test');
+    return this.http.get('https://api.ipdata.co/?api-key=eedc57a596ba115351edf02ddf6bc35093f83bad8e203748db2580fe');
     //return this.http.get('https://ip-api.com/json');
    
   }

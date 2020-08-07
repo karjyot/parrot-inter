@@ -14,6 +14,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = 'pat';
   public insertImageSettings = {
     saveUrl : 'http://parrotautotrader.com/public/uploads'
@@ -26,6 +27,11 @@ export class AppComponent {
   private noCookieLawSubscription: Subscription;
   constructor(private ccService: NgcCookieConsentService, private activatedRoute: ActivatedRoute,private loginService: LoginService,private router: Router,private titleService: Title,
     private metaService: Meta,private translate: TranslateService){
+      window.addEventListener("beforeunload", (event) => {
+       
+        this.loginService.deleteCurr();
+       alert("close")
+      });
      // translate.setTranslation('fr', defaultLanguage);
      // translate.setDefaultLang('fr');
       
