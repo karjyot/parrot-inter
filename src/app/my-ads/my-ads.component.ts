@@ -33,13 +33,29 @@ export class MyAdsComponent implements OnInit {
       this.ads = result["success"];
       this.ads.sort((val1, val2)=> {return <any> new Date(val2.created_at) - <any> new 
         Date(val1.created_at)})
-      this.ngxService.stop();
+        
+        this.loginService.userAdPlan(userID).subscribe((result) => {
+          if(result['success'].length > 0){
+            this.loginService.deletePlanStorage()
+          }
+          this.loginService.setUserDealerPlan(result['success'])
+           this.ngxService.stop();
+          }, (err) => {
+           this.ngxService.stop();
+          });
      }, (err) => {
       this.ngxService.stop();
      });
   }
   createAd(){
-    this.router.navigateByUrl("/plans")
+    console.log(this.loginService.getUserDealerPlan())
+    if(this.loginService.getUserDealerPlan() && this.loginService.getUserDealerPlan().length > 0){
+      this.router.navigateByUrl("/create-ad")
+    }else{
+      this.router.navigateByUrl("/plans")
+    }
+   
+
   }
   confirmation(template:any,data,event){
     this.currentRow = data;
@@ -69,4 +85,7 @@ export class MyAdsComponent implements OnInit {
   editAd(id,event){
     this.router.navigateByUrl("/edit-ad/"+id)
   }
+  makesponsar(id,event){
+    this.router.navigateByUrl("/checkout/"+id)
+}
 }

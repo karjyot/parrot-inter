@@ -1,24 +1,34 @@
 <div class="main-content">
-    <div class="container-fluid">
-       <!-- OVERVIEW -->
-        <div class="panel panel-headline">
-           <h2 style="text-align: center;
-           margin-bottom: 40px;
-           margin-top: 25px;"> Plan Information</h2>
-           <div class="packages-section">
-             <div class="plan-box col-md-3 plan-colmun-1">
-                <div class="center" *ngIf = "userPlan">
-                   <h2 style="background-color: #D3001D ;"></h2>
-                   <h5><span>{{userPlan.plan_name}}</span></h5>
-                   <h3>${{userPlan.price}}</h3>
-                   <p>Up to {{userPlan.photos}} photos &nbsp;Run for {{userPlan.duration}} weeks &nbsp;Free Until Sold. Free Renewals</p>
-                   <div class="button-sectoin">
-                      <a href="JavaScript:void()"><input type="button" value="Change Plan" name="search_post" class="primary-button-green basic_package_link"></a>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
-    <!-- END MAIN CONTENT -->
- </div>
+   <div class="container-fluid">
+      <!-- OVERVIEW -->
+       <div class="panel panel-headline">
+          <h2 style="text-align: center;
+          margin-bottom: 40px;
+          margin-top: 25px;"> Plan Information</h2>
+      <div class="packages-section" *ngIf="userPlan">
+        <div class="plan-box col-md-3 plan-colmun-1">
+           <div class = "center">
+              <h2 style="background-color: #D3001D ;"></h2>
+              <h5><span style="text-transform: capitalize;" [innerHTML]="userPlan.plan_name"></span></h5>
+              <h3>{{symbol}}<b [innerHTML]="userPlan.price * conversion.toFixed(2) || '0'" style="color:#000"></b></h3>
+             <p>Up to <b [innerHTML]="userPlan.photos" style="color:#000"></b> photos</p>
+               <p>Up to <b [innerHTML]="userPlan.ads_limit" style="color:#000"></b> Ads</p>
+              <p > {{userPlan.text}} <b [innerHTML]="userPlan.duration" style="color:#000"></b></p>
+              <p *ngIf="userPlan.description"  [innerHTML]="userPlan.description"></p>
+              <div class="button-sectoin">
+              <b style="font-size:24px;color:#ee4036"> Remaining: {{userPlan.count_left}}</b>
+              </div>
+           </div>
+        </div>
+      
+     </div>
+
+     <div class="packages-section" *ngIf="!userPlan">
+        <div> You do not have any Plan.</div>
+      
+     </div>
+
+      </div>
+   </div>
+   <!-- END MAIN CONTENT -->
+</div>

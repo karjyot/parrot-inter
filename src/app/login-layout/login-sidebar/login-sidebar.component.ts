@@ -72,6 +72,7 @@ export class LoginSidebarComponent implements OnInit {
  logout(){
   this.loginService.deleteToken();
   this.loginService.deleteUserDetails();
+  this.loginService.deleteCurr();
   this.isLogin = false;
   this.loginService.sendLogout(false); 
   this.router.navigateByUrl('/register', {skipLocationChange: true}).then(()=>

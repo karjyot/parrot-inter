@@ -1,10 +1,17 @@
 <div class="login-form sidebarmenu " style="text-align:center;">
-    <div class="main-div search-mask" style="max-width:50%">
-      <p class="referText">Refer and get paid commissions</p>
+  
+    <div class="main-div search-mask" style="max-width:60%">
+      <div class="visa-image">
+        <img src="assets/images/sec.jpeg">
+        <img src="assets/images/sec-1.jpeg">
+        <img src="assets/images/sec-2.jpeg" style="height:60px">
+       </div>
+      <p class="referText">{{'referAndPay' | translate}}</p>
        <div class="panel">
-          <h2>Checkout</h2>
+          <h2>{{'checkout' | translate}}</h2>
        </div>
        <div>
+        
          <div class="visa-image">
           <img src="assets/images/checkout1.jpeg">
          </div>
@@ -23,23 +30,43 @@
        <div class="stripe-payment">
        <div class="row">
         <div class="col-lg-9 col-md-12 mt-2 mb-2">
-         <div  class="offertype mr-t-10"><span ><div _ngcontent-wlj-c5="" class="form-group"><input  name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label for="Used">Wallet Amount : {{remaining * userCurrency.toFixed(2) || '0'}} {{currency.symbol}}</label></div></span></div>
+         <div  class="offertype mr-t-10"><span ><div _ngcontent-wlj-c5="" class="form-group"><input  name="myCheckbox" type="checkbox"  (change) = "walletSelection()"  [(ngModel)] = "checkboxWallet" value="cross-border" id="Used"><label for="Used">Wallet Amount : {{currency.symbol}} {{remaining * userCurrency.toFixed(2) || '0'}} </label></div></span></div>
         </div>
         <div class="col-lg-3 col-md-12">
          <button (click) = "payWallet()" class="btn submit-btn checkout" [disabled] = "isDiablePay">
-           PAY
+          {{'payB' | translate}}
          </button>
         </div>
       </div>
        
-       <form novalidate (ngSubmit)="buy(planDetails.price)" [formGroup]="stripeTest" class="text-center">
+       <!-- <form novalidate (ngSubmit)="buy(planDetails.price)" [formGroup]="stripeTest" class="text-center">
         <input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
         <div id="card-element" class="field"></div>
         <button type="submit" class="btn btn-primary submit-btn">
           PAY {{currency.symbol}} {{planDetails.price * userCurrency.toFixed(2) || '0'}}
         </button>
+      </form> -->
+
+      <form novalidate [hidden] = "showFormAd" (ngSubmit)="buy(planDetails.price)" [formGroup]="stripeTest" class="text-center">
+        <input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
+        <div id="card-element" class="field"></div>
+        <button type="submit" class="btn btn-primary submit-btn">
+          {{'payB' | translate}} {{currency.symbol}} {{planDetails.price * userCurrency.toFixed(2) || '0'}}
+        </button>
+        
+      </form>
+      <form novalidate [hidden] = "showFormSponsar" (ngSubmit)="buy(sponsarPrice)" [formGroup]="stripeTest" class="text-center">
+        <input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
+        <div id="card-element" class="field"></div>
+       
+        <button type="submit" class="btn btn-primary submit-btn">
+          PAY {{currency.symbol}} {{sponsarPrice * userCurrency.toFixed(2) || '0'}}
+        </button>
       </form>
     </div>
     </div>
-
  </div>
+
+
+
+

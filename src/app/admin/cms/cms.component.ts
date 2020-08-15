@@ -17,7 +17,7 @@ export class CmsComponent implements OnInit {
 
   contentForm : FormGroup
   submitted = false
-  public custom = {searchText:"",facebook:"",linkedin:"",planBottom:"",google:"",phone:"",secret:"",api:"",parrot:"",twitter:"",planText:"",instagram:"",planLowerSecond:'',planLowerFirst:''};
+  public custom = {searchText:"",facebook:"",linkedin:"",planBottom:"",google:"",phone:"",secret:"",api:"",parrot:"",twitter:"",planText:"",instagram:"",planLowerSecond:'',planLowerFirst:'',price:""};
   constructor(private loginService: LoginService,private adminService: AdminService,private modalService: BsModalService,private formBuilder:FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router : Router,) { }
 
   ngOnInit() {
@@ -34,7 +34,8 @@ export class CmsComponent implements OnInit {
       planBottom:[''],
       searchText:[''],
       planLowerSecond:[''],
-      planLowerFirst:['']
+      planLowerFirst:[''],
+      price:['']
   
   });
   this.loginService.getHomeContent().subscribe((data) => {
@@ -44,7 +45,7 @@ export class CmsComponent implements OnInit {
     this.custom.google = result.google
     this.custom.phone = result.phone
     this.custom.api = result.api
-
+    this.custom.price = result.price_inter
     this.custom.parrot = result.parrot
     this.custom.twitter = result.twitter
     this.custom.instagram = result.instagram

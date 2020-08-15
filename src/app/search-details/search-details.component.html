@@ -20,6 +20,7 @@
                <div class="product-detail vichleinfo-main">
                   <div class="pro-header">
                      <h5>{{adDetails.make}} {{adDetails.model}}<span> {{adDetails.variant}}</span> </h5>
+                     <a href="JavaScript:void(0)" *ngIf="adDetails.is_sponsar ==1" class="sponsr-btn-after ml-3">Sponsored</a>
                      <div class="actionbutton">
                         <a href="JavaScript:void(0)" (click)= "openMessage(message,adDetails)"><i class="fa fa-inbox" aria-hidden="true"></i>{{'message' | translate}}</a>
                         <a href="JavaScript:void(0)" (click)= "bookmark(adDetails,'test')"><i class="fa "  [ngClass] = "{'fa-star-o':!adDetails.isBookMark,'fa-star':adDetails.isBookMark}" aria-hidden="true"></i>{{'addList' | translate}}</a>

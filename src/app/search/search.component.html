@@ -667,6 +667,7 @@
                    <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products"(click) ="$event.stopPropagation()"> 
+                  <li class="active"><a href="javascript:void(true)" (click) = "sortArray('sponsar',$event.stopPropagation())">Sponsor Ads</a></li>
                   <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateAsc',$event.stopPropagation())">{{'dateAsc' | translate}}</a></li>
                   <li class="active"><a href="javascript:void(true)" (click) = "sortArray('dateDesc',$event.stopPropagation())">{{'dateDsc' | translate}}</a></li>
                    <li class="active"><a href="javascript:void(true)" (click) = "sortArray('priceAsc',$event.stopPropagation())">{{'priceAsc' | translate}}</a></li>
@@ -697,6 +698,7 @@
             <div class="products" style="cursor:pointer" (click) = "details(searchAds.id,$event.stopPropagation(),searchAds.user_id)" *ngFor = "let searchAds of ads|paginate: { itemsPerPage: 10, currentPage: p }">
                 <div class="pro-header" >
                    <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
+                   <a href="JavaScript:void(0)" *ngIf="searchAds.is_sponsar ==1" class="sponsr-btn-after ml-3 mb-2">Sponsored</a>
                    <div class="actionbutton">
                       <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>{{'addList' | translate}}</a>
                       <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>{{'share' | translate}}</a>

@@ -37,6 +37,11 @@ export class AdminSidebarComponent implements OnInit {
       this.selectedPage = 'admin-plans'
       this.router.navigateByUrl('admin/plans');
     } 
+    if(type == 'motor-packages'){
+      this.selectedPage = 'motor-packages'
+      this.router.navigateByUrl('admin/motor-packages');
+    }
+    
     if(type == 'terms'){
       this.selectedPage = 'terms'
       this.router.navigateByUrl('admin/terms');

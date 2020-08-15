@@ -5,6 +5,7 @@ import { LoginService } from "./../services/login.service";
 import { Router,UrlTree } from "@angular/router";
 import {map} from 'rxjs/operators';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { forkJoin } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,19 +24,41 @@ export class ApiGuard implements CanActivate {
   getUserInfo(perm) : Observable<boolean>{
     
     this.ngxService.start();
-   return this.commonService.getUserCurrentLocation().pipe(map(result => {
-    result['country'] = result["country_name"]
-    result['countryCode'] = result["country_code"]
+    let q1 = this.commonService.getUserCurrentLocation();
+    let q2 = this.commonService.currency();
+  
+    return forkJoin([q1, q2]).pipe(map(result => {
+      result[0]['country'] = result[0]["country_name"]
+    result[0]['countryCode'] = result[0]["country_code"]
+    this.commonService.setUserLocation(result[0])
+    this.commonService.setCurrncies(result[1])
+        return true;
+      }));
 
-      this.commonService.setUserLocation(result)
-      return true;
+  //  return this.commonService.getUserCurrentLocation().pipe(map(result => {
+  //   result['country'] = result["country_name"]
+  //   result['countryCode'] = result["country_code"]
+   
+  //     this.commonService.setUserLocation(result)
+  //     if(!this.commonService.getCurrncies()){
+  //       this.getCurrencyconversion();
+  //      }else{
+  //       return true;
+  //      }
+    
       
-     }));
+  //    }));
  
   }
+//   getCurrencyconversion(){
+     
+//     this.commonService.currency().subscribe((result) => {
+//       this.commonService.setCurrncies(result)
+//         return true;
+//     })
   
+// }
 }
-
 
 // import { Injectable } from '@angular/core';
 // import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';

@@ -291,8 +291,7 @@ console.log(this.truckMakes)
   getCountryCurrency(userCurrentCounry){
     let countries = this.loginService.getCountries();
     let currncies = this.loginService.getCurrncies();
-  console.log(countries)
-  console.log(currncies)
+ 
     
     let countryObj;
     for(var i=0;i<countries.length; i++){

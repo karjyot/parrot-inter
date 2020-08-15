@@ -154,6 +154,7 @@ this.loginService.updateMessage$.subscribe((data) => {
     this.loginService.deleteToken();
     this.loginService.deleteUserDetails();
     this.isLogin = false;
+    this.loginService.deleteCurr();
     this.loginService.sendLogout(false); 
     this.router.navigateByUrl('/register', {skipLocationChange: true}).then(()=>
     this.router.navigate(["/"])); 

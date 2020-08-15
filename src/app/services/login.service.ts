@@ -81,10 +81,10 @@ public messageData(data: any){
     return this.http.get(AppSettings.API_ENDPOINT  + 'getUnreadMessage/'+id);
   }
   setUnreadMessages(data:any){
-    this.localStorage.setItem('unread',  JSON.stringify(data));
+    this.localStorage.setItem('unreadInternational',  JSON.stringify(data));
   }
   getUnreadMessages(){
-    let details = this.localStorage.getItem('unread');
+    let details = this.localStorage.getItem('unreadInternational');
     return JSON.parse(details);
   }
   getThreads(id,fromId) {
@@ -128,23 +128,23 @@ public messageData(data: any){
 
   setToken(token: string) {
     console.log(token)
-    this.localStorage.setItem('token', token);
+    this.localStorage.setItem('tokenInternational', token);
   }
   setUserDetails(data:any){
-    this.localStorage.setItem('userDetailsPAT',  JSON.stringify(data));
+    this.localStorage.setItem('userDetailsPATInternational',  JSON.stringify(data));
   }
   
   getUserDetails(){
-    let details = this.localStorage.getItem('userDetailsPAT');
+    let details = this.localStorage.getItem('userDetailsPATInternational');
     return JSON.parse(details || "null");
   }
 
   setCms(data:any){
-    this.localStorage.setItem('cms',  JSON.stringify(data));
+    this.localStorage.setItem('cmsInternational',  JSON.stringify(data));
   }
   
   getCms(){
-    let details = this.localStorage.getItem('cms');
+    let details = this.localStorage.getItem('cmsInternational');
     return JSON.parse(details);
   }
 
@@ -163,54 +163,54 @@ public messageData(data: any){
     this.data = undefined;
   }
   setSearchData(data:any){
-    this.localStorage.setItem('searchData',  JSON.stringify(data));
+    this.localStorage.setItem('searchDataInternational',  JSON.stringify(data));
   }
   
   getSearchData(){
-    let details = this.localStorage.getItem('searchData');
+    let details = this.localStorage.getItem('searchDataInternational');
     return JSON.parse(details);
   }
 
   deleteSearchData() {
-    this.localStorage.removeItem('searchData');
+    this.localStorage.removeItem('searchDataInternational');
   }
 
   setSellerDetails(data:any){
-    this.localStorage.setItem('sellerDetails',  JSON.stringify(data));
+    this.localStorage.setItem('sellerDetailsInternational',  JSON.stringify(data));
   }
   
   getsetSellerDetails(){
-    let details = this.localStorage.getItem('sellerDetails');
+    let details = this.localStorage.getItem('sellerDetailsInternational');
     return JSON.parse(details);
   }
   setSocialDetails(data:any){
-    this.localStorage.setItem('socialDetails',  JSON.stringify(data));
+    this.localStorage.setItem('socialDetailsInternational',  JSON.stringify(data));
   }
 
   setSearchRecords(data){
-    this.localStorage.setItem('setSearchRecords',  JSON.stringify(data));
+    this.localStorage.setItem('setSearchRecordsInternational',  JSON.stringify(data));
   }
 
   setCurrncies(data){
-    this.localStorage.setItem('setCurrncies',  JSON.stringify(data));
+    this.localStorage.setItem('setCurrnciesInternational',  JSON.stringify(data));
   }
 
   deleteCurr() {
-    this.localStorage.removeItem('setCurrncies');
+    this.localStorage.removeItem('setCurrnciesInternational');
   }
 
   setUserLocation(data){
-    this.localStorage.setItem('setUserLocation',  JSON.stringify(data));
+    this.localStorage.setItem('setUserLocationInternational',  JSON.stringify(data));
   }
  
   getUserLocation(){
-    let details = this.localStorage.getItem('setUserLocation');
+    let details = this.localStorage.getItem('setUserLocationInternational');
     return JSON.parse(details);
   }
 
  
   getCurrncies(){
-    let details = this.localStorage.getItem('setCurrncies');
+    let details = this.localStorage.getItem('setCurrnciesInternational');
     return JSON.parse(details);
   }
 
@@ -222,29 +222,29 @@ public messageData(data: any){
 
 
   getSearchRecords(data){
-    let details = this.localStorage.getItem('setSearchRecords');
+    let details = this.localStorage.getItem('setSearchRecordsInternational');
     return JSON.parse(details);
   }
 
   deleteSearchRecords() {
-    this.localStorage.removeItem('setSearchRecords');
+    this.localStorage.removeItem('setSearchRecordsInternational');
   }
   
   
   getSocialDetails(){
-    let details = this.localStorage.getItem('socialDetails');
+    let details = this.localStorage.getItem('socialDetailsInternational');
     return JSON.parse(details);
   }
   
   
   getToken() {
-    return this.localStorage.getItem('token');
+    return this.localStorage.getItem('tokenInternational');
   }
   deleteUserDetails() {
-    this.localStorage.removeItem('userDetailsPAT');
+    this.localStorage.removeItem('userDetailsPATInternational');
   }
   deleteToken() {
-    this.localStorage.removeItem('token');
+    this.localStorage.removeItem('tokenInternational');
   }
 
   getUserPayload() {
@@ -408,11 +408,11 @@ plans(){
 }
 
 setPlanDetails(data:any){
-  this.localStorage.setItem('planDetails',  JSON.stringify(data));
+  this.localStorage.setItem('planDetailsInternational',  JSON.stringify(data));
 }
 
 getPlanDetails(){
-  let details = this.localStorage.getItem('planDetails');
+  let details = this.localStorage.getItem('planDetailsInternational');
   return JSON.parse(details);
 }
 makePayment(data){
@@ -471,11 +471,11 @@ adDetails(id){
   return this.http.get(AppSettings.API_ENDPOINT + 'adDetails/'+id);
 }
 getAdDetails(){
-  let details = this.localStorage.getItem('adDetails');
+  let details = this.localStorage.getItem('adDetailsInternational');
   return JSON.parse(details);
 }
 setadDetails(data){
-  this.localStorage.setItem('adDetails',  JSON.stringify(data));
+  this.localStorage.setItem('adDetailsInternational',  JSON.stringify(data));
 }
 bookmarkDetails(id,userId){
   return this.http.get(AppSettings.API_ENDPOINT + 'listBookMarks/'+id + '/'+userId);
@@ -566,7 +566,7 @@ vehicleCheck(data) {
 mileageCheck(data) {
   console.log(data)
 
-  var params = 'RegistrationNumber='+data.registrationNumber+'&mileage='+data.mileage+'&username=karansofat';
+  var params = 'RegistrationNumber='+data.registrationNumber+'&mileage='+data.mileage+'&username=karansofat27';
   let headers = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) };
   return this.http.post('https://www.regcheck.org.uk/api/bespokeapi.asmx/CheckPrice',params,headers);
 }
@@ -575,17 +575,17 @@ setVehicleCheck(data:any){
 }
 
 getVehicleCheck(){
-  let details = this.localStorage.getItem('setVehicleCheck');
+  let details = this.localStorage.getItem('setVehicleCheckInternational');
   return JSON.parse(details);
 }
 
 
 setCountries(data:any){
-  this.localStorage.setItem('setCountries',  JSON.stringify(data));
+  this.localStorage.setItem('setCountriesInternational',  JSON.stringify(data));
 }
 
 getCountries(){
-  let details = this.localStorage.getItem('setCountries');
+  let details = this.localStorage.getItem('setCountriesInternational');
   return JSON.parse(details);
 }
 
@@ -601,6 +601,27 @@ console.log(countryObj)
   }
 }
 
+}
+makeSponsar(id){
+  return this.http.get(AppSettings.API_ENDPOINT + 'makeSponsar/'+id);
+}
+updateCount(id){
+  return this.http.get(AppSettings.API_ENDPOINT + 'updateCount/'+id);
+}
+setUserDealerPlan(data){
+  this.localStorage.setItem('setUserDealerPlanInternational',  JSON.stringify(data));
+}
+
+getUserDealerPlan(){
+  let details = this.localStorage.getItem('setUserDealerPlanInternational');
+  return JSON.parse(details);
+  
+}
+userAdPlan(id){
+  return this.http.get(AppSettings.API_ENDPOINT + 'userAdPlan/'+id);
+}
+deletePlanStorage() {
+  this.localStorage.removeItem('planDetailsInternational');
 }
 
 }

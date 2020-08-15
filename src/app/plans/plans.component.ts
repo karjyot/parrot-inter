@@ -17,14 +17,25 @@ export class PlansComponent implements OnInit {
   userID:any;
   cmsData:any
   conversion:any
+  motor:any
   constructor(private activatedRoute:ActivatedRoute,private _cookieService:CookieService,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService) {}
 
   ngOnInit() {
+    this.plans = []
     this.cmsData =  this.loginService.getCms();
    this.userID = this.activatedRoute.snapshot.paramMap.get('id'); 
     this.ngxService.start();
     this.loginService.plans().subscribe((result) => {
-      this.plans = result["message"]
+      this.motor = []
+      let plans = result["message"];
+      for(var i=0; i<plans.length; i++){
+        if(plans[i].type == 'motor dealer'){
+          this.motor.push(plans[i])
+        }else{
+          this.plans.push(plans[i])
+        }
+      }
+     // this.plans = result["message"]
       this.ngxService.stop();
       let currncies = this.loginService.getCurrncies();
 
@@ -36,7 +47,14 @@ export class PlansComponent implements OnInit {
         
         // this.plans[i].price =  (parseFloat(this.plans[i].price) * parseFloat(conversion)).toFixed(2)
           this.plans[i].symbol = countryObj.symbol
-        }    
+        }   
+        
+        for(var j=0;j<this.motor.length; j++){
+        
+          // this.plans[i].price =  (parseFloat(this.plans[i].price) * parseFloat(conversion)).toFixed(2)
+            this.motor[j].symbol = countryObj.symbol
+          }  
+        
       }
       console.log( this.plans)
  

@@ -6,7 +6,7 @@ import { Subscription }   from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import defaultLanguage from "./../assets/i18n/fr.json";
+import defaultLanguage from "./../assets/i18n/en.json";
 import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
@@ -27,19 +27,19 @@ export class AppComponent {
   private noCookieLawSubscription: Subscription;
   constructor(private ccService: NgcCookieConsentService, private activatedRoute: ActivatedRoute,private loginService: LoginService,private router: Router,private titleService: Title,
     private metaService: Meta,private translate: TranslateService){
-      window.addEventListener("beforeunload", (event) => {
+      // window.addEventListener("beforeunload", (event) => {
        
-        this.loginService.deleteCurr();
-       alert("close")
-      });
-     // translate.setTranslation('fr', defaultLanguage);
-     // translate.setDefaultLang('fr');
+      //  // this.loginService.deleteCurr();
+      //  //alert("close")
+      // });
+      translate.setTranslation('en', defaultLanguage);
+      translate.setDefaultLang('en');
       
-     if(!this.loginService.getCurrncies()){
-      this.getCurrencyconversion();
-     }
+    //  if(!this.loginService.getCurrncies()){
+    //  // this.getCurrencyconversion();
+    //  }
      //  
-     this.getUserLocation()
+    // this.getUserLocation()
      
 
 
@@ -176,19 +176,15 @@ export class AppComponent {
       }
     }
 
-    getCurrencyconversion(){
-     
-      this.loginService.currency().subscribe((result) => {
-        this.loginService.setCurrncies(result)
-      })
+
     }
 
-    getUserLocation(){
-      this.loginService.getUserCurrentLocation().subscribe((result) => {
-        this.loginService.setUserLocation(result)
-      })
-    }
-  }
+    // getUserLocation(){
+    //   this.loginService.getUserCurrentLocation().subscribe((result) => {
+    //     this.loginService.setUserLocation(result)
+    //   })
+    // }
+  //}
   
   
   

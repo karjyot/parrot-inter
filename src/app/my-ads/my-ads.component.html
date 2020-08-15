@@ -10,6 +10,8 @@
                <div class="pro-header" >
                   <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
                   <div class="actionbutton list-ads">
+                     <a href="JavaScript:void(0)" *ngIf="searchAds.is_sponsar ==1" class="sponsr-btn-after">Sponsored</a>
+                     <a href="JavaScript:void(0)"  *ngIf="!searchAds.is_sponsar"  (click) = "makesponsar(searchAds.id,$event.stopPropagation())" class="sponsr-btn">Make Sponsor</a>
                      <a href="JavaScript:void(0)" (click)="editAd(searchAds.id,$event.stopPropagation())"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                      <a href="JavaScript:void(0)" (click)="confirmation(confirm,searchAds.id,$event.stopPropagation())"><i class="fa fa-trash" aria-hidden="true" ></i></a>
                     

@@ -73,6 +73,7 @@ import { VehicleCheckComponent } from './vehicle-check/vehicle-check.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { VehicleValuationComponent } from './vehicle-valuation/vehicle-valuation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MotorPackagesComponent } from './admin/motor-packages/motor-packages.component';
 const routes: Routes = [{
   path: '',
   component: SiteLayoutComponent,
@@ -361,6 +362,11 @@ const routes: Routes = [{
     },{
       path: 'admin/users',
       component: AdminUsersComponent,
+      canActivate:[AuthGuardAdmin],
+      pathMatch: 'full',
+    },{
+      path: 'admin/motor-packages',
+      component: MotorPackagesComponent,
       canActivate:[AuthGuardAdmin],
       pathMatch: 'full',
     },{
