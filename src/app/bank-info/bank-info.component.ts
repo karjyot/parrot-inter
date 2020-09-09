@@ -26,7 +26,7 @@ export class BankInfoComponent implements OnInit {
     this.bankForm = this.formBuilder.group({ 
       name: ['', [Validators.required]],
       account:['',[Validators.required]],
-      sortCode:['',[Validators.required]],
+      sortCode:[''],
       bank_name:['',[Validators.required]],
       swift_code:[''],
       iban_code:[''],

@@ -36,9 +36,9 @@
           </div>
       <a class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         <img class="img-avatar" style="
-        object-fit: cover;" *ngIf = "adminDetails.image" src="{{adminDetails.image}}">
+        object-fit: cover;" *ngIf = "adminDetails && adminDetails.image" src="{{adminDetails.image}}">
         <img class="img-avatar" style=" 
-        object-fit: cover;"  *ngIf = "!adminDetails.image"  src="./assets/images/deault.png">
+        object-fit: cover;"  *ngIf = "!adminDetails && !adminDetails.image"  src="./assets/images/deault.png">
       </a>
      
     </li>

@@ -58,15 +58,17 @@
                                      <td class="sorting_1 wordBreak">{{users.make}}</td>
                                      <td class="sorting_1 wordBreak">{{users.model}}</td>
                                      <td class="sorting_1 wordBreak">{{users.city}}</td>
-                                     <td class="sorting_1 wordBreak" (click)="reports(users.id)" style="cursor: pointer;">{{users.offers || 0}}</td>
+                                     <td class="sorting_1 wordBreak" (click)="reports(users.AdID)" style="cursor: pointer;">{{users.offers || 0}}</td>
                                      <td>{{users.created_at | date}}</td>
                                 
                                      <td>
                                         <a class="btn btn-success" style="margin-right: 10px;" (click)="viewUserInfo(users)">
                                         <i class="fa fa-eye"></i>
                                         </a>
-                                        
-                                        <a class="btn btn-danger" (click) = "deleteUser(templateDelete,users.id)">
+                                        <a class="btn btn-success" style="margin-right: 10px;" (click)="editAd(users)">
+                                          <i class="fa fa-edit"></i>
+                                          </a>
+                                        <a class="btn btn-danger" (click) = "deleteUser(templateDelete,users.AdID)">
                                         <i class="fa fa-trash-o"></i>
                                         </a>
                                      </td>

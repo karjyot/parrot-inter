@@ -46,7 +46,7 @@ p = 1;
     )
   }
   viewUserInfo(recd){
-    this.router.navigateByUrl("search-details/"+recd.id+"/"+recd.user_id)
+    this.router.navigateByUrl("search-details/"+recd.AdID+"/"+recd.user_id)
 
   }
   deleteUser(template:any,id){
@@ -71,6 +71,10 @@ p = 1;
   }
   reports(id){
     this.router.navigateByUrl('admin/reports/'+id)
+  }
+  editAd(data){
+    this.adminService.setAdminAd(data)
+    this.router.navigateByUrl('admin/edit-admin-ad')
   }
 
 }

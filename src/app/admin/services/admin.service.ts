@@ -138,6 +138,14 @@ export class AdminService {
     let details = this.localStorage.getItem('adminDetails');
     return JSON.parse(details);
   }
+  setAdminAd(data:any){
+    this.localStorage.setItem('setAdminAd',  JSON.stringify(data));
+  }
+  getAdminAd(){
+    let details = this.localStorage.getItem('setAdminAd');
+    return JSON.parse(details);
+  }
+
   deleteAdminDetails() {
     this.localStorage.removeItem('adminDetails');
   }
