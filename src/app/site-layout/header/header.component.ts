@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     this.subscribeRouterEvents(); 
     
     let userDetails = this.loginService.getUserDetails();
-    translate.addLangs(['en', 'fr','gr','sp']);  
+    translate.addLangs(['en', 'french','germany','spanish']);  
     if (localStorage.getItem('locale')) {  
       const browserLang = localStorage.getItem('locale');  
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');  
@@ -68,6 +68,7 @@ export class HeaderComponent implements OnInit {
     this.details = this.loginService.getUserDetails();
     if(this.details){
       this.imageUrl = this.details.image;
+      this.details.name = this.details.name.split('')[0]
     }
     })
   }
@@ -79,6 +80,7 @@ export class HeaderComponent implements OnInit {
     this.details = this.loginService.getUserDetails();
     if(this.details){
       this.imageUrl = this.details.image;
+      this.details.name = this.details.name.split(' ')[0]
     }
   }
   ngAfterViewInit(){

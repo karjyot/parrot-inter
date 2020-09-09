@@ -9,7 +9,7 @@
                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Normal Packages</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Moto Dealer Packages</a>
+               <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Dealer Packages</a>
             </li>
             <!-- <li class="nav-item">
                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Third Panel</a>
@@ -22,7 +22,7 @@
                 <div class = "center">
                    <h2 style="background-color: #D3001D ;"></h2>
                    <h5><span style="text-transform: capitalize;" [innerHTML]="plan.plan_name"></span></h5>
-                   <h3>{{plan.symbol}} <b [innerHTML]="plan.price * conversion.toFixed(2) || '0'" style="color:#000"></b></h3>
+                   <h3>{{plan.symbol}} <b [innerHTML]="plan.price * conversion.toFixed(0) || '0'" style="color:#000"></b></h3>
                    <p>Up to <b [innerHTML]="plan.photos" style="color:#000"></b> photos</p>
                    <p> {{plan.text}} <b [innerHTML]="plan.duration" style="color:#000"></b></p>
                    <p *ngIf="plan.description"  [innerHTML]="plan.description"></p>
@@ -40,7 +40,7 @@
                   <div class = "center">
                      <h2 style="background-color: #D3001D ;"></h2>
                      <h5><span style="text-transform: capitalize;" [innerHTML]="plan.plan_name"></span></h5>
-                     <h3>{{plan.symbol}}<b [innerHTML]="plan.price * conversion.toFixed(2) || '0'" style="color:#000"></b></h3>
+                     <h3>{{plan.symbol}}<b [innerHTML]="plan.price * conversion.toFixed(0) || '0'" style="color:#000"></b></h3>
                       <p>Up to <b [innerHTML]="plan.photos" style="color:#000"></b> photos</p>
                         <p>Up to <b [innerHTML]="plan.ads_limit" style="color:#000"></b> Ads</p>
                      <p> {{plan.text}} <b [innerHTML]="plan.duration" style="color:#000"></b></p>

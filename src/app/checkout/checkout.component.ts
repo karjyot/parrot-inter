@@ -53,11 +53,7 @@ export class CheckoutComponent implements OnInit {
   
     this.ngxService.start();
     let id =  this.route.snapshot.params.id;
-    if(id =='create-new-ad'){
-      this.showFormAd = false
-    }else{
-      this.showFormSponsar = false
-    }
+    
    
     this.idParam = id
    this.currency = JSON.parse(this.loginService.getUserDetails().countryObj)
@@ -135,9 +131,18 @@ export class CheckoutComponent implements OnInit {
               }
             }
           });
-          this.card.mount('#card-element');
+          if(id =='create-new-ad'){
+            this.showFormAd = false
+            this.card.mount('#card-element');
+          }else{
+            this.showFormSponsar = false
+            this.card.mount('#card-elements');
+          }
+         
         }
+     
       });
+     
   }
   buy(price){
     if(this.idParam == 'create-new-ad'){

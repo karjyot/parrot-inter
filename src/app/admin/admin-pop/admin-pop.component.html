@@ -6,7 +6,7 @@
           <div class="animated fadeIn">
              <div class="card">
                 <div class="card-header">
-                   <i class="fa fa-edit"></i> Buy Vehicle
+                   <i class="fa fa-edit"></i> POPUPS
                    <div class="card-header-actions">
                      
                    </div>
@@ -28,6 +28,8 @@
                                   <tr role="row">
                                       <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 150px;">#</th>
                                      <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 281px;">Page</th>
+                                     <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 281px;">Status</th>
+
                                      <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 281px;">Actions</th>
                                    
                                   </tr>
@@ -35,7 +37,11 @@
                                <tbody>
                                   <tr role="row" class="odd" >
                                       <td class="sorting_1 wordBreak">1</td>
-                                     <td class="sorting_1 wordBreak">Buy vehicle</td>
+                                     <td class="sorting_1 wordBreak">Home POPUP</td>
+                                     <td style="cursor: pointer;">
+                                        <span class="badge badge-success" *ngIf="statustext==1" (click)="changePostStatus('inactive',templatechangeStatus,id)">Enable</span>
+                                        <span class="badge badge-danger" *ngIf="statustext==0" (click)="changePostStatus('active',templatechangeStatus,id)">Disable</span>
+                                     </td>
                                      <td class="sorting_1 wordBreak">  <a class="btn btn-danger" (click) = "updateTerms(updateOrders)">
                                             <i class="fa fa-trash-o" style="color:white">Update</i>
                                             </a></td>
@@ -65,6 +71,20 @@
            <angular-editor [placeholder]="'Enter text here...'" height="500px" minHeight="500px" [(ngModel)] = "data.content" [spellcheck]="true" ></angular-editor>
            <button _ngcontent-c4="" class="btn btn-success" type="button" style="margin-top:10px" (click) = "confirm()">Yes</button>
            <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px; margin-top:10px" type="button" (click)="modalRef.hide()">No</button>
+        </div>
+     </ng-template>
+
+     <ng-template #templatechangeStatus>
+        <div class="modal-header">
+           <h4 class="modal-title pull-left">Change Status</h4>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefStatus.hide()">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <p>Are you sure you want to {{postStatus}} this popup?</p>
+           <button _ngcontent-c4="" class="btn btn-blue" style="color: white;" type="button" (click) = "confirmChangeStatus()">Yes</button>
+           <button _ngcontent-c4="" class="btn btn-danger" style="margin-left:10px" type="button" (click)="modalRefStatus.hide()">No</button>
         </div>
      </ng-template>
   

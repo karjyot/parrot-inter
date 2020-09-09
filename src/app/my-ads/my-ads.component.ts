@@ -66,8 +66,17 @@ export class MyAdsComponent implements OnInit {
     this.loginService.deleteAd(this.currentRow).subscribe((result:any) => {
      this.modal.hide();
      this.toastr.success("Ad deleted successfully.")
-      this.listData()
-       this.ngxService.stop()
+     let userID = this.loginService.getUserDetails().id;
+  
+    this.loginService.userAdsGet(userID).subscribe((result) => {
+      this.ads = result["success"];
+      this.ads.sort((val1, val2)=> {return <any> new Date(val2.created_at) - <any> new 
+        Date(val1.created_at)})
+        this.ngxService.stop();
+     }, (err) => {
+      this.ngxService.stop();
+     });
+      
       },(err) => {
        try{
          let errMessage = err["error"]["message"];

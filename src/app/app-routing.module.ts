@@ -74,6 +74,7 @@ import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.compo
 import { VehicleValuationComponent } from './vehicle-valuation/vehicle-valuation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MotorPackagesComponent } from './admin/motor-packages/motor-packages.component';
+import { AdminPopComponent } from './admin/admin-pop/admin-pop.component';
 const routes: Routes = [{
   path: '',
   component: SiteLayoutComponent,
@@ -288,7 +289,7 @@ const routes: Routes = [{
   children: [{
     path: 'my-ads',
     component: MyAdsComponent,
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard,ApiGuard],
    },{
     path: 'messages/:id',
     component: MessagesComponent,
@@ -312,7 +313,7 @@ const routes: Routes = [{
    
    {
       
-    path: 'checkout',
+    path: 'checkout/:id',
     component: CheckoutComponent,
     canActivate:[AuthGuard],
    },{
@@ -327,7 +328,7 @@ const routes: Routes = [{
    },{
     path: 'bookmarks',
     component: BookmarksComponent,
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard,ApiGuard],
    },{
     path: 'referal',
     component: ReferalComponent,
@@ -372,6 +373,11 @@ const routes: Routes = [{
     },{
       path: 'admin/carriers',
       component: AdminCarrierComponent,
+      canActivate:[AuthGuardAdmin],
+      pathMatch: 'full',
+    },{
+      path: 'admin/homepage-pop',
+      component: AdminPopComponent,
       canActivate:[AuthGuardAdmin],
       pathMatch: 'full',
     },{

@@ -33,10 +33,43 @@ export class AdminSidebarComponent implements OnInit {
       this.selectedPage = 'payments'
       this.router.navigateByUrl('admin/payments');
     } 
+
+    if(type == 'homepage-pop'){
+      this.selectedPage = 'homepage-pop'
+      this.router.navigateByUrl('admin/homepage-pop');
+    } 
     if(type == 'admin-plans'){
       this.selectedPage = 'admin-plans'
       this.router.navigateByUrl('admin/plans');
     } 
+
+    if(type == 'buy-car'){
+      this.selectedPage = 'buy-car'
+      this.router.navigateByUrl('admin/buy-car');
+    } 
+    if(type == 'buy-bike'){
+      this.selectedPage = 'buy-bike'
+      this.router.navigateByUrl('admin/buy-bike');
+    } 
+    if(type == 'faq'){
+      this.selectedPage = 'faq'
+      this.router.navigateByUrl('admin/faq');
+    } 
+    if(type == 'buy-vehicle'){
+      this.selectedPage = 'buy-vehicle'
+      this.router.navigateByUrl('admin/buy-vehicle');
+    } 
+    if(type == 'how-it-works'){
+      this.selectedPage = 'how-it-works'
+      this.router.navigateByUrl('admin/how-it-works');
+    } 
+    if(type == 'buy-truck'){
+      this.selectedPage = 'buy-truck'
+      this.router.navigateByUrl('admin/buy-truck');
+    } 
+
+
+
     if(type == 'motor-packages'){
       this.selectedPage = 'motor-packages'
       this.router.navigateByUrl('admin/motor-packages');

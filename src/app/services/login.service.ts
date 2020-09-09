@@ -58,6 +58,9 @@ public messageData(data: any){
   truckData() {
     return this.http.get(AppSettings.API_ENDPOINT + 'admin/truckData');
   }
+  addcarData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addcarData',data);
+  }
   vehicleData() {
     return this.http.get(AppSettings.API_ENDPOINT + 'admin/vehicleData');
   }
@@ -67,8 +70,22 @@ public messageData(data: any){
   worksData() {
     return this.http.get(AppSettings.API_ENDPOINT + 'admin/worksData');
   }
-
-
+  addbikeData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addbikeData',data);
+  }
+ 
+  addtruckData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addtruckData',data);
+  }
+  addvehicleData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addvehicleData',data);
+  }
+  addfaqData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addfaqData',data);
+  }
+  addworksData(data) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addWorksData',data);
+  }
 
   
   getPaymentRequests(id) {
@@ -357,6 +374,13 @@ public sendUserTypeUpdate(data: any){
   this.userType.next(data);
 }
 
+private userName: Subject<any> = new Subject<any>();
+public userName$ = this.userName.asObservable();
+public sendUserNameUpdate(data: any){
+  console.log(data)
+  this.userName.next(data);
+}
+
 updateProfileImage(jsonPayload){
   return this.http.post(AppSettings.API_ENDPOINT + 'updateProfileImage',jsonPayload);
 }
@@ -370,7 +394,7 @@ activate(jsonPayload):Observable<any>{
   return this.http.post(AppSettings.API_ENDPOINT + 'activateSubscribe',jsonPayload);
 }
 listCountries() {
-  return this.http.get(AppSettings.API_ENDPOINT  + 'countries');
+  return this.http.get(AppSettings.API_ENDPOINT  + 'countriesData');
 }
 
 addRecord(jsonPayload){
@@ -440,6 +464,9 @@ updateAd(data,id){
 }
 countries(){
   return this.http.get(AppSettings.API_ENDPOINT + 'countriesData');
+}
+getPhoneCode(id){
+  return this.http.get(AppSettings.API_ENDPOINT + 'getPhoneCode/'+id);
 }
 
 deleteAdImage(id){

@@ -151,6 +151,8 @@ export class AdminService {
   addPrivacy(jsonPayload):Observable<any>{
     return this.http.post(AppSettings.API_ENDPOINT + 'admin/addPrivacy',jsonPayload);
   }
+
+
   addTerms(jsonPayload):Observable<any>{
     return this.http.post(AppSettings.API_ENDPOINT + 'admin/addTerms',jsonPayload);
   }
@@ -186,4 +188,14 @@ export class AdminService {
   resendMailActivation(jsonPayload):Observable<any>{
     return this.http.post(AppSettings.API_ENDPOINT + 'admin/resendMailActivation',jsonPayload);
   }
+  addPop(jsonPayload):Observable<any>{
+    return this.http.post(AppSettings.API_ENDPOINT + 'admin/addPop',jsonPayload);
+  }
+  getPOP():Observable<any>{
+    return this.http.get(AppSettings.API_ENDPOINT + 'admin/getPOP');
+  }
+  changePostStatusPOP(id,status) {
+    return this.http.get(AppSettings.API_ENDPOINT + 'admin/changePostStatusPop/'+id+'/'+status);
+  } 
+
 }

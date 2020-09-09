@@ -4,13 +4,14 @@ import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginService } from "./../services/login.service";
-
+import { AdminService } from "./../admin/services/admin.service";
 import {CookieService} from 'angular2-cookie/core';
 import { Location } from '@angular/common';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { GooglePlaceModule,GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { Router,ActivatedRoute } from "@angular/router";
 import {TranslateService} from '@ngx-translate/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,13 +22,16 @@ export class HomeComponent implements OnInit {
   @ViewChild('placesRef1',{static: false}) placesRef1: GooglePlaceDirective;
   @ViewChild('placesRef2',{static: false}) placesRef2: GooglePlaceDirective;
   @ViewChild('placesRef3',{static: false}) placesRef3: GooglePlaceDirective;
+  @ViewChild('autoShownModal',{static: true}) autoShownModal: ModalDirective;
+  isModalShown: boolean = false;
   searchForm : FormGroup
   conversion:any
+  content:any;
   resultMakes:any
   countryObj:any
   countries:any
   constructor(private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService, private titleService: Title,
-    private meta: Meta, private ref: ChangeDetectorRef,private translate: TranslateService) {}
+    private meta: Meta, private ref: ChangeDetectorRef,private translate: TranslateService,private admin:AdminService) {}
   totalRecords:any;
   options:any;
   city:any;
@@ -40,7 +44,7 @@ export class HomeComponent implements OnInit {
   truckMakes:any;
   vanMakes:any;
   ngOnInit() {
-   
+  this.getHomePOP()
     // this.meta.addTag({name: 'description', content: 'Angular project training on rsgitech.com'});
     // this.meta.addTag({name: 'author', content: 'rsgitech'});
     // this.meta.addTag({name: 'robots', content: 'index, follow'});
@@ -306,7 +310,29 @@ console.log(this.truckMakes)
     //let countryCode = userCurrentCounry.countryCode
     //this.conversion =  this.loginService.checkUserCurrency(countryCode,currncies);
   }
+  getHomePOP(){
+    this.admin.getPOP().subscribe((result) => {
+      let newsLetter = sessionStorage.getItem('newsletter');
+      if(!newsLetter && result['success'][0]['status'] == 1){
+      setTimeout(() => {
+        this.content = result['success'][0]['content']
+        this.isModalShown = true
+      }, 3000);
+       
+      }
+      
+    })
+  }
 
+  onHidden(): void {
+    this.isModalShown = false;
+    sessionStorage.setItem('newsletter', 'closed');
+  }
+  hideModal(): void {
+    this.isModalShown = false;
+
+    sessionStorage.setItem('newsletter', 'closed');
+  }
 }
 
 

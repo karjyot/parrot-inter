@@ -1,0 +1,34 @@
+[5:57 am, 15/08/2020] New Abid: 1= https://prnt.sc/tzuv6o international :Feature Request
+
+5- What is newsletter signup on international ? what mailchimp : Same as UK
+6- Send email and password for admin@parrotautotrader.com International version Done
+7- both sites need a popup controlled from admin panel admin can activate and deactivate it should say
+Welcome to Parrot Auto Trader 
+We are giving free of cost 6 months packages to all users.
+Admin should be able to disable and enable
+
+Feature Request
+
+8- put email on contact and on footer in international version also :Done
+9- Send admin user and pass for international : Done
+Client said need these 9 points and then he will keep testing other items for next 1 week
+
+[6:17 am, 15/08/2020] New Abid: 11 languages are not working french  turns to hindi:Done
+[6:17 am, 15/08/2020] New Abid: 12-  what is GR and when changed text on menu goes to  2 lines :Done
+
+[6:17 am, 15/08/2020] New Abid: transalations needs to work properly :Client side transalation possible and working fine
+[6:20 am, 15/08/2020] New Abid: 13 on homepage search filer on international version takes you to car page it should take to trucks: Not reproduced
+
+[6:20 am, 15/08/2020] New Abid: please test site there are so many issues
+[6:21 am, 15/08/2020] New Abid: 14- https://prnt.sc/tzv5ie see this not sure whats happening here :Done
+[6:22 am, 15/08/2020] New Abid: client is very much angry at me that why i said its complete
+[6:22 am, 15/08/2020] New Abid: it has so many issues
+[6:24 am, 15/08/2020] New Abid: 15- https://prnt.sc/tzv6e6 currencies not working either :Done
+[6:25 am, 15/08/2020] New Abid: 16- Each time price is selected it will show network and red :Done
+[6:25 am, 15/08/2020] New Abid: 17 - https://prnt.sc/tzv6su never loads :Done
+[6:26 am, 15/08/2020] New Abid: i was expectign k he will pay some money but he clearly said that there are so many bugs and said till now he has not even posted a car or not even checked admin  functionality so expect alot more issues to be fixed
+[6:28 am, 15/08/2020] New Abid: 18- https://prnt.sc/tzv7st :Done
+[6:30 am, 15/08/2020] New Abid: 19 - Okay each time car model country is chosen it show network and red https://prnt.sc/tzv85v :Done
+[6:31 am, 15/08/2020] New Abid: please read all he said he will restart testing in morning so probably 1am
+[6:31 am, 15/08/2020] New Abid: 1pm  i mean
+[6:32 am, 15/08/2020] New Abid: please try ti fix all and send a document with uploading a car with all features with test payment mode on international , also by changing languages. Also by changing proxy with other countries because only when he sees it working then he will pay me

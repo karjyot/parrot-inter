@@ -39,7 +39,7 @@ export class CreateAdComponent implements OnInit {
   makesCpy:any;
   color = [{name:"beige",checked:true},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"black",checked:false},{name:"white",checked:false}]
 
-  upholsetry = [{name:"alcantara",checked:true},{name:"Cloth",checked:false},{name:"Full leather",checked:false},{name:"Part leather",checked:false},{name:"Velour",checked:false},{name:"Other",checked:false}]
+  upholsetry = [{name:"alcantara",checked:true},{name:"Clothe/Upholstery",checked:false},{name:"Full leather",checked:false},{name:"Part leather",checked:false},{name:"Velour",checked:false},{name:"Other",checked:false}]
 
   vehicalCondions = [{name:"New",checked:true},{name:"Used",checked:false},{name:"Employee's Car",checked:false},{name:"Antique Classic",checked:false},{name:"Demonstration",checked:false},{name:"Pre-Registered",checked:false}]
 
@@ -255,6 +255,7 @@ export class CreateAdComponent implements OnInit {
     }
        
     let  countryCode = JSON.parse(this.loginService.getUserDetails().countryObj).country_code
+    console.log(countryCode)
     let currncies = this.loginService.getCurrncies();
     this.countryObj = JSON.parse(this.loginService.getUserDetails().countryObj)
     this.conversion =  this.loginService.checkUserCurrency(this.countryObj.code,currncies);
@@ -270,25 +271,25 @@ export class CreateAdComponent implements OnInit {
     this.AdForm = this.formBuilder.group({ 
       make:['',[Validators.required]],
       model:['',[Validators.required]],
-      variant:['',[Validators.required]],
+      variant:[''],
       bodyType:['',[Validators.required]],
       price:['',[Validators.required]],
       city:['',[Validators.required]],
       mileage:['',[Validators.required]],
       power:[''],
-      gear:['',[Validators.required]],
+      gear:[''],
       seats:['',[Validators.required]],
       metalic:[false],
       hadAccident:[''],
-      emmison:['Euro 1',[Validators.required]],
+      emmison:['Euro 1'],
       filter:[false],
       vat:[false],
       fuelType:['',[Validators.required]],
-      description:['',[Validators.required]],
-      totalGears:['',[Validators.required]],
+      description:[''],
+      totalGears:[''],
       displacement:[''],
       weight:[''],
-      cylinder:['',[Validators.required]],
+      cylinder:[''],
       registration:['',[Validators.required]],
       type:['car'],
       powerUnit:[],
@@ -479,13 +480,14 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
       
       limit_images:this.maximumImages,
       powerUnit:this.AdForm.value.powerUnit,
-      country:"United Kingdom",
+      country:this.countryObj.country,
       engineSize:this.AdForm.value.engineSize,
       accleration:this.AdForm.value.accleration,
       annualTax:this.AdForm.value.registration,
       fuelConsumpation:this.AdForm.value.fuelConsumpation,
       co2:this.AdForm.value.co2,
       category:this.AdForm.value.category,
+      currency:this.countryObj.symbol,
   }
   this.loginService.setData(this.fileData);
 
@@ -552,7 +554,7 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
     formData.append('type',this.AdForm.value.type)
     formData.append('limit_images',this.loginService.getPlanDetails().photos)
     formData.append('powerUnits',this.AdForm.value.powerUnits)
-    formData.append('country',"United Kingdom")
+    formData.append('country',this.countryObj.country)
     formData.append('engineSize',this.AdForm.value.engineSize)
     formData.append('accleration',this.AdForm.value.accleration)
     formData.append('annualTax',this.AdForm.value.annualTax)
@@ -560,7 +562,8 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
 
     formData.append('co2',this.AdForm.value.co2)
     formData.append('category',this.AdForm.value.category)
-  
+    console.log(this.countryObj)
+    formData.append('currency',this.countryObj.symbol)
     
   
     this.ngxService.start();
@@ -624,7 +627,7 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
     formData.append('type',this.AdForm.value.type)
     formData.append('limit_images',this.maximumImages)
     formData.append('powerUnits',this.AdForm.value.powerUnits)
-    formData.append('country',"United Kingdom")
+    formData.append('country',this.countryObj.country)
     formData.append('engineSize',this.AdForm.value.engineSize)
     formData.append('accleration',this.AdForm.value.accleration)
     formData.append('annualTax',this.AdForm.value.annualTax)

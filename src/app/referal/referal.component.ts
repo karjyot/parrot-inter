@@ -22,7 +22,7 @@ export class ReferalComponent implements OnInit {
   constructor(private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private translate: TranslateService) {}
   ngOnInit() {
     
-    this.referalLink =  location.protocol + '//parrotautotrader.co.uk/register?code='+this.loginService.getUserDetails().referal_code
+    this.referalLink =  location.protocol + '//parrotautotrader.com/register?code='+this.loginService.getUserDetails().referal_code
     this.referalForm = this.formBuilder.group({ 
       email: ['', [Validators.required,Validators.email]],
     });

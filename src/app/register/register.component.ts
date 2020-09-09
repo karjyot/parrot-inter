@@ -153,7 +153,27 @@ export class RegisterComponent implements OnInit {
         break; 
       }
     }
-
+   // this.getPhoneCodes()
   }
+
+  // getPhoneCodes(){
+  //   let  code = ''
+  //   this.ngxService.start();
+  //   this.loginService.getPhoneCode(this.countryObj.country_code).subscribe((result:any) => {
+  //     if(result['success'].length > 0){
+  //         code = result['success'][0]['phonecode']
+  //     }else{
+  //       code = ''
+  //     }
+
+  //     this.addUserForm.controls['phone'].setValue('+' +code);
+  //     this.ngxService.stop();
+    
+  //     },(err) => {
+
+  //       this.ngxService.stop();
+  //      })
+  // }
+
   get f() { return this.addUserForm.controls; }
 }

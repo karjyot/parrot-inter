@@ -183,7 +183,7 @@
                   <div class="col-md-6">
                      <div class="form-group"> 
                         <label for="email_id" class="control-label">Phone Number</label>
-                        <input type="text" [(ngModel)]="signupData.phone"   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control" id="email_id" name="email_name" placeholder="Phone Number" numbersOnly>
+                        <input type="text" [(ngModel)]="signupData.phone"   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control" id="email_id" name="email_name" placeholder="Phone Number" >
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -201,15 +201,15 @@
                         <input type="text" [(ngModel)]="signupData.id"   [ngClass]="{ 'is-invalid': submitted && f.id.errors }" formControlName="id" class="form-control" id="email_id" name="email_name" placeholder="Name Pros ID" >
                      </div>
                   </div> -->
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6">
                   <div class="form-group"> 
                      <label for="email_id" class="control-label">Country</label>
-                     <select name="countries"  [(ngModel)]="signupData.country" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" id="exampleFormControlSelect1" formControlName="country" required>
+                     <select name="countries" (change) = "filterCountrydata()"  [(ngModel)]="signupData.country" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" id="exampleFormControlSelect1" formControlName="country" required>
                         <option value = "">Select country</option>
-                        <option *ngFor = "let item of countries" value=" {{item.country_name}}"> {{item.country_name}}</option>                  
+                        <option *ngFor = "let item of countries" value = "{{item.country}}" >  {{item.country}}({{item.dial_code}})</option>                  
                     </select>
                   </div>
-                  </div> -->
+                  </div>
                </div>
                <!-- <div class="row">
                   <div class="col-md-6">
@@ -263,7 +263,7 @@
                   <div class="col-md-6">
                      <div class="form-group"> 
                         <label for="email_id" class="control-label">Phone Number</label>
-                        <input type="text" [(ngModel)]="infos.phone"   [ngClass]="{ 'is-invalid': submitted && upateF.phone.errors }" formControlName="phone" class="form-control" id="email_id" name="email_name" placeholder="Phone Number" numbersOnly>
+                        <input type="text" [(ngModel)]="infos.phone"   [ngClass]="{ 'is-invalid': submitted && upateF.phone.errors }" formControlName="phone" class="form-control" id="email_id" name="email_name" placeholder="Phone Number" >
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -282,15 +282,15 @@
                      </div>
                   </div> -->
 
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6">
                      <div class="form-group"> 
                         <label for="email_id" class="control-label">Country</label>
                         <select name="countries"  [(ngModel)]="infos.country" class="custom-select" [ngClass]="{ 'is-invalid': submitted && upateF.country.errors }" id="exampleFormControlSelect1" formControlName="country" required>
                            <option value = "">Select country</option>
-                           <option *ngFor = "let item of countries"   [value]  = "item.country_name"> {{item.country_name}}</option>                  
+                           <option *ngFor = "let item of countries" value = "{{item.country}}" >  {{item.country}}({{item.dial_code}})</option>                 
                        </select>
                      </div>
-                  </div> -->
+                  </div>
                </div>
                <!-- <div class="row">
                   <div class="col-md-6">

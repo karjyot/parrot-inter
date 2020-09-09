@@ -212,7 +212,7 @@ this.ngxService.start()
         this.adminService.deletePackage(this.id).subscribe(
           res => {
             this.router.navigateByUrl('admin/dashboard', {skipLocationChange: true}).then(()=>
-            this.router.navigate(["admin/plans"]));
+            this.router.navigate(["admin/motor-packages"]));
             this.modalRefDel.hide();
             this.ngxService.stop();
           },

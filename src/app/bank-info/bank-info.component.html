@@ -3,18 +3,34 @@
        <div class="panel">
           <h2>{{'bankDetails' | translate}}</h2>
          <p *ngIf="bankaccount"> {{'bankText' | translate}} {{bankaccount}}</p>
-         <p *ngIf="sortCode"> {{'sortCode' | translate}} {{sortCode}}</p>
+         <!-- <p *ngIf="sortCode"> {{'sortCode' | translate}} {{sortCode}}</p>
+         <p *ngIf="bankName"> Bank Name {{bankName}}</p>
+         <p *ngIf="swiftCode"> Swift Code {{swiftCode}}</p>
+         <p *ngIf="ibanCode">IBAN Code {{ibanCode}}</p> -->
        </div>
        <form [formGroup]="bankForm" autocomplete="off" novalidate (ngSubmit)="bank()">
           <div class="form-group">
              <input type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="{{'name' | translate}} " class="form-control" formControlName="name" required>
           </div>
+
+          <div class="form-group">
+            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.bank_name.errors }" placeholder="Bank Name" class="form-control" formControlName="bank_name" required>
+         </div>
+
           <div class="form-group">
             <input type="text" [ngClass]="{ 'is-invalid': submitted && f.sortCode.errors }" placeholder="{{'sort' | translate}} " class="form-control" formControlName="sortCode" required>
          </div>
           <div class="form-group">
              <input type="text" [ngClass]="{ 'is-invalid': submitted && f.account.errors }" placeholder="{{'accountNumber' | translate}}" class="form-control" formControlName="account" required>
           </div>
+
+          <div class="form-group">
+            <input type="text" placeholder="Swift Code" class="form-control" formControlName="swift_code">
+         </div>
+
+         <div class="form-group">
+            <input type="text"  placeholder="IBAN Code" class="form-control" formControlName="iban_code" >
+         </div>
      
           <button type="submit" class="btn btn-primary">{{'save' | translate}}</button>
        </form>

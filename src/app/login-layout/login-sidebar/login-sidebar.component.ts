@@ -63,6 +63,9 @@ export class LoginSidebarComponent implements OnInit {
   this.loginService.imageUrl$.subscribe((data) => {
     this.imageUrl = data;
 })
+this.loginService.userName$.subscribe((data) => {
+  this.userDetails.name = data;
+})
 
 
 }

@@ -11,7 +11,7 @@
        </div>
        <form [formGroup]="addUserForm" autocomplete="off" novalidate (ngSubmit)="addUser()">
           <div class="form-group">
-             <input type="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" class="form-control" placeholder="First name" required placeholder="{{'name' | translate}}" maxlength="10">
+             <input type="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" class="form-control" placeholder="First name" required placeholder="{{'name' | translate}}" maxlength="25">
           </div>
           <div class="form-group">
              <input type="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" class="form-control"  required placeholder="{{'email' | translate}}">
@@ -29,22 +29,23 @@
            </div>
             </div>
 
-            <div class="form-group">
-               <input type="text"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control"  required placeholder="{{'phoneLabel' | translate}}">
-              
-           
-              </div>
+       
 
               
             <div class="form-group">
               <select class="form-control" (change) = "filterCountrydata()" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" formControlName="country" required>
                  <option value=""> {{'select' | translate}}</option>
                <option value = "{{country.country}}" *ngFor="let country of countries"> 
-                  {{country.country}}
+                  {{country.country}}({{country.dial_code}})
 
                </option>
 
               </select>
+              
+           
+              </div>
+              <div class="form-group">
+               <input type="text"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control"  required placeholder="{{'phoneLabel' | translate}}">
               
            
               </div>

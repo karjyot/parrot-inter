@@ -6,21 +6,27 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from "@angular/router";
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-@Component({
-  selector: 'app-admin-privacy',
-  templateUrl: './admin-privacy.component.html',
-  styleUrls: ['./admin-privacy.component.css']
-})
-export class AdminPrivacyComponent implements OnInit {
 
+@Component({
+  selector: 'app-admin-pop',
+  templateUrl: './admin-pop.component.html',
+  styleUrls: ['./admin-pop.component.css']
+})
+export class AdminPopComponent implements OnInit {
   modalRef: BsModalRef | null;
   public data = {content:""}
+  modalRefStatus:BsModalRef | null;
+postStatus = "";
+status= "";
+id:any
+statustext:any
   constructor(private adminService: AdminService,private modalService: BsModalService,private formBuilder:FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router : Router,) { }
   ngOnInit() {
     this.ngxService.start()
-    this.adminService.privacy().subscribe(
+    this.adminService.getPOP().subscribe(
       res => {
-      
+      this.statustext =  res['success'][0]['status']
+      this.id =  res['success'][0]['id']
         let terms = res['success'][0]['content'];
         this.data.content = terms;
        this.ngxService.stop()
@@ -40,9 +46,9 @@ updateTerms(template:any){
 
 confirm(){
   this.ngxService.start();
-  this.adminService.addPrivacy(this.data).subscribe((result) => {
+  this.adminService.addPop(this.data).subscribe((result) => {
   
-    this.router.navigateByUrl('admin/data-protection');
+    this.router.navigateByUrl('admin/homepage-pop');
     this.ngxService.stop();
     this.modalRef.hide(); 
   
@@ -52,5 +58,27 @@ confirm(){
     
    });        
 
+}
+changePostStatus(status,template:any,id){
+  this.id = id
+  this.status = status
+  this.postStatus = status
+  this.modalRefStatus = this.modalService.show(template)
+}
+
+confirmChangeStatus(){
+  this.ngxService.start()
+  this.adminService.changePostStatusPOP( this.id,this.status).subscribe(
+    res => {
+      this.ngxService.stop()
+      this.modalRefStatus.hide();
+      this.router.navigateByUrl('admin/dashboard', {skipLocationChange: true}).then(()=>
+      this.router.navigate(["admin/homepage-pop"]));
+    },
+    err => { 
+     
+      
+    }
+  )
 }
 }

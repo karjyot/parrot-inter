@@ -34,19 +34,21 @@ p = 1;
 modalRefDel:BsModalRef | null;
 modalRefStatus:BsModalRef | null;
 postStatus = "";
+countryObj:any;
 status= "";
 countries:any
   public infos = {ns:"",country:"", type:"", fname:'',  lname: '',email:'',phone:'',file:'' };
   public signupData = { ns:"",country:"",type:"buyer",name:'',  lname: '',password:'',email:'',c_password:'',phone:'',file:'' };
 submitted = false;
   ngOnInit() {
-
+    
     this.updateInfo = this.formBuilder.group({    
       fname: ['', [Validators.required]],
       email: ['', [Validators.required,Validators.email]],
       phone: ['', [Validators.required]],
       // id: ['', [Validators.required]],
       type: ['', [Validators.required]],
+     
    //   ns: ['', [Validators.required]],
       
   });
@@ -55,7 +57,7 @@ submitted = false;
     type: ['buyer', [Validators.required]],
      password: ['', [Validators.required]],
       email: ['', [Validators.required,Validators.email]],
-   
+      country: ['', [Validators.required]],
        phone: ['', [Validators.required]],
          cPass: ['', [Validators.required]],
          //file:[''],
@@ -76,7 +78,7 @@ this.ngxService.start()
         
       }
     )
-  
+    this.getCountries()
   }
 
   viewUserInfo(template: any,users){
@@ -114,14 +116,22 @@ this.ngxService.start()
             return;
       }
       this.ngxService.start()
-      const formData = new FormData();
+      const formData = {};
+      formData['countryObj'] = this.countryObj
+      formData['name'] = this.signupData.name
+      formData['email'] = this.signupData.email
+      formData['password'] = this.signupData.password
+      formData['phone'] = this.signupData.phone
+      formData['type'] = this.signupData.type
       // formData.append('id', this.signupData.id);
      // formData.append('ns', this.signupData.ns);
-      formData.append('name', this.signupData.name);
-      formData.append('email', this.signupData.email);
-      formData.append('password', this.signupData.password);
-      formData.append('phone', this.signupData.phone);
-      formData.append('type', this.signupData.type);
+   
+    //  formData.append('countryObj', JSON.stringify(this.countryObj));
+    //   formData.append('name', this.signupData.name);
+    //   formData.append('email', this.signupData.email);
+    //   formData.append('password', this.signupData.password);
+    //   formData.append('phone', this.signupData.phone);
+    //   formData.append('type', this.signupData.type);
       this.loginService.registerUser(formData).subscribe((result) => {
         this.ngxService.stop();
         this.toastr.success('User added succesfully.');
@@ -266,6 +276,16 @@ this.ngxService.start()
       
           this.ngxService.stop();
          });
+      }
+      filterCountrydata(){
+
+        for(var i=0; i<this.countries.length; i++){
+          if(this.countries[i].country == this.signupData.country){
+           this.countryObj = this.countries[i]
+            break; 
+          }
+        }
+       // this.getPhoneCodes()
       }
      
 

@@ -34,8 +34,10 @@ export class LoginHeaderComponent implements OnInit {
     $("#messageNumber").hide();
     this.isLogin = this.loginService.isLoggedIn();
     this.details = this.loginService.getUserDetails();
+
     if(this.details){
       this.imageUrl = this.details.image;
+     
     }
 
     this.subscribeRouterEvents();
@@ -94,6 +96,10 @@ export class LoginHeaderComponent implements OnInit {
     this.loginService.imageUrl$.subscribe((data) => {
      this.imageUrl = data;
 })
+this.loginService.userName$.subscribe((data) => {
+  this.details.name = data;
+})
+
 this.loginService.userType$.subscribe((data) => {
   this.details.user_type = data;
 })

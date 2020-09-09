@@ -53,6 +53,35 @@
                           <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'dataprotection'}">
                             <i class="nav-icon icon-event"></i> Data Protection</a>
                         </li>
+
+
+                        <li class="nav-item"  (click) = "redirectUrl('buy-car')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'buy-car'}">
+                            <i class="nav-icon icon-event"></i> Buy Car</a>
+                        </li>
+
+                        <li class="nav-item"  (click) = "redirectUrl('buy-bike')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'buy-bike'}">
+                            <i class="nav-icon icon-event"></i> Buy Bike</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('faq')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'faq'}">
+                            <i class="nav-icon icon-event"></i> FAQ</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('buy-vehicle')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'buy-vehicle'}">
+                            <i class="nav-icon icon-event"></i> Buy Vehicle</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('how-it-works')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'how-it-works'}">
+                            <i class="nav-icon icon-event"></i> How it works</a>
+                        </li>
+
+                        <li class="nav-item"  (click) = "redirectUrl('buy-truck')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'buy-truck'}">
+                            <i class="nav-icon icon-event"></i> Buy Truck</a>
+                        </li>
+
                            <li class="nav-item"  (click) = "redirectUrl('blogs')" style="cursor: pointer;">
                           <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'blogs'}">
                             <i class="nav-icon icon-compass"></i>Blogs</a>
@@ -83,6 +112,10 @@
                         <li class="nav-item"  (click) = "redirectUrl('cms')" style="cursor: pointer;">
                           <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'cms'}">
                             <i class="nav-icon icon-screen-smartphone"></i> CMS</a>
+                        </li>
+                        <li class="nav-item"  (click) = "redirectUrl('homepage-pop')" style="cursor: pointer;">
+                          <a class="nav-link"  [ngClass]="{'adminActive':selectedPage == 'cms'}">
+                            <i class="nav-icon icon-screen-smartphone"></i> POPUPS</a>
                         </li>
                   </ul>
                 </nav>

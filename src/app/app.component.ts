@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from "./services/login.service";
-
+import { AdminService } from "./admin/services/admin.service";
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 import { Subscription }   from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
@@ -8,16 +8,17 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import defaultLanguage from "./../assets/i18n/en.json";
 import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+  content:any
   title = 'pat';
   public insertImageSettings = {
-    saveUrl : 'http://parrotautotrader.com/public/uploads'
+    saveUrl : 'https://parrotautotrader.com/public/uploads'
 };
   private popupOpenSubscription: Subscription;
   private popupCloseSubscription: Subscription;
@@ -26,7 +27,9 @@ export class AppComponent {
   private revokeChoiceSubscription: Subscription;
   private noCookieLawSubscription: Subscription;
   constructor(private ccService: NgcCookieConsentService, private activatedRoute: ActivatedRoute,private loginService: LoginService,private router: Router,private titleService: Title,
-    private metaService: Meta,private translate: TranslateService){
+    private metaService: Meta,private translate: TranslateService,private admin:AdminService){
+    console.log(window.location.hostname)
+      // this.getHomePOP()
       // window.addEventListener("beforeunload", (event) => {
        
       //  // this.loginService.deleteCurr();
@@ -177,14 +180,9 @@ export class AppComponent {
     }
 
 
+  
     }
 
-    // getUserLocation(){
-    //   this.loginService.getUserCurrentLocation().subscribe((result) => {
-    //     this.loginService.setUserLocation(result)
-    //   })
-    // }
-  //}
-  
+   
   
   

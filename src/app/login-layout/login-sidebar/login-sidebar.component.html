@@ -12,7 +12,7 @@
              <li [class.active]="urlmatch('my-ads')"><a routerLink='/my-ads' *ngIf="userDetails.user_type=='seller'">{{'myAds' | translate}}</a></li>
              <li [class.active]="urlmatch('profile')"><a routerLink='/profile'>{{'profile' | translate}}</a></li>
              <li [class.active]="urlmatch('messages/custom')"><a routerLink='/messages/custom'>{{'messages' | translate}}</a></li>
-             <li [class.active]="urlmatch('my-plan')"><a routerLink='/my-plan'>>{{'myPlan' | translate}}</a></li>
+             <li [class.active]="urlmatch('my-plan')"><a routerLink='/my-plan'>{{'myPlan' | translate}}</a></li>
              <!-- <li [class.active]="urlmatch('my-plan')"><a routerLink='/my-plan' *ngIf="userDetails.user_type=='seller'">My Plan</a></li> -->
              <li [class.active]="urlmatch('bookmarks')"><a routerLink='/bookmarks'>{{'fav' | translate}}</a></li>
              <li [class.active]="urlmatch('saved-searches')"><a routerLink='/saved-searches' *ngIf="userDetails.user_type=='buyer'">{{'saved' | translate}}</a></li>

@@ -65,7 +65,7 @@ this.ngxService.start()
         this.listUsers = [];
         let plans = res['success'];
         for(var i=0; i<plans.length; i++){
-          if(plans[i].type == 'motor dealer'){
+          if(plans[i].type != 'motor dealer'){
             this.listUsers.push(plans[i])
           }
         }

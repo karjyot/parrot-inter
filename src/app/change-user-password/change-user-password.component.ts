@@ -20,6 +20,7 @@ export class ChangeUserPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.ForgetForm = this.formBuilder.group({
+      old_password: ['', [Validators.required]],
       password: ['', [Validators.required,Validators.minLength(6)]],
       c_password: ['', [Validators.required]],
     }, {
@@ -46,7 +47,7 @@ export class ChangeUserPasswordComponent implements OnInit {
           err => {  
             this.ngxService.stop()
             let message = this.translate.get('networkerr')['value'];
-            this.toastr.error(message);
+            this.toastr.error("Your old password is wrong.");
           }
         );        
   }

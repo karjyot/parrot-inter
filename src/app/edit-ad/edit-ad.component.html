@@ -100,7 +100,7 @@
                               <div class="col-lg-4 col-md-12">
                                  <div class="form-group">
                                     <label>{{'variant' | translate}}</label>
-                                    <input type="text"  class="form-control" placeholder="eg GTI" [ngClass]="{ 'is-invalid': submitted && f.variant.errors }" formControlName="variant" required>
+                                    <input type="text"  class="form-control" placeholder="eg GTI"  formControlName="variant" required>
                                  </div>
                               </div>
                               <div class="col-lg-4 col-md-12" *ngIf="adType == 'car'">
@@ -150,7 +150,7 @@
                                  
                                      <div class="form-group">
                                         <label>{{'first' | translate}}</label>
-                                        <select class="form-control" id="sel1" formControlName="registration" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" required>
+                                        <select class="form-control" id="sel1" formControlName="registration">
                                           <option value="">{{'select' | translate}}</option>
                                           <option value="{{x}}" *ngFor="let x of years">{{x}}</option>
                                         </select>
@@ -233,7 +233,7 @@
                                <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                    <label>{{'gear' | translate}}</label>
-                                   <select class="form-control" id="sel1" [ngClass]="{ 'is-invalid': submitted && f.gear.errors }" formControlName="gear">
+                                   <select class="form-control" id="sel1" formControlName="gear">
                                     <option value="">{{'select' | translate}}</option> 
                                     <option value="{{x.name}}" *ngFor="let x of gearTypes">{{x.name}}</option>
                                       
@@ -244,7 +244,7 @@
                                   <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                    <label>{{'totalGear' | translate}}</label>
-                                   <input type="text" [ngClass]="{ 'is-invalid': submitted && f.totalGears.errors }" placeholder="{{'totalGear' | translate}}" class="form-control" formControlName = "totalGears" required>
+                                   <input type="text"  placeholder="{{'totalGear' | translate}}" class="form-control" formControlName = "totalGears">
                                       
                                
                                 </div>
@@ -271,7 +271,7 @@
                            <div class="col-lg-4 col-md-12">
                               <div class="form-group">
                                  <label>{{'cy' | translate}}</label>
-                                 <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cylinder.errors }"  placeholder="{{'cy' | translate}}" formControlName = "cylinder" required>
+                                 <input type="text" class="form-control" placeholder="{{'cy' | translate}}" formControlName = "cylinder">
                                     
                                
                               </div>
@@ -360,15 +360,15 @@
                               <label>{{'tax' | translate}}</label>
                               <select class="form-control" id="sel1" formControlName="annualTax">
                                 <option value="">{{'select' | translate}}</option>
-                                <option value="£0">£0</option>
-                                <option value="Up to £20">Up to £20 </option>
-                                <option value="Up to £30">Up to £30 </option>
-                                <option value="Up to £130">Up to £130 </option>
-                                <option value="Up to £145">Up to £145 </option>
-                                <option value="Up to £185">Up to £185 </option>
-                                <option value="Up to £270">Up to £270 </option>
-                                <option value="Up to £500">Up to £500 </option>
-                                <option value=">Up to £500+">Up to £500+ </option>
+                                <option value="£0">{{countryObj.symbol}} 0</option>
+                                <option value="Up to {{countryObj.symbol}} {{20*conversion.toFixed(0)}}">Up to {{countryObj.symbol}} {{20*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{30*conversion.toFixed(0)}} ">Up to {{countryObj.symbol}} {{30*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{130*conversion.toFixed(0)}} ">Up to {{countryObj.symbol}} {{130*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{145*conversion.toFixed(0)}}">Up to {{countryObj.symbol}} {{145*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{185*conversion.toFixed(0)}} ">Up to {{countryObj.symbol}} {{185*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{270*conversion.toFixed(0)}} ">Up to {{countryObj.symbol}} {{270*conversion.toFixed(0)}} </option>
+                                <option value="Up to {{countryObj.symbol}} {{500*conversion.toFixed(0)}}">Up to {{countryObj.symbol}} {{500*conversion.toFixed(0)}} </option>
+                                <option value=">Up to {{countryObj.symbol}} {{500*conversion.toFixed(0)}}+ ">Up to {{countryObj.symbol}} {{500*conversion.toFixed(0)}}+ </option>
                               
                               </select>
                              
@@ -663,7 +663,7 @@
                                <div class="col-lg-4 col-md-12" >
                                       <div class="form-group">
                                <label>{{'euro' | translate}}</label>
-                               <select class="form-control" id="sel1" formControlName = "emmison" [ngClass]="{ 'is-invalid': submitted && f.emmison.errors }" required>
+                               <select class="form-control" id="sel1" formControlName = "emmison">
                                  <option value="">{{'select' | translate}}</option>
                                   <option value="Euro 1">Euro 1</option>
                                   <option value="Euro 2">Euro 2</option>
@@ -754,7 +754,7 @@
                            <div class="row">
                               <div class="col-md-12">
                                  <div class="form-group"> 
-                                <textarea class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"  formControlName = "description" required></textarea>
+                                <textarea class="form-control"  formControlName = "description"></textarea>
                                  </div>
                               </div>
                             </div>
@@ -766,7 +766,7 @@
                      </ul>
                   </li>
                    <li>
-                     <a href="#pageSubmenu9" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{'carImg' | translate}}
+                     <a href="#pageSubmenu9" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: 'poppinsregular';">{{'carImg' | translate}}
                         <span style="font-size: 12px;"> </span>
 
                      </a>

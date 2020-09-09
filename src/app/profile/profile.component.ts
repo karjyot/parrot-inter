@@ -66,6 +66,7 @@ export class ProfileComponent implements OnInit {
       userDetails.phone = this.profileForm.get('phone').value
       userDetails.website = this.profileForm.get('website').value
       this.loginService.setUserDetails(userDetails)
+      this.loginService.sendUserNameUpdate(this.profileForm.get('name').value)
       this.toastr.success("Profile updated successfully.")
       this.loginService.sendUserTypeUpdate( this.profileForm.get('type').value);
       this.ngxService.stop();

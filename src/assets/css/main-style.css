@@ -255,7 +255,7 @@ li.sidebar.search-mask.ex-color {width: 50%;float: left;}
 .sidebarmenu .search-mask .offertype span .form-group.yellow label:before {background: #f7c81e;border: 2px solid #fff;}
 .sidebarmenu .search-mask .offertype span .form-group.grey label:before {background: #949494;border: 2px solid #fff;}
 .sidebarmenu .search-mask .offertype span .form-group.green label:before {background: #38a614;border: 2px solid #fff;}
-.sidebarmenu .search-mask .offertype span .form-group.red label:before {background: #3cb5ff;border: 2px solid #fff;}
+.sidebarmenu .search-mask .offertype span .form-group.red label:before {background: red;border: 2px solid #fff;}
 .sidebarmenu .search-mask .offertype span .form-group.black label:before {background: black;border: 2px solid #fff;}
 
 .sidebarmenu .search-mask .offertype span .form-group.white label:before {background: white;border: 2px solid #ccc;}
@@ -762,7 +762,7 @@ ul#products {
   width:33.33%;
   float:left;
 }
-.prodct-section .products .pro-header .list-ads a {
+.prodct-section .products .pro-header .list-adss a {
   margin-left: 0px;
 }
 

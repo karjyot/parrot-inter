@@ -121,9 +121,11 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { MotorPackagesComponent } from './admin/motor-packages/motor-packages.component';
+import { AdminPopComponent } from './admin/admin-pop/admin-pop.component';
+import { environment } from './../environments/environment';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
-    domain: 'parrotautotrader.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain:'parrotautotrader.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
   },
   palette: {
     popup: {
@@ -244,7 +246,8 @@ export function getAuthServiceConfigs() {
     VehicleDetailsComponent,
     VehicleValuationComponent,
     NotFoundComponent,
-    MotorPackagesComponent
+    MotorPackagesComponent,
+    AdminPopComponent
     
   ],
   imports: [
@@ -259,7 +262,7 @@ export function getAuthServiceConfigs() {
     FormsModule, 
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    NgxStripeModule.forRoot('pk_test_i2rFMVlrLofRcsWY0mPzbyNd001hlLYk8P'),
+    NgxStripeModule.forRoot('pk_live_2l3t5U5QFg9vNd5yqu7mqOVC00SyG7DyoX'),
     SocialLoginModule,
     NgxPaginationModule,
     ShareButtonModule,
