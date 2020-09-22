@@ -104,7 +104,9 @@
                          <select name="countries"  [(ngModel)]="signupData.type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }"  class="custom-select"  formControlName="type">
                             <option value=""> Please select</option>    
                             <option value="car"> Car</option>    
-                            <option value="bike"> Bike</option>                  
+                            <option value="bike"> Bike</option>     
+                            <option value="van"> Van</option> 
+                            <option value="truck"> Truck</option>                         
                         </select>
                          
                       </div>
@@ -148,7 +150,9 @@
                            <select name="countries"  [(ngModel)]="infos.type" [ngClass]="{ 'is-invalid': submitted && upateF.type.errors }"  class="custom-select"  formControlName="type">
                               <option value=""> Please select</option>    
                               <option value="car"> Car</option>    
-                              <option value="bike"> Bike</option>                  
+                              <option value="bike"> Bike</option>   
+                              <option value="van"> Van</option> 
+                            <option value="truck"> Truck</option>                    
                           </select>
                            
                         </div>
