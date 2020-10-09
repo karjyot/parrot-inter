@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   conversion:any
   content:any;
   resultMakes:any
+  about:any
   countryObj:any
   countries:any
   constructor(private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService, private titleService: Title,
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit {
     this.years = years;
     this.getMakes();
   this.getCountries();
+  this.getAbout()
  
 
   }
@@ -332,6 +334,24 @@ console.log(this.truckMakes)
     this.isModalShown = false;
 
     sessionStorage.setItem('newsletter', 'closed');
+  }
+  getAbout(){
+    this.loginService.about().subscribe(
+      res => {
+      //  console.log(res['success'])
+        if(res['success'].length > 0){
+       this.about = res['success'][0]['content'];
+       console.log(this.about)
+        }
+     
+       
+       this.ngxService.stop()
+      },
+      err => { 
+        this.ngxService.stop()
+        
+      }
+    )
   }
 }
 

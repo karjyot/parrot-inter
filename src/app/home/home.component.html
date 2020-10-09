@@ -639,6 +639,24 @@
     </div>
  </section>
 
+ <section class="section-padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-4">
+            <img class="img-fluid" src="assets/images/abt-img.jpg">
+         </div>
+         <div class="col-md-8">
+            <div class="abt-content">
+               <!-- <h2>About Us</h2> -->
+               <p [innerHtml]="about | words : 50"></p> <a routerLink="/about-us">Read More</a>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+</section>
+
+
 
  <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
  class="modal fade"   tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">

@@ -1,0 +1,257 @@
+<section class="pagination">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12">
+             <a href="JavaScript:void(0)" (click)="back()"><i class="fa fa-angle-left" aria-hidden="true"></i> {{'back' | translate}}</a>
+          </div>
+       </div>
+    </div>
+ </section>
+
+<section class="mangol-section">
+    <div class="container">
+        <div class="row">
+           <div class="col-md-8 col-sm-12">
+                   <div class="mang-text">
+                       <h2>Mangolesti</h2>
+                       <p><img src=""> <span>4.6 (97 reviews)</span></p>
+                       <p>Mangoletsi</p>
+                       <p>Nullam nisl est, ornare eget commodo id, auctor pellentesque erat. Nulla mauris eros, fringilla id ex vel, mollis lacinia quam. Nulla nec metus lacinia, facilisis diam ac, pellentesque risus. Cras lectus augue, sagittis a rutrum vel, accumsan mattis diam. Nullam finibus, nisl vel eleifend eleifend, elit sapien dictum est, et gravida metus diam non nunc. Nam blandit eleifend sem vitae rhoncus. Suspendisse consequat elit ut arcu ultrices, at efficitur enim rutrum. Donec tincidunt ex lobortis mauris fringilla feugiat. Etiam vitae libero in nulla efficitur gravida. Cras a dui risus. In id massa id enim tincidunt suscipit. Curabitur dapibus volutpat justo in vehicula. Sed finibus dolor tortor, in vestibulum dolor efficitur eu. Sed faucibus, libero eu elementum imperdiet, urna ante fermentum sem, et aliquet elit nisl nec lacus. Cras ligula ante, blandit eu mollis id, laoreet id eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                   </div>
+           </div>
+               <div class="col-md-4 col-sm-12">
+                <div class="mang-right">
+                    <h5>Knutsford, WA16 9NS</h5>
+                    <p><a href="">(01565) 358958</a></p>
+                    <p><a href="" class="btn-theme orange">Visit Website</a></p>
+                    <div class="footer-social-icons">
+                        <ul class="social-icons">
+                            <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+                            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>                           
+                        </ul>
+                    </div>
+                </div>
+               </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+ 
+ <section id="related-products" class="related-padding no-gutters">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <h4 id="title" class="related-heading" *ngIf=" userAdsListed && userAdsListed.length > 0">{{'moreAds' | translate}}</h4>
+             <a href="javascript:void()"><span class="vew-all"  *ngIf=" userAdsListed && userAdsListed.length > 4"  (click)= "viewAll(cars)">{{'viewAll' | translate}}</span></a>
+          </div>         
+          <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let userAdd of userAdsListed | slice:0:8;" style="cursor: pointer;" (click) = "otherDetails(userAdd.id,$event,'test')">
+             <div class="card">
+                <img class="card-img-top" src="{{userAdd.main_image}}" alt="Card image">
+                <div class="card-body">
+                  <div  class="card-hd">
+                     <div class="related-header">
+                        <div class="related-elem">                          
+                           <p class="strike-through price-txt">{{userAdd.currency}} {{userAdd.price  | number}}</p>
+                        </div>  
+                         <div class="related-elem">                          
+                            <p class="model-car text-right">{{userAdd.registration}}</p>
+                         </div>
+                       </div>
+                   </div>
+                   <div  class="card-title">
+                      <h4>{{userAdd.make}} {{userAdd.model}} {{userAdd.variant}}</h4>
+                      <p class="p-card__desc">{{userAdd.vehicleCond}} | {{userAdd.gear}} | {{userAdd.fuelType}}</p>
+                   </div>
+                  
+                </div>
+              </div>
+          </div>
+ 
+       </div>
+    </div>
+ </section>
+ 
+
+
+ <section class="content-item" id="comments">
+    <div class="container">         
+        <div class="row">
+            <div class="col-sm-8">   
+                    <!-- <form>
+                        <h3 class="pull-left">New Comment</h3>                            
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-3 col-lg-2 hidden-xs">
+                                    <img *ngIf= "userDetails" class="img-responsive" src="{{userDetails.image}}" alt="">
+                                    <img *ngIf= "!userDetails" class="img-responsive" src="assets/images/default.jpg" alt="">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                    <textarea class="form-control" [(ngModel)] = "comment" id="message" [ngModelOptions]="{standalone: true}" placeholder="Your comment" required=""></textarea>
+                                </div>
+                            </div>  	
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary pull-right" (click) = "addComment()">Submit</button>
+                    </form> -->
+                
+                <h3 *ngIf="blogComments">{{blogComments.length}} Comments</h3>
+                
+                <!-- COMMENT 1 - START -->
+                <div class="media mang-pg">
+                    <div class="media-body">
+                        <h4 class="media-heading">DSAD</h4>
+                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
+                        <p>By admin on 21 jan 2002<span>|</span></p>
+                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
+                    </div>
+                </div>
+                <div class="media mang-pg">
+                    <div class="media-body">
+                        <h4 class="media-heading">DSAD</h4>
+                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
+                        <p>By admin on 21 jan 2002<span>|</span></p>
+                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
+                    </div>
+                </div>
+                <div class="media mang-pg">
+                    <div class="media-body">
+                        <h4 class="media-heading">DSAD</h4>
+                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
+                        <p>By admin on 21 jan 2002<span>|</span></p>
+                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
+                    </div>
+                </div>
+        
+            
+            </div>
+            <div class="col-sm-4">
+                <div class="write-a-rev">
+                    <p>Cras vel orci quis massa condimentum sollicitudin.</p>
+                    <p><a href="" class="btn-theme orange">Write a Review</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+ <ng-template #share>
+    <div class="modal-header">
+       <h4 class="modal-title pull-left">{{'share' | translate}}</h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
+       <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <form>
+          <label>{{'sharePost' | translate}}</label>
+          <div class="form-group">
+             <share-button text="{{'share' | translate}}" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+             <share-button button="linkedin"  text="{{'linkedin' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+             <share-button button="twitter" text="{{'Tweet' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+             <share-button button="whatsapp"  text="{{'Whatsapp' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+          </div>
+       </form>
+    </div>
+ </ng-template>
+ <ng-template #message>
+    <div class="modal-header">
+       <h4 class="modal-title pull-left">{{'message' | translate}}</h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefMessage.hide()">
+       <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <form [formGroup]="messageForm" autocomplete="off" novalidate (ngSubmit)="sendMessage()">
+       <div class="form-group">
+          <textarea [ngClass]="{ 'is-invalid': submitted && fM.message.errors }" formControlName="message" required class="form-control"></textarea>
+       </div>
+       <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
+       </form>
+    </div>
+ </ng-template>
+ 
+ 
+ <ng-template #report>
+    <div class="modal-header">
+       <h4 class="modal-title pull-left">{{'Report' | translate}}</h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefReport.hide()">
+       <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <form [formGroup]="ReportForm" autocomplete="off" novalidate (ngSubmit)="sendReport()">
+       <div class="form-group">
+          <textarea [ngClass]="{ 'is-invalid': submitted && fR.report.errors }" formControlName="report" required class="form-control"></textarea>
+       </div>
+       <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
+       </form>
+    </div>
+ </ng-template>
+ 
+ 
+ <ng-template #cars>
+    <div class="modal-header">
+       <h4 class="modal-title pull-left">{{'viewAll' | translate}}</h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefAll.hide()">
+       <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body" id="modalDetails">
+       <div class="prodct-section">
+          <div class="products" style="cursor:pointer;width:80%;margin:30px auto;" (click) = "otherDetails(searchAds.id,$event.stopPropagation(),searchAds.user_id)" *ngFor = "let searchAds of userAdsListed |paginate: { itemsPerPage: 10, currentPage: p }">
+              <div class="pro-header" >
+                 <h5>{{searchAds.make}} {{searchAds.model}} <span> {{searchAds.variant}}</span> </h5>
+                 <div class="actionbutton">
+                    <a href="JavaScript:void(0)" (click)= "bookmark(searchAds,$event.stopPropagation())"><i class="fa"  [ngClass] = "{'fa-star-o':!searchAds.isBookMark,'fa-star':searchAds.isBookMark}"  aria-hidden="true"></i>{{'addList' | translate}}</a>
+                    <a href="JavaScript:void(0)" (click)= "openShare(share,$event,searchAds,$event.stopPropagation())"><i class="fa fa-share-alt" aria-hidden="true" ></i>{{'share' | translate}}</a>
+                 </div>
+              </div>
+              <div class="product-data">
+                 <div class="row">
+                    <div class="col-lg-4">
+                       <div class="prp-image">
+                         <img src="{{searchAds.main_image}}" class="image-fit" alt="img">
+                       </div>
+                    </div>
+                    <div class="col-lg-8">
+                       <div class="vichle data">
+                          <div class="vichle-price">
+                             <h2>£ {{searchAds.price}}</h2>
+                          </div>
+                          <div class="vichle-info">
+                             <ul>
+                                <li>{{searchAds.mileage}} {{'miles' | translate}} </li>
+                                <li>{{searchAds.created_at | date}}  </li>
+                                <li>{{searchAds.power}} </li>
+                                <li>{{searchAds.vehicleCond}}</li>
+                                <li>{{searchAds.owners}} (Previous Owners)</li>
+                                <li>{{searchAds.gear}} </li>
+                                <li>{{searchAds.fuelType}} </li>
+                                <!-- <li>4.4 l/100 km (comb) 1</li>
+                                <li>114 g CO2/km (comb) 1</li> -->
+                             </ul>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="prodcut-ftr">
+                 <span  style="text-transform: capitalize;">{{searchAds.sellers}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{searchAds.city}}</span>
+              </div>
+           </div>
+        
+        </div>
+        <div class="propagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ 
+        </div>
+ 
+ 
+ 
+    </div>
+ </ng-template>

@@ -40,7 +40,7 @@ export class AdminEditAdComponent implements OnInit {
   truckMakes:any;
   resultMakes:any;
   color = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"black",checked:false},{name:"white",checked:false}]
-  colorExter = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"white",checked:false}]
+  colorExter = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"white",checked:false},{name:"black",checked:false}]
 
   upholsetry = [{name:"alcantara",checked:false},{name:"Clothe/Upholstery",checked:false},{name:"Full leather",checked:false},{name:"Part leather",checked:false},{name:"Velour",checked:false},{name:"Other",checked:false}]
 
@@ -400,7 +400,10 @@ console.log(this.AdForm)
     this.toastr.error(message);
     return
   }
-
+  console.log(this.AdForm.value.city)
+  if(this.searchAddr == undefined  || this.searchAddr == "undefined"){
+    this.searchAddr = this.AdForm.value.city
+  }
     const formData = new FormData();
     if( this.fileData &&  this.fileData.length){
       for (var i = 0; i < this.fileData.length; i++) { 
@@ -460,8 +463,8 @@ console.log(this.AdForm)
   console.log(formData)
     this.ngxService.start();
  
-    this.loginService.updateAd(formData,this.adID).subscribe((result) => {
-      this.router.navigateByUrl('/edit-admin-ad');
+    this.loginService.updateAd(formData,this.adminService.getAdminAd().AdID).subscribe((result) => {
+      this.router.navigateByUrl('/admin/ads');
       this.toastr.success('Your ad updated successfully.')
        this.ngxService.stop();
       }, (err) => {
@@ -817,10 +820,10 @@ vanArr.sort(function(a, b){
           break;
         }
       }
-
-      for(var i=0; this.colorExter.length; i++){
-        if(this.colorExter[i].name == response.exteriorColor){
-          this.colorExter[i].checked = true;
+      response.exteriorColor = response.exteriorColor.split("-")[0]
+      for(var k=0; this.colorExter.length; k++){
+        if(this.colorExter[k].name == response.exteriorColor){
+          this.colorExter[k].checked = true;
           break;
         }
       }

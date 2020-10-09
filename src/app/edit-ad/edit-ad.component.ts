@@ -39,7 +39,7 @@ export class EditAdComponent implements OnInit {
   truckMakes:any;
   resultMakes:any;
   color = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"black",checked:false},{name:"white",checked:false}]
-  colorExter = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"white",checked:false}]
+  colorExter = [{name:"beige",checked:false},{name:"blue",checked:false},{name:"brown",checked:false},{name:"yellow",checked:false},{name:"grey",checked:false},{name:"green",checked:false},{name:"red",checked:false},{name:"white",checked:false},{name:"black",checked:false}]
 
   upholsetry = [{name:"alcantara",checked:false},{name:"Clothe/Upholstery",checked:false},{name:"Full leather",checked:false},{name:"Part leather",checked:false},{name:"Velour",checked:false},{name:"Other",checked:false}]
 
@@ -399,7 +399,9 @@ console.log(this.AdForm)
     this.toastr.error(message);
     return
   }
-
+  if(this.searchAddr == undefined  || this.searchAddr == "undefined"){
+    this.searchAddr = this.AdForm.value.city
+  }
     const formData = new FormData();
     if( this.fileData &&  this.fileData.length){
       for (var i = 0; i < this.fileData.length; i++) { 

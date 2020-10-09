@@ -76,6 +76,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MotorPackagesComponent } from './admin/motor-packages/motor-packages.component';
 import { AdminPopComponent } from './admin/admin-pop/admin-pop.component';
 import { AdminEditAdComponent } from './admin/admin-edit-ad/admin-edit-ad.component';
+import { DealerDetailsComponent } from './dealer-details/dealer-details.component';
 const routes: Routes = [{
   path: '',
   component: SiteLayoutComponent,
@@ -95,6 +96,17 @@ const routes: Routes = [{
       
   path: 'search/:id',
   component: SearchComponent,
+  data: {
+    title: 'Parrot Auto Trader - Used cars',
+    //descrption: 'Description of Home Component',
+    //ogTitle: 'Description of Home Component for social media',
+    keywords:'Buy Car, Buy Truck, Buy Vehicle, Buy Truck, Buy Bikes, Parrot Auto Trader, Auto Trader , User Cars for sale, New cars for sale'
+  },
+  canActivate:[ApiGuard],
+ },{
+      
+  path: 'dealer-details/:id/:userId',
+  component: DealerDetailsComponent,
   data: {
     title: 'Parrot Auto Trader - Used cars',
     //descrption: 'Description of Home Component',

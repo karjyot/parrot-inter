@@ -436,6 +436,9 @@ for(var i=0; i<this.equpmentsEnter.length; i++){
     eqpArrEnter.push(this.equpmentsEnter[i])
   }
 }
+if(this.searchAddr == undefined  || this.searchAddr == "undefined"){
+  this.searchAddr = this.AdForm.value.city
+}
   let postData = {
       make:this.AdForm.value.make,
       model:this.AdForm.value.model,
