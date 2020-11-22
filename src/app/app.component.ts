@@ -28,6 +28,7 @@ export class AppComponent {
   private noCookieLawSubscription: Subscription;
   constructor(private ccService: NgcCookieConsentService, private activatedRoute: ActivatedRoute,private loginService: LoginService,private router: Router,private titleService: Title,
     private metaService: Meta,private translate: TranslateService,private admin:AdminService){
+      
     console.log(window.location.hostname)
       // this.getHomePOP()
       // window.addEventListener("beforeunload", (event) => {

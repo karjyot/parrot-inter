@@ -125,6 +125,7 @@ import { AdminPopComponent } from './admin/admin-pop/admin-pop.component';
 import { environment } from './../environments/environment';
 import { AdminEditAdComponent } from './admin/admin-edit-ad/admin-edit-ad.component';
 import { DealerDetailsComponent } from './dealer-details/dealer-details.component';
+import { RatingModule } from 'ng-starrating';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
     domain:'parrotautotrader.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
@@ -283,6 +284,7 @@ export function getAuthServiceConfigs() {
     CommonModule,
     TransferHttpCacheModule,
     NgtUniversalModule,
+    RatingModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

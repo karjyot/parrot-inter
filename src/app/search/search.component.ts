@@ -444,6 +444,10 @@ this.getCountries()
     this.router.navigateByUrl("/search-details/"+id + '/'+userId)
 
   }
+  viewDetails(id,event,userId){
+    this.router.navigateByUrl("/dealer-details/"+id + '/'+userId)
+
+  }
 
    bookmark(ad,event){
 

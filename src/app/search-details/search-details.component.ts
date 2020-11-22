@@ -314,4 +314,10 @@ viewAll(template){
   this.modalRefAll = this.modalService.show(template,Object.assign({}, { class: 'gray modal-lg allAds' })
   );
 }
+viewDetails(){
+  let id = this.userID;
+  let userId = this.userIDAd
+  this.router.navigateByUrl("/dealer-details/"+this.creatorID + '/'+this.userID)
+
+}
 }

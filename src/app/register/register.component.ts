@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
       phone:['',Validators.required],
       country:['',Validators.required],
       website:[''],
+      company:[''],
     },{
       validator: MustMatch('password', 'c_password')
   });
@@ -63,6 +64,7 @@ export class RegisterComponent implements OnInit {
       this.addUserForm.value.referalCode = this.referalCode
     }
     this.addUserForm.value.countryObj = this.countryObj
+    this.addUserForm.value.phone = this.countryObj.dial_code + this.addUserForm.value.phone
     this.ngxService.start();
      this.loginService.registerUser(this.addUserForm.value).subscribe((result) => {
       let message = this.translate.get('emailVerification')['value'];

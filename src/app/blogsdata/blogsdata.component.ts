@@ -31,6 +31,8 @@ export class BlogsdataComponent implements OnInit {
 
      this.loginService.listBlogs().subscribe((result) => {
       this.blogs = result["success"]
+      this.blogs.sort((val1, val2)=> {return <any> new Date(val2.created_at) - <any> new 
+        Date(val1.created_at)})
       this.ngxService.stop();
      }, (err) => {
   

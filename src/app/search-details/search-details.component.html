@@ -57,7 +57,7 @@
                              
                                  <div class="vichle-info" style="margin-bottom: 0px;">
                                     <span style="    text-transform: capitalize;
-                                    font-size: 14px;">{{adDetails.sellers}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{adDetails.city}}</span>
+                                    font-size: 14px;color:#3cb5ff;cursor:pointer;text-decoration: underline ;" (click) = "viewDetails()" >{{adDetails.name}}, <img src="assets/images/flag.png" style="width: 46px;" alt="img"> {{adDetails.city}}</span>
                                  </div>
                                  <div class="vichle-info" *ngIf="adDetails.website">
                                     <span style="

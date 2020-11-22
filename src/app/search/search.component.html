@@ -714,7 +714,9 @@
                       <div class="col-lg-8">
                          <div class="vichle data">
                             <div class="vichle-price">
+                            
                                <h2>{{searchAds.currency}} {{searchAds.price  | number}}</h2>
+                              
                             </div>
                             <div class="vichle-info">
                                <ul>
@@ -725,10 +727,15 @@
                                   <li>{{searchAds.owners}} (Previous Owners)</li>
                                   <li>{{searchAds.gear}} </li>
                                   <li>{{searchAds.fuelType}} </li>
-                                  <li *ngIf="searchAds.accleration != 'null'">{{searchAds.accleration}} </li>
-                                  <li *ngIf="searchAds.co2 != 'null'">{{searchAds.co2}} </li>
+                                  <li *ngIf="searchAds.accleration">{{searchAds.accleration}} </li>
+                                  <li *ngIf="searchAds.co2">{{searchAds.co2}} </li>
+                                 
+                                  
                                   <!-- <li>4.4 l/100 km (comb) 1</li>
                                   <li>114 g CO2/km (comb) 1</li> -->
+                               </ul>
+                               <ul>
+                                 <li class = "company_name" *ngIf="searchAds.company"  (click) = "viewDetails(searchAds.id,$event.stopPropagation(),searchAds.user_id)">{{searchAds.company}}</li>
                                </ul>
                             </div>
                          </div>

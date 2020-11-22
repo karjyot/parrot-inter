@@ -1378,3 +1378,13 @@ ul.social-icons {
 
 #comments .media.mang-pg p {
   margin-bottom: 10px;margin-top:0px;}
+
+  .company_name{
+    color: #3cb5ff;
+    border-bottom: none !important;
+    float: right;
+
+  }
+  li.company_name:hover {
+    text-decoration: underline;
+}

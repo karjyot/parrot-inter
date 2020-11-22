@@ -72,6 +72,9 @@
 
            <div class="form-group" *ngIf="addUserForm.value.type == 'seller'">
             <input type="text" formControlName="website" class="form-control" placeholder="{{'website' | translate}}"  >
+           </div>
+            <div class="form-group" *ngIf="addUserForm.value.type == 'seller'">
+               <input type="text" formControlName="company" class="form-control" placeholder="Company"  >
            
            </div>
           <div class="checkbox">

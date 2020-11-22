@@ -13,22 +13,23 @@
         <div class="row">
            <div class="col-md-8 col-sm-12">
                    <div class="mang-text">
-                       <h2>Mangolesti</h2>
-                       <p><img src=""> <span>4.6 (97 reviews)</span></p>
-                       <p>Mangoletsi</p>
-                       <p>Nullam nisl est, ornare eget commodo id, auctor pellentesque erat. Nulla mauris eros, fringilla id ex vel, mollis lacinia quam. Nulla nec metus lacinia, facilisis diam ac, pellentesque risus. Cras lectus augue, sagittis a rutrum vel, accumsan mattis diam. Nullam finibus, nisl vel eleifend eleifend, elit sapien dictum est, et gravida metus diam non nunc. Nam blandit eleifend sem vitae rhoncus. Suspendisse consequat elit ut arcu ultrices, at efficitur enim rutrum. Donec tincidunt ex lobortis mauris fringilla feugiat. Etiam vitae libero in nulla efficitur gravida. Cras a dui risus. In id massa id enim tincidunt suscipit. Curabitur dapibus volutpat justo in vehicula. Sed finibus dolor tortor, in vestibulum dolor efficitur eu. Sed faucibus, libero eu elementum imperdiet, urna ante fermentum sem, et aliquet elit nisl nec lacus. Cras ligula ante, blandit eu mollis id, laoreet id eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                       <h2 *ngIf="userInfo">{{userInfo.company}}</h2>
+                       <p *ngIf = "average"> <star-rating value="{{average}}" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="true" (rate)="onRate($event)"></star-rating><span>{{average.toFixed(2)}} ({{totalReviews}} reviews)</span></p>
+                       <p *ngIf = "!average"> <star-rating value="0" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="true" (rate)="onRate($event)"></star-rating><span> 0 ({{totalReviews}} reviews)</span></p>
+                       <p *ngIf="userInfo">{{userInfo.company}}</p>
+                       <p *ngIf="userInfo">{{userInfo.about}}</p>
                    </div>
            </div>
                <div class="col-md-4 col-sm-12">
                 <div class="mang-right">
                     <h5>Knutsford, WA16 9NS</h5>
-                    <p><a href="">(01565) 358958</a></p>
-                    <p><a href="" class="btn-theme orange">Visit Website</a></p>
+                    <p *ngIf="userInfo"><a href="">{{userInfo.phone}}</a></p>
+                    <p><a href="" class="btn-theme orange" (click) = "websiteopen(userInfo.website)">Visit Website</a></p>
                     <div class="footer-social-icons">
                         <ul class="social-icons">
-                            <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
-                            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>                           
+                            <li><a href="javascript:void(0)" (click) = "websiteopen(userInfo.facebook)"  class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+                            <li><a href="javascript:void(0)" (click) = "websiteopen(userInfo.linkedin)" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="javascript:void(0)" (click) = "websiteopen(userInfo.twitter)" class="social-icon"> <i class="fa fa-twitter"></i></a></li>                           
                         </ul>
                     </div>
                 </div>
@@ -81,57 +82,23 @@
  <section class="content-item" id="comments">
     <div class="container">         
         <div class="row">
-            <div class="col-sm-8">   
-                    <!-- <form>
-                        <h3 class="pull-left">New Comment</h3>                            
-                        <fieldset>
-                            <div class="row">
-                                <div class="col-sm-3 col-lg-2 hidden-xs">
-                                    <img *ngIf= "userDetails" class="img-responsive" src="{{userDetails.image}}" alt="">
-                                    <img *ngIf= "!userDetails" class="img-responsive" src="assets/images/default.jpg" alt="">
-                                </div>
-                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                    <textarea class="form-control" [(ngModel)] = "comment" id="message" [ngModelOptions]="{standalone: true}" placeholder="Your comment" required=""></textarea>
-                                </div>
-                            </div>  	
-                        </fieldset>
-                        <button type="submit" class="btn btn-primary pull-right" (click) = "addComment()">Submit</button>
-                    </form> -->
-                
-                <h3 *ngIf="blogComments">{{blogComments.length}} Comments</h3>
-                
+            <div class="col-sm-8">                 
                 <!-- COMMENT 1 - START -->
-                <div class="media mang-pg">
+                <div class="media mang-pg" *ngFor="let x of reviewsList">
                     <div class="media-body">
-                        <h4 class="media-heading">DSAD</h4>
-                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
-                        <p>By admin on 21 jan 2002<span>|</span></p>
-                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
+                        <h4 class="media-heading">{{x.title}}</h4>
+                        <p> <star-rating value="{{x.rating}}" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="true" (rate)="onRate($event)"></star-rating></p>
+                        <p>By {{x.name}} on {{x.created_date | date}}<span>|</span></p>
+                        <p>{{x.description}}</p>
                     </div>
                 </div>
-                <div class="media mang-pg">
-                    <div class="media-body">
-                        <h4 class="media-heading">DSAD</h4>
-                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
-                        <p>By admin on 21 jan 2002<span>|</span></p>
-                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
-                    </div>
-                </div>
-                <div class="media mang-pg">
-                    <div class="media-body">
-                        <h4 class="media-heading">DSAD</h4>
-                        <p>DSA SDdsfd sdfsdfs dfsdf dsfds dfsdfdsdffdsf</p>
-                        <p>By admin on 21 jan 2002<span>|</span></p>
-                        <p>Vestibulum molestie a nibh quis eleifend. Donec vitae nibh rutrum, finibus felis at, scelerisque mi. Suspendisse eleifend purus et odio congue faucibus.</p>
-                    </div>
-                </div>
-        
+  
             
             </div>
             <div class="col-sm-4">
                 <div class="write-a-rev">
-                    <p>Cras vel orci quis massa condimentum sollicitudin.</p>
-                    <p><a href="" class="btn-theme orange">Write a Review</a></p>
+                    <p>Had on experience with this dealer?</p>
+                    <p><a href="javascript:void(0)" (click)="openMessage(message)" class="btn-theme orange">Write a Review</a></p>
                 </div>
             </div>
         </div>
@@ -139,60 +106,51 @@
 </section>
 
  
- <ng-template #share>
-    <div class="modal-header">
-       <h4 class="modal-title pull-left">{{'share' | translate}}</h4>
-       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
-       <span aria-hidden="true">&times;</span>
-       </button>
-    </div>
-    <div class="modal-body">
-       <form>
-          <label>{{'sharePost' | translate}}</label>
-          <div class="form-group">
-             <share-button text="{{'share' | translate}}" [showText]="true" button="facebook"  [url]=urlShare></share-button>
-             <share-button button="linkedin"  text="{{'linkedin' | translate}}" [showText]="true"   [url]=urlShare></share-button>
-             <share-button button="twitter" text="{{'Tweet' | translate}}" [showText]="true"   [url]=urlShare></share-button>
-             <share-button button="whatsapp"  text="{{'Whatsapp' | translate}}" [showText]="true"   [url]=urlShare></share-button>
-          </div>
-       </form>
-    </div>
- </ng-template>
+
  <ng-template #message>
     <div class="modal-header">
-       <h4 class="modal-title pull-left">{{'message' | translate}}</h4>
+       <h4 class="modal-title pull-left">Review</h4>
        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefMessage.hide()">
        <span aria-hidden="true">&times;</span>
        </button>
     </div>
     <div class="modal-body">
        <form [formGroup]="messageForm" autocomplete="off" novalidate (ngSubmit)="sendMessage()">
+         <div class="form-group">
+            <star-rating value="0" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+         </div>
+       
+         <div class="form-group">
+            <textarea [ngClass]="{ 'is-invalid': submitted && fM.title.errors }" formControlName="title" placeholder="Title" required class="form-control"></textarea>
+         </div>
        <div class="form-group">
-          <textarea [ngClass]="{ 'is-invalid': submitted && fM.message.errors }" formControlName="message" required class="form-control"></textarea>
+          <textarea [ngClass]="{ 'is-invalid': submitted && fM.review.errors }" formControlName="review" placeholder="Review" required class="form-control"></textarea>
        </div>
-       <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
+       <button type="submit" class="btn btn-success">Submit</button>
        </form>
     </div>
  </ng-template>
  
- 
- <ng-template #report>
-    <div class="modal-header">
-       <h4 class="modal-title pull-left">{{'Report' | translate}}</h4>
-       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefReport.hide()">
-       <span aria-hidden="true">&times;</span>
-       </button>
-    </div>
-    <div class="modal-body">
-       <form [formGroup]="ReportForm" autocomplete="off" novalidate (ngSubmit)="sendReport()">
-       <div class="form-group">
-          <textarea [ngClass]="{ 'is-invalid': submitted && fR.report.errors }" formControlName="report" required class="form-control"></textarea>
-       </div>
-       <button type="submit" class="btn btn-success">{{'send' | translate}}</button>
-       </form>
-    </div>
- </ng-template>
- 
+
+ <ng-template #share>
+   <div class="modal-header">
+      <h4 class="modal-title pull-left">{{'share' | translate}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefShare.hide()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <form>
+         <label>{{'sharePost' | translate}}</label>
+         <div class="form-group">
+            <share-button text="{{'share' | translate}}" [showText]="true" button="facebook"  [url]=urlShare></share-button>
+            <share-button button="linkedin"  text="{{'linkedin' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="twitter" text="{{'Tweet' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+            <share-button button="whatsapp"  text="{{'Whatsapp' | translate}}" [showText]="true"   [url]=urlShare></share-button>
+         </div>
+      </form>
+   </div>
+</ng-template>
  
  <ng-template #cars>
     <div class="modal-header">

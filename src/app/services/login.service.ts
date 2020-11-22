@@ -119,6 +119,11 @@ public messageData(data: any){
   messageUser(data){
     return this.http.post(AppSettings.API_ENDPOINT + 'sendMessage', data,this.noAuthHeader);
   }
+
+  addReview(data){
+    return this.http.post(AppSettings.API_ENDPOINT + 'addReview', data,this.noAuthHeader);
+  }
+
   reportAD(data){
     return this.http.post(AppSettings.API_ENDPOINT + 'reportAD', data,this.noAuthHeader);
   }
@@ -321,6 +326,9 @@ public messageData(data: any){
 
   validateUser(email) {
     return this.http.get(AppSettings.API_ENDPOINT  + 'validateUser/'+email);
+  }
+  getUserInfo(id,id1) {
+    return this.http.get(AppSettings.API_ENDPOINT  + 'getUserInfo/'+id + '/'+id1);
   }
   getPostDetails(id) {
     return this.http.get(AppSettings.API_ENDPOINT  + 'getPostDetails/'+id);

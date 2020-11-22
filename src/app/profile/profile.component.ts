@@ -32,7 +32,11 @@ export class ProfileComponent implements OnInit {
       type : ['', [Validators.required]],
       phone : ['', [Validators.required]],
       website : [''],
-     // namepros: [''], 
+      company: [''], 
+      facebook: [''], 
+      linkedin: [''], 
+      twitter: [''], 
+      about: [''], 
       //ns: ['',[Validators.required]], 
   })
   this.getCountries();
@@ -54,6 +58,11 @@ export class ProfileComponent implements OnInit {
       type:this.profileForm.get('type').value,
       phone:this.profileForm.get('phone').value,
       website:this.profileForm.get('website').value,
+      company:this.profileForm.get('company').value,
+      facebook:this.profileForm.get('facebook').value,
+      linkedin:this.profileForm.get('linkedin').value,
+      twitter:this.profileForm.get('twitter').value,
+      about:this.profileForm.get('about').value,
      // ns:this.profileForm.get('ns').value,
     }
    
@@ -65,6 +74,11 @@ export class ProfileComponent implements OnInit {
       userDetails.user_type = this.profileForm.get('type').value
       userDetails.phone = this.profileForm.get('phone').value
       userDetails.website = this.profileForm.get('website').value
+      userDetails.company = this.profileForm.get('company').value
+      userDetails.facebook = this.profileForm.get('facebook').value
+      userDetails.linkedin = this.profileForm.get('linkedin').value
+      userDetails.twitter = this.profileForm.get('twitter').value
+      userDetails.about = this.profileForm.get('about').value
       this.loginService.setUserDetails(userDetails)
       this.loginService.sendUserNameUpdate(this.profileForm.get('name').value)
       this.toastr.success("Profile updated successfully.")
@@ -132,6 +146,11 @@ export class ProfileComponent implements OnInit {
       this.profileForm.controls['type'].setValue(userDetails.user_type);
       this.profileForm.controls['phone'].setValue(userDetails.phone);
       this.profileForm.controls['website'].setValue(userDetails.website);
+      this.profileForm.controls['company'].setValue(userDetails.company);
+      this.profileForm.controls['facebook'].setValue(userDetails.facebook);
+      this.profileForm.controls['linkedin'].setValue(userDetails.linkedin);
+      this.profileForm.controls['twitter'].setValue(userDetails.twitter);
+      this.profileForm.controls['about'].setValue(userDetails.about);
       this.imageUrl = userDetails.image;
      
   }

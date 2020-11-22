@@ -1,6 +1,6 @@
 
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -12,7 +12,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { WINDOW } from '@ng-toolkit/universal';
 import { Title, Meta } from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core'
-
+import { StarRatingComponent } from 'ng-starrating';
 @Component({
   selector: 'app-dealer-details',
   templateUrl: './dealer-details.component.html',
@@ -21,30 +21,37 @@ import {TranslateService} from '@ngx-translate/core'
 export class DealerDetailsComponent implements OnInit {
   urlShare:any;
   p: number = 1;
+  userInfo:any
   modalRefShare:BsModalRef | null;
   modalRefAll:BsModalRef | null;
   modalRefMessage:BsModalRef | null;
   submitted = false
+  average :any
   messageForm : FormGroup
   ReportForm:FormGroup
   selectAdDetails:any
   modalRefReport:BsModalRef | null;
   constructor(@Inject(WINDOW) private window: Window, private modalService: BsModalService,private location: Location,private route: ActivatedRoute,private loginService: LoginService,private router : Router,private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private titleService: Title,
-  private meta: Meta,private translate: TranslateService) {}
-
+  private meta: Meta,private translate: TranslateService,private cdRef: ChangeDetectorRef) {}
+  ratingValue : any
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   adDetails :any;
+  totalReviews = 0
+  reviewsList:any
   creatorID:any;
   userID:any;
   userIDAd:any;
   userAdsListed:any;
   contactForm: FormGroup;
   cmsData:any;
+  
   ngOnInit(): void {  
+   
     this.cmsData = this.loginService.getCms();
     this.messageForm = this.formBuilder.group({ 
-      message:['',[Validators.required]],
+      title:['',[Validators.required]],
+      review:['',[Validators.required]],
 
 
     })
@@ -71,7 +78,12 @@ export class DealerDetailsComponent implements OnInit {
     let id =  this.route.snapshot.params.id;
     this.creatorID = id
     this.userIDAd = this.route.snapshot.params.userId
+    
+    
+
+
     this.searchDetails(id)
+    this.getUserInfo(this.userIDAd,this.creatorID)
     this.galleryOptions = [
       {
         width: '600px',
@@ -159,73 +171,59 @@ searchDetails(id){
 back(){
   this.location.back();
 }
-openShare(template: any,event,ad,id){
-  //let title = this.replaceAll(ad.title, ' ', '-');
-  this.urlShare  = location.origin + '/search-details'+'/'+ad.id + '/'+this.userIDAd;
-  event.stopPropagation();
-  this.modalRefShare = this.modalService.show(template);
- }
 
- openMessage(template: any,ad){
-  this.selectAdDetails =ad
-  if(this.loginService.getUserDetails()){
-    if(this.loginService.getUserDetails().id == this.selectAdDetails.user_id){
-      let message = this.translate.get('cant')['value'];
-      this.toastr.error(message)
-      return
+
+ openMessage(template: any){
+  // this.selectAdDetails =ad
+  // if(this.loginService.getUserDetails()){
+  //   if(this.loginService.getUserDetails().id == this.selectAdDetails.user_id){
+  //     let message = this.translate.get('cant')['value'];
+  //     this.toastr.error(message)
+  //     return
      
+  //   }
+  //   this.modalRefMessage = this.modalService.show(template);
+  // }else{
+  //   let message = this.translate.get('msgVal')['value'];
+  //   this.toastr.error(message)
+  // }
+  this.modalRefMessage = this.modalService.show(template);
+ }
+
+
+
+
+
+getUserInfo(id,id1){
+  this.loginService.getUserInfo(id,id1).subscribe((result) => {
+
+    this.userInfo = result['success'][0]
+    this.reviewsList = result['reviews']
+   this.totalReviews = this.reviewsList.length;
+   this.reviewsList.sort((val1, val2)=> {return <any> new Date(val2.created_date) - <any> new 
+    Date(val1.created_date)})
+    let sum = 0;
+
+    for(var i=0 ; i<this.reviewsList.length; i++){
+      sum = Number(sum) + parseFloat(this.reviewsList[i].rating)
     }
-    this.modalRefMessage = this.modalService.show(template);
-  }else{
-    let message = this.translate.get('msgVal')['value'];
-    this.toastr.error(message)
-  }
 
- }
-
- openReport(template: any,ad){
-  this.selectAdDetails =ad
-  if(this.loginService.getUserDetails()){
-    if(this.loginService.getUserDetails().id == this.selectAdDetails.user_id){
-      let message = this.translate.get('repVal')['value'];
-    this.toastr.error(message)
-      return
-     
+    this.average = sum/this.reviewsList.length;
+    console.log(this.average)
+    if(isNaN(this.average)){
+      this.average = 0.00
     }
-    this.modalRefReport = this.modalService.show(template);
-  }else{
-    let message = this.translate.get('rptAd')['value'];
-    this.toastr.error(message)
+    this.cdRef.detectChanges()
+    this.ngxService.stop();
+   }, (err) => {
 
-  }
-
- }
-
- bookmark(ad,event){
-  if(this.loginService.getUserDetails()){
-    this.ngxService.start();
-    let data = {
-      adID:ad.id,
-      userID: this.loginService.getUserDetails().id
-    };
-    this.loginService.bookmark(data).subscribe((result) => {
-      let message = this.translate.get('added')['value'];
-      this.toastr.success(message)
-      this.adDetails.isBookMark = true;
-      this.ngxService.stop();
-     }, (err) => {
-
-      this.toastr.error(err.error.error);
-      this.ngxService.stop();
-     });
-  }else{
-    let message = this.translate.get('bkm')['value'];
-    this.toastr.error(message)
-  }
- }
-
-
-
+    this.toastr.error(err.error.error);
+    this.ngxService.stop();
+   });
+}
+websiteopen(website){
+  window.open(website,'_blank')
+}
 
 createContact(){
  this.contactForm.value.id =  this.userID
@@ -257,52 +255,34 @@ sendMessage(){
 
   // this.toastr.error("you cannot send message yourself.")
   let data = {
-    fromId:this.loginService.getUserDetails().id,
-    toId:this.selectAdDetails.user_id,
-    message:this.messageForm.value.message,
+    userID:this.loginService.getUserDetails().id,
+    dealerID:this.creatorID,
+    review:this.messageForm.value.review,
+    title:this.messageForm.value.title,
+    rating:this.ratingValue ? this.ratingValue : 0
   }
   this.submitted = true
   if(this.messageForm.invalid){
-    let message = this.translate.get('req')['value'];
+    let message = "Please fill required fields.";
     this.toastr.error(message)
     return
   }
   this.ngxService.start()
-  this.loginService.messageUser(data).subscribe((result) => {
-    let message = this.translate.get('msg')['value'];
+  this.loginService.addReview(data).subscribe((result) => {
+    let message = "Review submit succesfully.";
     this.toastr.success(message)
     this.ngxService.stop();
     this.modalRefMessage.hide();
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/dealer-details/"+this.creatorID+"/"+this.userID]));
    }, (err) => {
     this.ngxService.stop();
    });
 
 
 }
-sendReport(){
-  this.submitted = true
-  if(this.ReportForm.invalid){
-    let message = this.translate.get('req')['value'];
-    this.toastr.error(message)
-    return
-  }
-  this.ngxService.start()
-  let data = {
-    userID:this.loginService.getUserDetails().id,
-    adID:this.creatorID,
-    report:this.ReportForm.value.report
-  }
-  this.loginService.reportAD(data).subscribe((result) => {
-    this.toastr.success("Report added succesfully.")
-    this.ngxService.stop();
-    this.modalRefMessage.hide();
-   }, (err) => {
-    this.ngxService.stop();
-   });
-}
-sendEmail(email){
-  this.window.location.href = "mailto:"+email;
-}
+
+
 otherDetails(id,event,userId){
   if(this.modalRefAll){
     this.modalRefAll.hide();
@@ -315,4 +295,41 @@ viewAll(template){
   this.modalRefAll = this.modalService.show(template,Object.assign({}, { class: 'gray modal-lg allAds' })
   );
 }
+onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+  
+  this.ratingValue = $event.newValue
+  // alert(`Old Value:${$event.oldValue}, 
+  //   New Value: ${$event.newValue}, 
+  //   Checked Color: ${$event.starRating.checkedcolor}, 
+  //   Unchecked Color: ${$event.starRating.uncheckedcolor}`);
+}
+bookmark(ad,event){
+  if(this.loginService.getUserDetails()){
+    this.ngxService.start();
+    let data = {
+      adID:ad.id,
+      userID: this.loginService.getUserDetails().id
+    };
+    this.loginService.bookmark(data).subscribe((result) => {
+      let message = this.translate.get('added')['value'];
+      this.toastr.success(message)
+      this.adDetails.isBookMark = true;
+      this.ngxService.stop();
+     }, (err) => {
+
+      this.toastr.error(err.error.error);
+      this.ngxService.stop();
+     });
+  }else{
+    let message = this.translate.get('bkm')['value'];
+    this.toastr.error(message)
+  }
+ }
+ openShare(template: any,event,ad,id){
+  //let title = this.replaceAll(ad.title, ' ', '-');
+  this.urlShare  = location.origin + '/search-details'+'/'+ad.id + '/'+this.userIDAd;
+  event.stopPropagation();
+  this.modalRefShare = this.modalService.show(template);
+ }
+
 }
