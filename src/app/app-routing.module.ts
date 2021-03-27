@@ -94,7 +94,7 @@ const routes: Routes = [{
   canActivate:[ApiGuard],
  },{
       
-  path: 'search/:id',
+  path: 'search/:country/:id',
   component: SearchComponent,
   data: {
     title: 'Parrot Auto Trader - Used cars',

@@ -113,7 +113,7 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
-    this.router.navigateByUrl('/search/'+this.type)
+    this.router.navigateByUrl('/search/'+this.searchForm.value.countryName+'/'+this.type)
 
   }
   checkValue(){

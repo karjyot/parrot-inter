@@ -34,7 +34,7 @@ export class SavedSearchesComponent implements OnInit {
   }
   details(data,event){
     this.loginService.setSearchData(JSON.parse(data.tags));
-    this.router.navigateByUrl("/search/"+data.type)
+    this.router.navigateByUrl("/search/all/"+data.type)
   }
 
   confirmation(template:any,data,event){

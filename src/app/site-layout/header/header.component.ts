@@ -140,32 +140,32 @@ getUnreadMessage(id){
   usedCars(){
   let  data = {
     used:"Used",
-    countryName:this.loginService.getUserLocation().country
+   // countryName:this.loginService.getUserLocation().country
    // type:"car"
   }
   this.loginService.setSearchData(data);
   this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-  this.router.navigate(['search/car']));
+  this.router.navigate(['search/all/car']));
   
   }
   newCars(){
     let  data = {
       new:"New",
-      countryName:this.loginService.getUserLocation().country
+     // countryName:this.loginService.getUserLocation().country
     }
     this.loginService.setSearchData(data);
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(['search/car']));
+    this.router.navigate(['search/all/car']));
   }
   bike(){
     let  data = {
      // new:"New",
     //  type:"bike"
-    countryName:this.loginService.getUserLocation().country
+   // countryName:this.loginService.getUserLocation().country
     }
     this.loginService.setSearchData(data);
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(['search/bike']));
+    this.router.navigate(['search/all/bike']));
   }
   back(){
     this.location.back();
