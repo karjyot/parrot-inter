@@ -63,5 +63,9 @@ ul.post-social-list-footer {
 }
 .ngx-gallery-image.ngx-gallery-active.ngx-gallery-clickable{width:100% !important;}
 table#vrmSearchTable{width: 100%;}
-
+.lang-dropdwn{
+	    top: 97px !important;
+    right: 13px !important;
+    width:18%;
+}
 }
